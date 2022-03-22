@@ -1,0 +1,11 @@
+package engine;
+import java.util.ArrayList;
+import model.world.Champion;
+
+public class Player {
+	
+	private String name;
+	private Champion leader;
+	private ArrayList<Champion> team;
+	
+}

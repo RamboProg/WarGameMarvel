@@ -1,0 +1,5 @@
+package model.abilities;
+
+public class CrowdControlAbility {
+
+}

@@ -1,0 +1,16 @@
+package tests;
+
+public class idk {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 // Generate random number between 5 to 30
+        double a = 100 + (Math.random() * 999);
+        double b = 100 +  (Math.random() * 1000);
+        // Output is different every time this code is executed  
+        System.out.println(a/10);
+        System.out.println(b/10);
+
+	}
+
+}

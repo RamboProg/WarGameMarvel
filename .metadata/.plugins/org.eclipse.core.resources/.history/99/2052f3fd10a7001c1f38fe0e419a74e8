@@ -1,0 +1,14 @@
+package model.effects;
+
+public class Effect {
+	private EffectType effect;
+	
+	public Effect(EffectType effect){
+		this.effect = effect;
+	}
+	
+	public EffectType getEffect(){
+		return effect;
+	}
+	
+}

@@ -1,0 +1,45 @@
+package model.world;
+import java.awt.*;
+import java.util.*;
+
+public class Cover {
+
+	private int currentHP;
+    private	Point location;
+    
+    public Cover(int x , int y ) {
+
+    	location.x=x;
+    	location.y=y;
+    	
+    	
+    	
+    }
+public Cover(int hp , Point location) {
+	
+	this.currentHP = hp;
+	this.location  = location;
+	
+}
+
+public void setHp() {
+
+    // check again #$%%%@@#@#%@
+	 
+	Random rnd = new Random();          
+    this.currentHP  = rnd.nextInt((1000-100))+100;		
+
+
+}
+
+
+
+
+
+
+
+}
+
+
+
+
