@@ -11,7 +11,7 @@ public class Player {
 	public Player(String name){
 		this.name = name;
 	}
-	//ask about if we should another constructor//done
+	//ask about if we should another constructor//	
 	
 	public String getName(){
 		return this.name;

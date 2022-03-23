@@ -17,7 +17,7 @@ public class Game {
 	private static int BOARDWIDTH;
 
 	//public Game(Player firstPlayer, Player secondPlayer, boolean firstLeaderAbilityUsed, boolean secondLeaderAbilityUsed, Object[][] board, )
-	//ask about the constructor above//done
+	//ask about the constructor above
 	
 	public Player getFirstP(){
 		return this.firstPlayer;
