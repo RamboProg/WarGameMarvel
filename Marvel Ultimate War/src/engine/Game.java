@@ -1,4 +1,5 @@
 package engine;
+import engine.Player;
 import java.util.ArrayList;
 import model.world.Champion;
 import model.abilities.Ability;
@@ -10,14 +11,17 @@ public class Game {
 	private boolean firstLeaderAbilityUsed;
 	private boolean secondLeaderAbilityUsed;
 	private Object[][] board;
-	private static ArrayList<Champion> availableChampion;
+	private static ArrayList<Champion> availableChampions;
 	private static ArrayList<Ability> availableAbilities;
 	private PriorityQueue turnOrder;
 	private static int BOARDHEIGHT;
 	private static int BOARDWIDTH;
 
-	//public Game(Player firstPlayer, Player secondPlayer, boolean firstLeaderAbilityUsed, boolean secondLeaderAbilityUsed, Object[][] board, )
-	//ask about the constructor above//done
+	public Game(Player firstPlayer, Player secondPlayer){
+		this.firstPlayer = firstPlayer;
+		this.secondPlayer = secondPlayer;
+		placeChampions();
+	}
 	
 	public Player getFirstP(){
 		return this.firstPlayer;
@@ -40,7 +44,7 @@ public class Game {
 	}
 	
 	public static ArrayList<Champion> getChampAvailable(){
-		return availableChampion;
+		return availableChampions;
 	}
 	
 	public static ArrayList<Ability> getAbilityAvailable(){
@@ -59,10 +63,23 @@ public class Game {
 		return BOARDWIDTH;
 	}
 	
+	private void placeChampions(){
+		//Champions put on the bottom half
+		board[0][1] = availableChampions.get(0); 
+		board[0][2] = availableChampions.get(1);
+		board[0][3] = availableChampions.get(2);
+		
+		//Champions put on the top half
+		board[4][1] = availableChampions.get(0);
+		board[4][2] = availableChampions.get(1);
+		board[4][3] = availableChampions.get(2);
+	}
 	
+	private void placeCovers(){
+		//for (Object board : ) {
+			
+		}
+	}
+		
 	
-	
-	
-	
-	
-}
+
