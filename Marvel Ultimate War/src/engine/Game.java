@@ -1,9 +1,10 @@
 package engine;
 import engine.Player;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import model.world.Champion;
 import model.abilities.Ability;
-
 public class Game {
 
 	private Player firstPlayer;
@@ -79,7 +80,14 @@ public class Game {
 		//for (Object board : ) {
 			
 		}
-	}
+	public static void main(String[] args) throws IOException{
+		readFile("Champion.csv");
+}
+
+	
+
+}
+
 		
 	
 

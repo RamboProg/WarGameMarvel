@@ -56,7 +56,15 @@ public class Champion {
      return	attackRange;
     }
     
-    public void setAttackDamage(int attackDamage) {
+    public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public void setCurrentActionPoints(int currentActionPoints) {
+		this.currentActionPoints = currentActionPoints;
+	}
+
+	public void setAttackDamage(int attackDamage) {
     	this.attackDamage = attackDamage;
     }
     public int getAttackDamage() {
