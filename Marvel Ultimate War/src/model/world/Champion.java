@@ -20,6 +20,14 @@ public class Champion {
 	private Condition condition;           
 	private	Point location;                    
 	
+	public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange, int attackDamage){
+		  this.name = name;                       
+		  this.maxHP = maxHP;                          
+		  this.mana = mana;                         
+		  this.attackRange = attackRange ;                   
+		  this.attackDamage = attackRange;
+		  this.speed = speed;		
+	  }
 	
 	public String getName() {
 		return name;
@@ -106,15 +114,6 @@ public class Champion {
     public void setCondition(){
     	this.condition = Condition.ACTIVE;
     }
-    
-  public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange, int attackDamage){
-	  this.name = name;                       
-	  this.maxHP = maxHP;                          
-	  this.mana = mana;                         
-	  this.attackRange = attackRange ;                   
-	  this.attackDamage = attackRange;
-	  this.speed = speed;		
-  }
     
     
 }
