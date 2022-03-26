@@ -196,7 +196,6 @@ public class Game {
 			/* idea
 			 * use an ability class to add the ability1Name to
 			 */
-			//availableAbilities.
 			
 			
 			if(result[0].equals("A")){

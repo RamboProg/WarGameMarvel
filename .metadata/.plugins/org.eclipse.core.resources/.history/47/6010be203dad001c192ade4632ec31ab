@@ -193,10 +193,7 @@ public class Game {
 			String ability1Name = result[8];
 			String ability2Name = result[9];
 			String ability3Name = result[10];
-			/* idea
-			 * use an ability class to add the ability1Name to
-			 */
-			//availableAbilities.
+			//
 			
 			
 			if(result[0].equals("A")){

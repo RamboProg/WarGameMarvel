@@ -33,11 +33,6 @@ public class Champion {
 		return name;
 	}
 	
-	
-	public void setCondition(Condition condition) {
-		this.condition = condition;
-	}
-
 	public int getMaxHP(){
 		return maxHP;
 	}
