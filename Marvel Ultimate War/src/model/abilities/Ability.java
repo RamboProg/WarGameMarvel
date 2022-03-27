@@ -17,39 +17,37 @@ public class Ability {
 		this.castArea = area;
 		this.requiredActionPoints = required;
 	}
-	
-	public String getName(){
-		return name;
-	}
-	
-	public int getCost(){	
-		return manaCost;
-	}
-	
-	public int getBaseCooldown(){
-		return baseCooldown;
-	}
-	
-	public int getCurrentCooldown(){
+
+	public int getCurrentCooldown() {
 		return currentCooldown;
 	}
-	
-	public void setCurrentCooldown(int currentCool){
-		this.currentCooldown = currentCool;
+
+	public void setCurrentCooldown(int currentCooldown) {
+		this.currentCooldown = currentCooldown;
 	}
-	
-	public int getRange(){
+
+	public String getName() {
+		return name;
+	}
+
+	public int getManaCost() {
+		return manaCost;
+	}
+
+	public int getBaseCooldown() {
+		return baseCooldown;
+	}
+
+	public int getCastRange() {
 		return castRange;
 	}
-	
-	public int getPointsReq(){
+
+	public int getRequiredActionPoints() {
 		return requiredActionPoints;
 	}
-	
-	public AreaOfEffect getArea(){
+
+	public AreaOfEffect getCastArea() {
 		return castArea;
 	}
-	
-	
 	
 }

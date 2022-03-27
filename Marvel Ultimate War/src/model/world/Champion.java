@@ -26,7 +26,9 @@ public class Champion {
 		  this.mana = mana;                         
 		  this.attackRange = attackRange ;                   
 		  this.attackDamage = attackRange;
-		  this.speed = speed;		
+		  this.speed = speed;
+		  abilities = new ArrayList<Ability>();
+		  appliedEffects = new ArrayList<Effect>();
 	  }
 	
 	public String getName() {
@@ -84,9 +86,11 @@ public class Champion {
     	return attackDamage;
     }
         
+    
     public void setSpeed(int speed) {
-    	this.speed = speed;
-    }
+		this.speed = speed;
+	}
+
     public int getSpeed() {
     	return speed;
     }
@@ -105,17 +109,12 @@ public class Champion {
 	return condition;
     }
     
-    public void setLocation(int x, int y) {
-    	this.location.x = x;
-    	this.location.y = y;
+    public void setLocation(Point p) {
+    	this.location = p;
     }
     public Point getLocation() {
     	return location;
     }
-//    public Champion(int x , int y ) {
-//    	location.x = x;
-//    	location.y = y;
-//    }
     
     public void setCondition(){
     	this.condition = Condition.ACTIVE;

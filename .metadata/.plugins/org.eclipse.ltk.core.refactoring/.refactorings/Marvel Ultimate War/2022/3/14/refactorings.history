@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;ability1Name&apos; in &apos;engine.Game.locateAbiliry(...)&apos; to &apos;abilityName&apos;&#x0D;&#x0A;- Original project: &apos;Marvel Ultimate War&apos;&#x0D;&#x0A;- Original element: &apos;engine.Game.locateAbiliry(String).ability1Name&apos;&#x0D;&#x0A;- Renamed element: &apos;ability1Name&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;ability1Name&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;engine{Game.java[Game~locateAbiliry~QString;@ability1Name!6390!6408!6397!6408!QString;!0!true" name="abilityName" references="true" stamp="1648370875193" version="1.0"/>
+</session>

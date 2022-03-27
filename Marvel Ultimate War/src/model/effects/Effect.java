@@ -1,9 +1,9 @@
 package model.effects;
 
 public class Effect {
-	String name;
-	int duration;
-	EffectType type;
+	private String name;
+	private int duration;
+	private EffectType type;
 
 	public Effect(String name, int duration, EffectType type) {
 		this.name = name;
@@ -26,5 +26,6 @@ public class Effect {
 	public EffectType getType() {
 		return type;
 	}
+
 	
 }

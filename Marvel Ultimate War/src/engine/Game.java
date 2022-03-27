@@ -1,10 +1,12 @@
 package engine;
+
 import engine.Player;
 import model.world.AntiHero;
 import model.world.Cover;
 import model.world.Hero;
 import model.world.Villain;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -33,7 +35,7 @@ public class Game {
 	private final static int BOARDHEIGHT = 5;
 	private final static int BOARDWIDTH = 5;
 
-	public Game(Player firstPlayer, Player secondPlayer){
+	public Game(Player firstPlayer, Player secondPlayer) {
 		this.firstPlayer = firstPlayer;
 		this.secondPlayer = secondPlayer;
 		board = new Object[BOARDHEIGHT][BOARDWIDTH];
@@ -42,136 +44,146 @@ public class Game {
 		placeChampions();
 		placeCovers();
 	}
-	
-	public Player getFirstP(){
+
+	public Player getFirstP() {
 		return this.firstPlayer;
 	}
-	
-	public Player getScndP(){
+
+	public Player getScndP() {
 		return this.secondPlayer;
 	}
-	
-	public boolean getFrstLdrAbility(){
+
+	public boolean getFrstLdrAbility() {
 		return this.firstLeaderAbilityUsed;
 	}
-	
-	public boolean getScndLdrAbility(){	
+
+	public boolean getScndLdrAbility() {
 		return this.secondLeaderAbilityUsed;
 	}
-	
-	public Object[][] getBoard(){
+
+	public Object[][] getBoard() {
 		return this.board;
 	}
-	
-	public static ArrayList<Champion> getChampAvailable(){
+
+	public static ArrayList<Champion> getChampAvailable() {
 		return availableChampions;
 	}
-	
-	public static ArrayList<Ability> getAbilityAvailable(){
+
+	public static ArrayList<Ability> getAbilityAvailable() {
 		return availableAbilities;
 	}
-	
-	public PriorityQueue getTurnOrder(){
+
+	public PriorityQueue getTurnOrder() {
 		return this.turnOrder;
 	}
-	
-	public static int getBoardHeight(){
+
+	public static int getBoardHeight() {
 		return BOARDHEIGHT;
 	}
-	
-	public static int getBoardWidth(){
+
+	public static int getBoardWidth() {
 		return BOARDWIDTH;
 	}
-	
-	private void placeChampions(){
-		firstPlayer.team(0).setLocation(board[0][1])
-			//Change the setLocation method in Champion.java
-		
-// 		for(int i = 0; i < 5; i++){
-// 			for(int j = 0; j < 5; j++){
-// 				if(i == 0 && (j == 1 || j == 2 || j == 3)){
-// 					availableChampions.get(j).setLocation(j, i);;
-// 				}
-// 				if(i == 4 &&(j == 1 || j== 2 || j == 3)){
-// 					availableChampions.get(j).setLocation(j, i);;
-// 				}
-// 			}
-// 		}
+
+	private void placeChampions() {
+		firstPlayer.getTeam().get(0).setLocation(new Point(0, 1));
+		board[0][1] = firstPlayer.getTeam().get(0);
+		board[0][2] = firstPlayer.getTeam().get(1);
+		board[0][3] = firstPlayer.getTeam().get(2);
+
+		secondPlayer.getTeam().get(0).setLocation(new Point(0, 1));
+		board[0][1] = secondPlayer.getTeam().get(0);
+		board[0][2] = secondPlayer.getTeam().get(1);
+		board[0][3] = secondPlayer.getTeam().get(2);
 	}
-	
-	private void placeCovers(){
+
+	private void placeCovers() {
 		Random rnd = new Random();
-	    	Random rnd1 = new Random();
-		for(int i = rnd.nextInt((3-1))+1; i < 3; i++){
-			for(int j = rnd1.nextInt((5)); j < 5; j++){
+		Random rnd1 = new Random();
+		int k = 0;
+		while (k < 5) {
+			int i = rnd.nextInt((3 - 1)) + 1;
+			int j = rnd1.nextInt((5));
+			if (board[i][j] == null) {
 				Cover c = new Cover(i, j);
+				c.setLocation(j, i);
+				k++;
 			}
 		}
 	}
-	
-	public static void loadAbility(String filePath) throws IOException{
+
+	public static void loadAbility(String filePath) throws IOException {
 		String currentLine = "";
 		FileReader fileReader = new FileReader(filePath);
 		BufferedReader br = new BufferedReader(fileReader);
-		while((currentLine = br.readLine()) != null){
+		while ((currentLine = br.readLine()) != null) {
 			String[] result = currentLine.split(",");
-		
+
 			String name = result[1];
 			int manaCost = Integer.parseInt(result[2]);
-			int castRange = Integer.parseInt(result[3]);
-			int baseCooldown = Integer.parseInt(result[4]);
+			int castRange = Integer.parseInt(result[4]);
+			int baseCooldown = Integer.parseInt(result[3]);
 			AreaOfEffect areaOfEffect = AreaOfEffect.valueOf(result[5]);
 			int requiredActionsPerTurn = Integer.parseInt(result[6]);
-			
-			if(result[0].equals("HEL")){
+
+			if (result[0].equals("HEL")) {
 				int healAmount = Integer.parseInt(result[7]);
-				HealingAbility a = new HealingAbility(name, manaCost, baseCooldown, castRange, areaOfEffect,requiredActionsPerTurn, healAmount);
+				HealingAbility a = new HealingAbility(name, manaCost,
+						baseCooldown, castRange, areaOfEffect,
+						requiredActionsPerTurn, healAmount);
 				availableAbilities.add(a);
-			}
-			else{
-				if(result[0].equals("DMG")){
+			} else {
+				if (result[0].equals("DMG")) {
 					int damageAmount = Integer.parseInt(result[7]);
-					 DamagingAbility a = new DamagingAbility(name, manaCost, baseCooldown, castRange, areaOfEffect,requiredActionsPerTurn, damageAmount);
-					 availableAbilities.add(a);
+					DamagingAbility a = new DamagingAbility(name, manaCost,
+							baseCooldown, castRange, areaOfEffect,
+							requiredActionsPerTurn, damageAmount);
+					availableAbilities.add(a);
 				}
-			
-				else{
+
+				else {
 					String effectName = result[7];
 					int effectDuration = Integer.parseInt(result[8]);
-					
-					switch(result[7]){
-						case "Disarm":
-						case "Silence":
-						case "Root":
-						case "Shock":
-						case "Stun":
-							Effect e1 = new Effect(effectName, effectDuration, EffectType.DEBUFF);
-							CrowdControlAbility cc1 = new CrowdControlAbility (name, manaCost, baseCooldown, castRange, areaOfEffect,requiredActionsPerTurn, e1);
-							availableAbilities.add(cc1);
-							break;
-						
-						case "PowerUp":
-						case "Shield":
-						case "SpeedUp":
-						case "Embrace":
-						case "Dodge":
-							Effect e2 = new Effect(effectName, effectDuration, EffectType.BUFF);
-							CrowdControlAbility cc2 = new CrowdControlAbility (name, manaCost, baseCooldown, castRange, areaOfEffect,requiredActionsPerTurn, e2);
-							availableAbilities.add(cc2);
-							break;
+
+					switch (result[7]) {
+					case "Disarm":
+					case "Silence":
+					case "Root":
+					case "Shock":
+					case "Stun":
+						Effect e1 = new Effect(effectName, effectDuration,
+								EffectType.DEBUFF);
+						CrowdControlAbility cc1 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, e1);
+						availableAbilities.add(cc1);
+						break;
+
+					case "PowerUp":
+					case "Shield":
+					case "SpeedUp":
+					case "Embrace":
+					case "Dodge":
+						Effect e2 = new Effect(effectName, effectDuration,
+								EffectType.BUFF);
+						CrowdControlAbility cc2 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, e2);
+						availableAbilities.add(cc2);
+						break;
 					}
 				}
-			}			
+			}
 		}
 	}
-	
-	public static void loadChampion(String filePath) throws IOException{
+
+	public static void loadChampion(String filePath) throws IOException {
 		String currentLine = "";
 		FileReader fileReader = new FileReader(filePath);
 		BufferedReader br = new BufferedReader(fileReader);
-		while((currentLine = br.readLine()) != null){
+		while ((currentLine = br.readLine()) != null) {
 			String[] result = currentLine.split(",");
-			
+
 			String name = result[1];
 			int maxHP = Integer.parseInt(result[2]);
 			int mana = Integer.parseInt(result[3]);
@@ -182,34 +194,45 @@ public class Game {
 			String ability1Name = result[8];
 			String ability2Name = result[9];
 			String ability3Name = result[10];
-			/* idea
-			 * use an ability class to add the ability1Name to
-			 */
-			//availableAbilities.
-			
-			if(result[0].equals("A")){
-				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed, attackRange, attackDamage);
-				
-				availableChampions.add(a);
-			}
-			else{
-				if(result[0].equals("H")){
-					Hero h = new Hero(name, maxHP, mana, actions, speed, attackRange, attackDamage);
-					availableChampions.add(h);
+
+			if (result[0].equals("A")) {
+				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed,
+						attackRange, attackDamage);
+				if (availableAbilities.contains(name)) {
+					a.getAbilities().add(locateAbiliry(ability1Name));
+					a.getAbilities().add(locateAbiliry(ability2Name));
+					a.getAbilities().add(locateAbiliry(ability3Name));
+					a.setSpeed(speed);
+					availableChampions.add(a);
 				}
-				else{
-					Villain v = new Villain(name, maxHP, mana, actions, speed, attackRange, attackDamage);
+			} else {
+				if (result[0].equals("H")) {
+					Hero h = new Hero(name, maxHP, mana, actions, speed,
+							attackRange, attackDamage);
+					h.getAbilities().add(locateAbiliry(ability1Name));
+					h.getAbilities().add(locateAbiliry(ability2Name));
+					h.getAbilities().add(locateAbiliry(ability3Name));
+					h.setSpeed(speed);
+					availableChampions.add(h);
+				} else {
+					Villain v = new Villain(name, maxHP, mana, actions, speed,
+							attackRange, attackDamage);
+					v.getAbilities().add(locateAbiliry(ability1Name));
+					v.getAbilities().add(locateAbiliry(ability2Name));
+					v.getAbilities().add(locateAbiliry(ability3Name));
+					v.setSpeed(speed);
 					availableChampions.add(v);
 				}
 			}
 		}
 	}
-	
-	
-	
+
+	private static Ability locateAbiliry(String abilityName) {
+		for (Ability ability : availableAbilities) {
+			if (ability.getName().equals(abilityName))
+				return ability;
+		}
+		return null;
+	}
 
 }
-
-		
-	
-
