@@ -9,7 +9,9 @@ public class Player {
 	private ArrayList<Champion> team;
 	
 	public Player(String name){
+		team = new ArrayList<Champion>();
 		this.name = name;
+		
 	}
 	//ask about if we should another constructor//done
 	
