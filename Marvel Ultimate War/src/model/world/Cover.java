@@ -8,10 +8,10 @@ public class Cover {
 	private int currentHP;
 	private Point location;
 
-	public void setLocation(int x, int y) {
-		location.x = x;
-		location.y = y;
-	}
+//	public void setLocation(int x, int y) {
+//		this.location.x = x;
+//		this.location.y = y;
+//	}
 
 	public Cover(int x, int y) {
 		Random rnd = new Random();
@@ -20,19 +20,35 @@ public class Cover {
 		this.location = new Point(x, y);
 	}
 
-	public Point getLocation() {
-		return this.location;
+	public int getCurrentHP() {
+		return currentHP;
 	}
 
-	public int getHp() {
-		return this.currentHP;
-	}
-
-	public void setHp(int hp) {
-		if (hp < 0)
+	public void setCurrentHP(int currentHP) {
+		if (currentHP < 0)
 			this.currentHP = 0;
 		else
-			this.currentHP = hp;
+			this.currentHP = currentHP;
 	}
+
+	public Point getLocation() {
+		return location;
+	}
+	
+
+//	public Point getLocation() {
+//		return this.location;
+//	}
+//
+//	public int getHp() {
+//		return this.currentHP;
+//	}
+//
+//	public void setHp(int hp) {
+//		if (hp < 0)
+//			this.currentHP = 0;
+//		else
+//			this.currentHP = hp;
+//	}
 
 }

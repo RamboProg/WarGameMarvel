@@ -1,0 +1,50 @@
+package engine;
+import java.util.ArrayList;
+import model.world.Champion;
+
+public class Player {
+	
+	private String name;
+	private Champion leader;
+	private ArrayList<Champion> team;
+	
+	public Player(String name){
+		team = new ArrayList<Champion>();
+		this.name = name;
+		
+	}
+	//ask about if we should another constructor//done
+
+	public Champion getLeader() {
+		return leader;
+	}
+
+	public void setLeader(Champion leader) {
+		this.leader = leader;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public ArrayList<Champion> getTeam() {
+		return team;
+	}
+	
+//	public String getName(){
+//		return this.name;
+//	}
+//	
+//	public void setLeader(Champion leader){
+//		this.leader = leader;
+//	}
+//	
+//	public Champion getLeader(){
+//		return this.leader;
+//	}
+//	
+//	public ArrayList<Champion> getTeam(){
+//		return this.team;
+//	}
+	
+}

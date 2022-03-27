@@ -45,47 +45,48 @@ public class Game {
 		placeCovers();
 	}
 
-	public Player getFirstP() {
-		return this.firstPlayer;
+
+	public Player getFirstPlayer() {
+		return firstPlayer;
 	}
 
-	public Player getScndP() {
-		return this.secondPlayer;
+	public Player getSecondPlayer() {
+		return secondPlayer;
 	}
 
-	public boolean getFrstLdrAbility() {
-		return this.firstLeaderAbilityUsed;
+	public boolean isFirstLeaderAbilityUsed() {
+		return firstLeaderAbilityUsed;
 	}
 
-	public boolean getScndLdrAbility() {
-		return this.secondLeaderAbilityUsed;
+	public boolean isSecondLeaderAbilityUsed() {
+		return secondLeaderAbilityUsed;
 	}
 
 	public Object[][] getBoard() {
-		return this.board;
+		return board;
 	}
 
-	public static ArrayList<Champion> getChampAvailable() {
+	public static ArrayList<Champion> getAvailableChampions() {
 		return availableChampions;
 	}
 
-	public static ArrayList<Ability> getAbilityAvailable() {
+	public static ArrayList<Ability> getAvailableAbilities() {
 		return availableAbilities;
 	}
 
 	public PriorityQueue getTurnOrder() {
-		return this.turnOrder;
+		return turnOrder;
 	}
 
-	public static int getBoardHeight() {
+	public static int getBoardheight() {
 		return BOARDHEIGHT;
 	}
 
-	public static int getBoardWidth() {
+	public static int getBoardwidth() {
 		return BOARDWIDTH;
 	}
 
-	private void placeChampions() {
+	private void placeChampions(){
 		firstPlayer.getTeam().get(0).setLocation(new Point(0, 1));
 		board[0][1] = firstPlayer.getTeam().get(0);
 		board[0][2] = firstPlayer.getTeam().get(1);
@@ -105,8 +106,7 @@ public class Game {
 			int i = rnd.nextInt((3 - 1)) + 1;
 			int j = rnd1.nextInt((5));
 			if (board[i][j] == null) {
-				Cover c = new Cover(i, j);
-				c.setLocation(j, i);
+				Cover c = new Cover(j, i);
 				k++;
 			}
 		}

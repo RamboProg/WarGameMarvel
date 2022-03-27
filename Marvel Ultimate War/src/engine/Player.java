@@ -14,21 +14,22 @@ public class Player {
 		
 	}
 	//ask about if we should another constructor//done
-	
-	public String getName(){
-		return this.name;
+
+	public Champion getLeader() {
+		return leader;
 	}
-	
-	public void setLeader(Champion leader){
+
+	public void setLeader(Champion leader) {
 		this.leader = leader;
 	}
-	
-	public Champion getLeader(){
-		return this.leader;
+
+	public String getName() {
+		return name;
 	}
-	
-	public ArrayList<Champion> getTeam(){
-		return this.team;
+
+	public ArrayList<Champion> getTeam() {
+		return team;
 	}
+
 	
 }

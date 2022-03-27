@@ -11,4 +11,5 @@
 <fullyQualifiedTypeName name="model.world.AntiHero"/>
 <fullyQualifiedTypeName name="model.world.Hero"/>
 <fullyQualifiedTypeName name="model.world.Villain"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
 </qualifiedTypeNameHistroy>
