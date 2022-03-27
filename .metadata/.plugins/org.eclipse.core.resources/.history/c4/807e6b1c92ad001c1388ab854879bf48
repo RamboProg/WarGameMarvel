@@ -105,17 +105,16 @@ public class Champion {
 	return condition;
     }
     
-    public void setLocation(int x, int y) {
-    	this.location.x = x;
-    	this.location.y = y;
+    public void setLocation(Point location) {
+    	this.location = location;
     }
     public Point getLocation() {
     	return location;
     }
-//    public Champion(int x , int y ) {
-//    	location.x = x;
-//    	location.y = y;
-//    }
+    public Champion(int x , int y ) {
+    	location.x = x;
+    	location.y = y;
+    }
     
     public void setCondition(){
     	this.condition = Condition.ACTIVE;

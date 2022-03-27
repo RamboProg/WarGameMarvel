@@ -112,10 +112,10 @@ public class Champion {
     public Point getLocation() {
     	return location;
     }
-//    public Champion(int x , int y ) {
-//    	location.x = x;
-//    	location.y = y;
-//    }
+    public Champion(int x , int y ) {
+    	location.x = x;
+    	location.y = y;
+    }
     
     public void setCondition(){
     	this.condition = Condition.ACTIVE;

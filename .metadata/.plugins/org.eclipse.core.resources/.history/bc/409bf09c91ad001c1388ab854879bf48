@@ -84,16 +84,31 @@ public class Game {
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j < 5; j++){
 				if(i == 0 && (j == 1 || j == 2 || j == 3)){
-					availableChampions.get(j).setLocation(j, i);;
+					availableChampions.get(j);
 				}
 				if(i == 4 &&(j == 1 || j== 2 || j == 3)){
-					availableChampions.get(j).setLocation(j, i);;
+					availableChampions.get(j);
 				}
 			}
 		}
+		
+		
+	/*	//Champions put on the bottom half
+		board[0][1] = availableChampions.get(0); 
+		board[0][2] = availableChampions.get(1);
+		board[0][3] = availableChampions.get(2);
+		
+		//Champions put on the top half
+		board[4][1] = availableChampions.get(0);
+		board[4][2] = availableChampions.get(1);
+		board[4][3] = availableChampions.get(2);*/
 	}
 	
 	private void placeCovers(){
+//		int i = 0;
+//		int j = 0;
+//		int count = 0;
+//		while((i != 1 && i != 2 && i != 3) && (j != 1 && j != 2 && j != 3) && count < 5){
 		Random rnd = new Random();
 	    Random rnd1 = new Random();
 		for(int i = rnd.nextInt((3-1))+1; i < 3; i++){
@@ -101,7 +116,7 @@ public class Game {
 				Cover c = new Cover(i, j);
 			}
 		}
-	}
+//	}
 	
 	public static void loadAbility(String filePath) throws IOException{
 		String currentLine = "";
@@ -180,6 +195,7 @@ public class Game {
 			 * use an ability class to add the ability1Name to
 			 */
 			//availableAbilities.
+			
 			
 			if(result[0].equals("A")){
 				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed, attackRange, attackDamage);

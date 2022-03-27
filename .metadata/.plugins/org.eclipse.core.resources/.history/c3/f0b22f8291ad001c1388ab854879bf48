@@ -83,23 +83,40 @@ public class Game {
 	private void placeChampions(){
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j < 5; j++){
-				if(i == 0 && (j == 1 || j == 2 || j == 3)){
-					availableChampions.get(j).setLocation(j, i);;
-				}
-				if(i == 4 &&(j == 1 || j== 2 || j == 3)){
-					availableChampions.get(j).setLocation(j, i);;
+				if((i == 0 && (j == 1 || j == 2 || j == 3))){
+					
 				}
 			}
 		}
+		
+		
+		
+		
+		
+		
+	/*	//Champions put on the bottom half
+		board[0][1] = availableChampions.get(0); 
+		board[0][2] = availableChampions.get(1);
+		board[0][3] = availableChampions.get(2);
+		
+		//Champions put on the top half
+		board[4][1] = availableChampions.get(0);
+		board[4][2] = availableChampions.get(1);
+		board[4][3] = availableChampions.get(2);*/
 	}
 	
 	private void placeCovers(){
-		Random rnd = new Random();
-	    Random rnd1 = new Random();
-		for(int i = rnd.nextInt((3-1))+1; i < 3; i++){
-			for(int j = rnd1.nextInt((5)); j < 5; j++){
-				Cover c = new Cover(i, j);
-			}
+		int i = 0;
+		int j = 0;
+		int count = 0;
+		while((i != 1 && i != 2 && i != 3) && (j != 1 && j != 2 && j != 3) && count < 5){
+			Random rnd = new Random();
+		    i = rnd.nextInt((5-1))+1;
+		    Random rnd1 = new Random();
+		    j = rnd1.nextInt((5-1))+1;
+		    
+		    Cover c = new Cover(i, j);
+		    count++;
 		}
 	}
 	
@@ -180,6 +197,7 @@ public class Game {
 			 * use an ability class to add the ability1Name to
 			 */
 			//availableAbilities.
+			
 			
 			if(result[0].equals("A")){
 				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed, attackRange, attackDamage);

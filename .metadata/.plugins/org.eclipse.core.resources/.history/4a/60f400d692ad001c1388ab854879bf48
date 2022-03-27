@@ -181,6 +181,7 @@ public class Game {
 			 */
 			//availableAbilities.
 			
+			
 			if(result[0].equals("A")){
 				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed, attackRange, attackDamage);
 				

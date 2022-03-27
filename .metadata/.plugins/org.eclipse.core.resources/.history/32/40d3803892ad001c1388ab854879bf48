@@ -91,6 +91,17 @@ public class Game {
 				}
 			}
 		}
+		
+		
+	/*	//Champions put on the bottom half
+		board[0][1] = availableChampions.get(0); 
+		board[0][2] = availableChampions.get(1);
+		board[0][3] = availableChampions.get(2);
+		
+		//Champions put on the top half
+		board[4][1] = availableChampions.get(0);
+		board[4][2] = availableChampions.get(1);
+		board[4][3] = availableChampions.get(2);*/
 	}
 	
 	private void placeCovers(){
@@ -180,6 +191,7 @@ public class Game {
 			 * use an ability class to add the ability1Name to
 			 */
 			//availableAbilities.
+			
 			
 			if(result[0].equals("A")){
 				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed, attackRange, attackDamage);
