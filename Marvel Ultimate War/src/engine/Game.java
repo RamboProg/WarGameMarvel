@@ -30,12 +30,15 @@ public class Game {
 	private static ArrayList<Champion> availableChampions;
 	private static ArrayList<Ability> availableAbilities;
 	private PriorityQueue turnOrder;
-	private static int BOARDHEIGHT;
-	private static int BOARDWIDTH;
+	private final static int BOARDHEIGHT = 5;
+	private final static int BOARDWIDTH = 5;
 
 	public Game(Player firstPlayer, Player secondPlayer){
 		this.firstPlayer = firstPlayer;
 		this.secondPlayer = secondPlayer;
+		board = new Object[BOARDHEIGHT][BOARDWIDTH];
+		availableChampions = new ArrayList<Champion>();
+		availableAbilities = new ArrayList<Ability>();
 		placeChampions();
 		placeCovers();
 	}
@@ -81,21 +84,24 @@ public class Game {
 	}
 	
 	private void placeChampions(){
-		for(int i = 0; i < 5; i++){
-			for(int j = 0; j < 5; j++){
-				if(i == 0 && (j == 1 || j == 2 || j == 3)){
-					availableChampions.get(j).setLocation(j, i);;
-				}
-				if(i == 4 &&(j == 1 || j== 2 || j == 3)){
-					availableChampions.get(j).setLocation(j, i);;
-				}
-			}
-		}
+		firstPlayer.team(0).setLocation(board[0][1])
+			//Change the setLocation method in Champion.java
+		
+// 		for(int i = 0; i < 5; i++){
+// 			for(int j = 0; j < 5; j++){
+// 				if(i == 0 && (j == 1 || j == 2 || j == 3)){
+// 					availableChampions.get(j).setLocation(j, i);;
+// 				}
+// 				if(i == 4 &&(j == 1 || j== 2 || j == 3)){
+// 					availableChampions.get(j).setLocation(j, i);;
+// 				}
+// 			}
+// 		}
 	}
 	
 	private void placeCovers(){
 		Random rnd = new Random();
-	    Random rnd1 = new Random();
+	    	Random rnd1 = new Random();
 		for(int i = rnd.nextInt((3-1))+1; i < 3; i++){
 			for(int j = rnd1.nextInt((5)); j < 5; j++){
 				Cover c = new Cover(i, j);
