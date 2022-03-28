@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="M1PublicTests" project="Marvel Ultimate War" tests="406" started="406" failures="21" errors="0" ignored="0">
+  <testsuite name="tests.M1PublicTests" time="0.18">
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassPowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsSpeed" classname="tests.M1PublicTests" time="0.014">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSpeed(M1PublicTests.java:3226)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableChampionConditionPresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableTypeExistsInClassDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionConditionPrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsNotPresentInClassDisarm" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionConditionSetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableTypeExistsInClassEffect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableHeroAttackDamageSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainCurrentHP" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testEffectIsSuperClassOfPowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainAttackRangeGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionConditionGetterLogic" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionConditionGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCurrentHP" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testAbilitiesSameNameDynamic" classname="tests.M1PublicTests" time="0.005"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassShock" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackDamageSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableCurrentCooldownIsNotPresentInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAppliedEffectsSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsPrivateInClassEffect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionMaxHPGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainAppliedEffects" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsSpeedDynamic" classname="tests.M1PublicTests" time="0.005">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSpeedDynamic(M1PublicTests.java:3319)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testClassIsEnumAreaOfEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassEmbrace" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariablePlayerTeamSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEmptyConstructorUnallowedMovementException" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableHeroNameGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsPresentInClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameSecondLeaderAbilityUsedSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testGetterForInstanceVariableDurationExistsInClassDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableCastRangeIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTurnOrderInGame" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainCurrentHPGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainMaxHPGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableDurationExistsInClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassSilence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionNameType" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testGetterForInstanceVariableManaCostExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesAreaOfEffect" classname="tests.M1PublicTests" time="0.002"/>
+    <testcase name="testInstanceVariableVillainAppliedEffectsGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableCastRangeExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentHPSetterLogicMax" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainAttackRangeSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsNotPresentInClassShield" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionConditionSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameTurnOrderGetterLogic" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testSetterForInstanceVariableRequiredActionPointsExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBaseCooldownIsPrivateInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsSameMana" classname="tests.M1PublicTests" time="0.002">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameMana(M1PublicTests.java:3041)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainAttackDamage" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassDodge" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructor0HealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0Ability" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassSpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassShock" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionMaxHPSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsAttackDamage" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsAttackDamage(M1PublicTests.java:3103)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassShield" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionCurrentHPSetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentActionPointsGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testPlaceFirstPlayerChampionsMethod" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameBoardGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroNameSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructorAntiHeroInitialization" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsAbilities" classname="tests.M1PublicTests" time="0.002">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsAbilities(M1PublicTests.java:3132)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableNameIsNotPresentInClassRoot" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableCastAreaExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainCurrentHPSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentHPGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainMaxHPSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainAppliedEffectsSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroMaxHPGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0Dodge" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0Shock" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHealingAmountIsPrivateInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableBaseCooldownExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testChampionsAttackRangeDynamic" classname="tests.M1PublicTests" time="0.003">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsAttackRangeDynamic(M1PublicTests.java:3350)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testConstructor0Stun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroMaxHP" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroSpeed" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorCover" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionNameGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testCoverCurrentHPSetterLogicGeneral" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameAvailableAbilitiesGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableCurrentCooldownExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableCastRangeExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassEmbrace" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassStun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameAvailableAbilitiesGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testplaceCoversMethod" classname="tests.M1PublicTests" time="0.004"/>
+    <testcase name="testConstructorAbilityUseException" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassRoot" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassStun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentHPSetterLogicZero" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBoardHightInGame" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainAttackRange" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testPlaceSecondPlayerChampionsMethod" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableDurationExistsInClassDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariablePlayerName" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableDurationExistsInClassEffect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testFirstPlayerChampionsLocationAfterPlaceChampions" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionSpeedType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCurrentActionPoints" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroLocationGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainAbilities" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableCurrentCooldownIsNotPresentInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroMaxHPSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAbilities" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameBaseCoolDown" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: The abilities baseCooldown is loaded incorrectly&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at tests.M1PublicTests.testAbilitiesSameBaseCoolDown(M1PublicTests.java:3525)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testGetterForInstanceVariableCastRangeExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterLogicForInstanceVariableDurationeffect00int70InClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testClassIsSubclassAbilityUseException" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionNameSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableCurrentCooldownIsNotPresentInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionAbilitiesGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameClassDynamic" classname="tests.M1PublicTests" time="0.003"/>
+    <testcase name="testInstanceVariableHeroAbilitiesGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testCoverCurrentHPGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsSameMaxHPDynamic" classname="tests.M1PublicTests" time="0.003">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameMaxHPDynamic(M1PublicTests.java:3195)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableGameFirstPlayerGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainManaGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableGameBoardGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAttackRange" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackRangeGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassShield" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionNamePresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionNamePrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackRangeGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableCastAreaExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroLocationSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainMana" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainName" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInvalidConstructor0Silence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainConditionGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassPowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariablePlayerLeaderGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsAbilitiesDynamic" classname="tests.M1PublicTests" time="0.003">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsAbilitiesDynamic(M1PublicTests.java:3379)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableCastRangeIsPrivateInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnPresent" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnPrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionNameGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableCastRangeExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackRangeType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAbilitiesSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassSilence" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testCoverCurrentHPSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainMaxActionPointsPerTurnGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorInitialization2500CrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableManaCostIsNotPresentInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableManaCostIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testAbilityIsSuperClassOfHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDamageAmountIsPrivateInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesAreaOfEffectDynamic" classname="tests.M1PublicTests" time="0.003"/>
+    <testcase name="testInstanceVariableHeroMana" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroName" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInvalidConstructor0SpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesRequiredActionPointsDynamic" classname="tests.M1PublicTests" time="0.003"/>
+    <testcase name="testGameBoardHeightStatic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainManaSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassShield" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableTypeExistsInClassSpeedUp" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionAttackRangeSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0CrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testClassIsSubclassVillain" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainCurrentActionPoints" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameCastRange" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: The abilities cast range is loaded incorrectly&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at tests.M1PublicTests.testAbilitiesSameCastRange(M1PublicTests.java:3492)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariablePlayerLeader" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainMaxActionPointsPerTurn" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAbilitiesGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableAvailableChampionsInGame" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassSpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameAvailableAbilitiesSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableRequiredActionPointsExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testSetterForInstanceVariableBaseCooldownExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testClassIsSubclassHero" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainConditionSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableCastAreaExistsInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameEffect" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: The effect is not initalized using the correct subclass&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at tests.M1PublicTests.testAbilitiesSameEffect(M1PublicTests.java:3623)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariablePlayerLeaderSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorCoverInitialization" classname="tests.M1PublicTests" time="0.002"/>
+    <testcase name="testInstanceVariablePlayerLeaderSetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainMaxActionPointsPerTurnSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariablePlayerLeaderGetterLogic" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableManaCostIsNotPresentInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testCoverInstanceVariableLocationType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroMaxActionPointsPerTurn" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBaseCooldownIsNotPresentInClassHealingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testEnumConditionValues" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAbilitiesSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassStun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassShock" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionSpeedPresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionSpeedPrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableCurrentCooldownExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCurrentActionPointsGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableManaCostExistsInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsNotPresentInClassEmbrace" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableTypeIsNotPresentInClassPowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableManaCostExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDurationIsPresentInClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testClassIsSubclassUnallowedMovementException" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructorVillainInitialization" classname="tests.M1PublicTests" time="0.0">
+      <failure>java.lang.AssertionError: The constructor of the Villain class should initialize the instance variable "condition" correctly. expected:&lt;ACTIVE&gt; but was:&lt;null&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at tests.M1PublicTests.testConstructorInitialization(M1PublicTests.java:4938)&#13;
+	at tests.M1PublicTests.testConstructorVillainInitialization(M1PublicTests.java:2239)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testConstructorGameActionException" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorInitialization1700Shock" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testSetterForInstanceVariableDurationExistsInClassEmbrace" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroMaxActionPointsPerTurnGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainMaxHP" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainSpeed" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testChampionsSameClassDynamic" classname="tests.M1PublicTests" time="0.004">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameClassDynamic(M1PublicTests.java:3170)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableChampionMaxHPGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameCostDynamic" classname="tests.M1PublicTests" time="0.005"/>
+    <testcase name="testConstructorInitialization2400DamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorGameConstructorInitialization" classname="tests.M1PublicTests" time="0.0">
+      <failure>java.lang.AssertionError: Game constructor should initialize the turn order properly&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at tests.M1PublicTests.testConstructorGameConstructorInitialization(M1PublicTests.java:2530)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassSlipperiness" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassSilence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorLeaderAbilityAlreadyUsedException" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameFirstLeaderAbilityUsedGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testClassIsSubclassGameActionException" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCurrentActionPointsSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainLocationGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableRequiredActionPointsExistsInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEmptyConstructorAbilityUseException" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableGameBOARDWIDTHGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBoardWidthInGame" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassShield" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInvalidConstructor0DamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassDodge" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassShock" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableBaseCooldownExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInvalidConstructor0Disarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableCurrentCooldownIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassSpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEffectIsSuperClassOfDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainLocation" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableCastRangeExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableHeroMaxActionPointsPerTurnSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameBOARDHEIGHTSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesRequiredActionPoints" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructorInitialization1300Stun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAttackRangeGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testCoverCurrentHPGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCurrentHPGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameBOARDWIDTHSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAppliedEffectsPresent" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testEnumDirection" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameEffectDynamic" classname="tests.M1PublicTests" time="0.004">
+      <failure>java.lang.AssertionError: The effect is not initalized using the correct subclass&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at tests.M1PublicTests.testAbilitiesSameEffectDynamic(M1PublicTests.java:3920)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableManaCostIsPrivateInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableBaseCooldownExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterLogicForInstanceVariableNameability00string00InClassAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testGameTurnOrderSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilityIsSuperClassOfDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainCondition" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainLocationSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableNameIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEnumCondition" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0Effect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructorInitialization1600Silence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionConditionType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCondition" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorPlayerConstructorInitialization" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableFirstLeaderAbilityUsedInGame" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHealingAmountIsPresentInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainNameGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testCoverLocationGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionManaType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsPresentInClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameAvailableChampionsSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testAbilitiesSameHealingOrDamageAmountDynamic" classname="tests.M1PublicTests" time="0.003"/>
+    <testcase name="testInstanceVariableChampionManaPresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionManaPrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackDamageType" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableHeroManaGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassEmbrace" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInvalidConstructor0Shield" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableRequiredActionPointsIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableHeroAttackRangeSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAppliedEffects" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorInitialization1500Dodge" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroCurrentHPSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testEffectIsSuperClassOfShield" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameSecondPlayerGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentActionPointsGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEffectIsSuperClassOfEmbrace" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableGameFirstPlayerGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainAbilitiesGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableCurrentCooldownExistsInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testChampionsAttackRange" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsAttackRange(M1PublicTests.java:3072)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testCoverInstanceVariableLocationPresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testCoverInstanceVariableLocationPrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionSpeedGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterLogicForInstanceVariableTypeeffect00effectType01InClassEffect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionCurrentHPGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameBoardSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainNameSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0Shield" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInvalidConstructor0PowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorInitialization1200Effect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testCoverLocationSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainAttackDamageGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameTurnOrderGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameBOARDHEIGHTGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainCurrentActionPointsGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroManaSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testGetterForInstanceVariableManaCostExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBaseCooldownIsNotPresentInClassCrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainSpeedGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableRequiredActionPointsExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassSlipperiness" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassRoot" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableDurationIsNotPresentInClassStun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableTypeExistsInClassPowerUp" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassSlipperiness" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentHPType" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassDisarm" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsNotPresentInClassPowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testPriorityQueueClassExists" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassEffect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionCurrentHPPresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentHPPrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructorInitialization1400SpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableVillainAbilitiesSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testCoverLocationGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEnumDirectionValues" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEffectIsSuperClassOfShock" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionManaGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableGameSecondLeaderAbilityUsedGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableDurationExistsInClassStun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionManaGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableDamageAmountExistsInClassDamagingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionSpeedSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInvalidConstructor0CrowdControlAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableDurationExistsInClassPowerUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBaseCooldownIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGameBoardHeightFinal" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructorInitialization1400Root" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableDurationExistsInClassSpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAttackDamage" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionCurrentHPSetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionAttackDamageSetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsSameMaxActionsDynamic" classname="tests.M1PublicTests" time="0.003">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameMaxActionsDynamic(M1PublicTests.java:3288)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableVillainAttackDamageSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableHealAmountExistsInClassHealingAbility" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainCurrentActionPointsSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameName" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionAttackDamageGetterLogic" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableVillainSpeedSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroSpeedGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameClass" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableDurationIsPrivateInClassEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableCastAreaIsPresentInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterLogicForInstanceVariableDurationeffect00int26InClassEffect" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableManaCostIsNotPresentInClassHealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableManaCostExistsInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableLocationGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableCurrentCooldownIsPrivateInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassShield" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testConstructor0Silence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAppliedEffectsSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testChampionsSameManaDynamic" classname="tests.M1PublicTests" time="0.004">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;3&gt; but was:&lt;2&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameManaDynamic(M1PublicTests.java:3257)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableHeroConditionGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnSetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableBaseCooldownIsNotPresentInClassDamagingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testAbilitiesSameBaseCoolDownDynamic" classname="tests.M1PublicTests" time="0.003">
+      <failure>java.lang.AssertionError: The abilities baseCooldown is loaded incorrectly&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.assertTrue(Assert.java:41)&#13;
+	at tests.M1PublicTests.testAbilitiesSameBaseCoolDownDynamic(M1PublicTests.java:3777)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testEmptyConstructorGameActionException" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassSilence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariablePlayerTeamGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableTypeExistsInClassStun" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroLocation" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionLocationGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionMaxActionPointsPerTurnGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testEnumValuesAreaOfEffect" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAttackDamageGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInvalidConstructor0HealingAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableDurationExistsInClassEmbrace" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassSilence" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testConstructor0SpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableGameSecondPlayerGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableChampionSpeedSetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableNameIsPrivateInClassAbility" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackRangePresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackRangePrivate" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testChampionsSameClass" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameClass(M1PublicTests.java:2985)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testChampionsSameMaxHP" classname="tests.M1PublicTests" time="0.001">
+      <failure>java.lang.AssertionError: Size of champions ArrayList is incorrect  expected:&lt;15&gt; but was:&lt;12&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:88)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:743)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:118)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:555)&#13;
+	at tests.M1PublicTests.testChampionsSameMaxHP(M1PublicTests.java:3010)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#13;
+	at java.lang.reflect.Method.invoke(Method.java:483)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testInstanceVariableHeroSpeedSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testSetterForInstanceVariableNameExistsInClassSpeedUp" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackDamageGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackDamagePresent" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionAttackDamagePrivate" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableChampionSpeedGetterLogic" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroAppliedEffectsGetter" classname="tests.M1PublicTests" time="0.001"/>
+    <testcase name="testInstanceVariableSecondPlayerInGame" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariableHeroConditionSetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testInstanceVariablePlayerTeamGetter" classname="tests.M1PublicTests" time="0.0"/>
+    <testcase name="testGetterForInstanceVariableNameExistsInClassShock" classname="tests.M1PublicTests" time="0.001"/>
+  </testsuite>
+</testrun>

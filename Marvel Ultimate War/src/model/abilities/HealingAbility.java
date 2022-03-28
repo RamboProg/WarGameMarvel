@@ -8,11 +8,11 @@ public class HealingAbility extends Ability {
 		this.healAmount = healAmount;
 	}
 	
-	public int getHeal(){
+	public int getHealAmount(){
 		return healAmount;
 	}
 	
-	public void setHeal(int amount){
+	public void setHealAmount(int amount){
 		this.healAmount = amount;
 	}
 	

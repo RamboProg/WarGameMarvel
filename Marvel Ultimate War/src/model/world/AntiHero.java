@@ -6,6 +6,7 @@ public class AntiHero extends Champion {
     		int attackDamage) {
 		super(name, maxHP, mana, maxActions, speed, attackRange, attackDamage );
 		setCurrentHP(maxHP);
+		setCondition(Condition.ACTIVE);
 	}
 
 }

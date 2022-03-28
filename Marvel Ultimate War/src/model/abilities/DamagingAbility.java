@@ -12,7 +12,7 @@ public class DamagingAbility extends Ability {
 		return damageAmount;
 	}
 	
-	public void setDamageamount(int amount){
+	public void setDamageAmount(int amount){
 		this.damageAmount = amount;
 	}
 	

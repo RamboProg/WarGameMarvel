@@ -19,8 +19,7 @@ import model.abilities.AreaOfEffect;
 import model.abilities.CrowdControlAbility;
 import model.abilities.DamagingAbility;
 import model.abilities.HealingAbility;
-import model.effects.Effect;
-import model.effects.EffectType;
+import model.effects.*;
 
 public class Game {
 
@@ -43,8 +42,9 @@ public class Game {
 		availableAbilities = new ArrayList<Ability>();
 		placeChampions();
 		placeCovers();
+		this.turnOrder = new PriorityQueue(firstPlayer.getTeam().size()
+				+ secondPlayer.getTeam().size());
 	}
-
 
 	public Player getFirstPlayer() {
 		return firstPlayer;
@@ -86,16 +86,17 @@ public class Game {
 		return BOARDWIDTH;
 	}
 
-	private void placeChampions(){
-		firstPlayer.getTeam().get(0).setLocation(new Point(0, 1));
-		board[0][1] = firstPlayer.getTeam().get(0);
-		board[0][2] = firstPlayer.getTeam().get(1);
-		board[0][3] = firstPlayer.getTeam().get(2);
+	private void placeChampions() {
+		for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
+			board[0][i + 1] = firstPlayer.getTeam().get(i);
+			firstPlayer.getTeam().get(i).setLocation(new Point(0, i + 1));
+		}
 
-		secondPlayer.getTeam().get(0).setLocation(new Point(0, 1));
-		board[0][1] = secondPlayer.getTeam().get(0);
-		board[0][2] = secondPlayer.getTeam().get(1);
-		board[0][3] = secondPlayer.getTeam().get(2);
+		for (int i = 0; i < secondPlayer.getTeam().size(); i++) {
+			board[4][i + 1] = secondPlayer.getTeam().get(i);
+			secondPlayer.getTeam().get(i).setLocation(new Point(4, i + 1));
+		}
+
 	}
 
 	private void placeCovers() {
@@ -103,16 +104,16 @@ public class Game {
 		Random rnd1 = new Random();
 		int k = 0;
 		while (k < 5) {
-			int i = rnd.nextInt((3 - 1)) + 1;
+			int i = rnd.nextInt((3)) + 1;
 			int j = rnd1.nextInt((5));
 			if (board[i][j] == null) {
-				Cover c = new Cover(j, i);
+				board[i][j] = new Cover(i, j);
 				k++;
 			}
 		}
 	}
 
-	public static void loadAbility(String filePath) throws IOException {
+	public static void loadAbilities(String filePath) throws IOException {
 		String currentLine = "";
 		FileReader fileReader = new FileReader(filePath);
 		BufferedReader br = new BufferedReader(fileReader);
@@ -121,8 +122,8 @@ public class Game {
 
 			String name = result[1];
 			int manaCost = Integer.parseInt(result[2]);
-			int castRange = Integer.parseInt(result[4]);
-			int baseCooldown = Integer.parseInt(result[3]);
+			int castRange = Integer.parseInt(result[3]);
+			int baseCooldown = Integer.parseInt(result[4]);
 			AreaOfEffect areaOfEffect = AreaOfEffect.valueOf(result[5]);
 			int requiredActionsPerTurn = Integer.parseInt(result[6]);
 
@@ -142,34 +143,80 @@ public class Game {
 				}
 
 				else {
-					String effectName = result[7];
+					// String effectName = result[7];
 					int effectDuration = Integer.parseInt(result[8]);
 
 					switch (result[7]) {
 					case "Disarm":
+						Disarm d = new Disarm(effectDuration);
+						CrowdControlAbility cc2 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, d);
+						availableAbilities.add(cc2);
+						break;
 					case "Silence":
+						Silence s = new Silence(effectDuration);
+						CrowdControlAbility cc3 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, s);
+						availableAbilities.add(cc3);
+						break;
 					case "Root":
+						Root r = new Root(effectDuration);
+						CrowdControlAbility cc4 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, r);
+						availableAbilities.add(cc4);
+						break;
 					case "Shock":
+						Shock sh = new Shock(effectDuration);
+						CrowdControlAbility cc5 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, sh);
+						availableAbilities.add(cc5);
+						break;
 					case "Stun":
-						Effect e1 = new Effect(effectName, effectDuration,
-								EffectType.DEBUFF);
+						Stun st = new Stun(effectDuration);
 						CrowdControlAbility cc1 = new CrowdControlAbility(name,
 								manaCost, baseCooldown, castRange,
-								areaOfEffect, requiredActionsPerTurn, e1);
+								areaOfEffect, requiredActionsPerTurn, st);
 						availableAbilities.add(cc1);
 						break;
 
 					case "PowerUp":
-					case "Shield":
-					case "SpeedUp":
-					case "Embrace":
-					case "Dodge":
-						Effect e2 = new Effect(effectName, effectDuration,
-								EffectType.BUFF);
-						CrowdControlAbility cc2 = new CrowdControlAbility(name,
+						PowerUp p = new PowerUp(effectDuration);
+						CrowdControlAbility cc7 = new CrowdControlAbility(name,
 								manaCost, baseCooldown, castRange,
-								areaOfEffect, requiredActionsPerTurn, e2);
-						availableAbilities.add(cc2);
+								areaOfEffect, requiredActionsPerTurn, p);
+						availableAbilities.add(cc7);
+						break;
+					case "Shield":
+						Shield shi = new Shield(effectDuration);
+						CrowdControlAbility cc8 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, shi);
+						availableAbilities.add(cc8);
+						break;
+					case "SpeedUp":
+						SpeedUp su = new SpeedUp(effectDuration);
+						CrowdControlAbility cc9 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, su);
+						availableAbilities.add(cc9);
+						break;
+					case "Embrace":
+						Embrace e = new Embrace(effectDuration);
+						CrowdControlAbility cc10 = new CrowdControlAbility(
+								name, manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, e);
+						availableAbilities.add(cc10);
+						break;
+					case "Dodge":
+						Dodge ddg = new Dodge(effectDuration);
+						CrowdControlAbility cc6 = new CrowdControlAbility(name,
+								manaCost, baseCooldown, castRange,
+								areaOfEffect, requiredActionsPerTurn, ddg);
+						availableAbilities.add(cc6);
 						break;
 					}
 				}
@@ -177,7 +224,7 @@ public class Game {
 		}
 	}
 
-	public static void loadChampion(String filePath) throws IOException {
+	public static void loadChampions(String filePath) throws IOException {
 		String currentLine = "";
 		FileReader fileReader = new FileReader(filePath);
 		BufferedReader br = new BufferedReader(fileReader);
@@ -198,28 +245,26 @@ public class Game {
 			if (result[0].equals("A")) {
 				AntiHero a = new AntiHero(name, maxHP, mana, actions, speed,
 						attackRange, attackDamage);
-				if (availableAbilities.contains(name)) {
-					a.getAbilities().add(locateAbiliry(ability1Name));
-					a.getAbilities().add(locateAbiliry(ability2Name));
-					a.getAbilities().add(locateAbiliry(ability3Name));
-					a.setSpeed(speed);
-					availableChampions.add(a);
-				}
+				a.getAbilities().add(locateAbility(ability1Name));
+				a.getAbilities().add(locateAbility(ability2Name));
+				a.getAbilities().add(locateAbility(ability3Name));
+				a.setSpeed(speed);
+				availableChampions.add(a);
 			} else {
 				if (result[0].equals("H")) {
 					Hero h = new Hero(name, maxHP, mana, actions, speed,
 							attackRange, attackDamage);
-					h.getAbilities().add(locateAbiliry(ability1Name));
-					h.getAbilities().add(locateAbiliry(ability2Name));
-					h.getAbilities().add(locateAbiliry(ability3Name));
+					h.getAbilities().add(locateAbility(ability1Name));
+					h.getAbilities().add(locateAbility(ability2Name));
+					h.getAbilities().add(locateAbility(ability3Name));
 					h.setSpeed(speed);
 					availableChampions.add(h);
 				} else {
 					Villain v = new Villain(name, maxHP, mana, actions, speed,
 							attackRange, attackDamage);
-					v.getAbilities().add(locateAbiliry(ability1Name));
-					v.getAbilities().add(locateAbiliry(ability2Name));
-					v.getAbilities().add(locateAbiliry(ability3Name));
+					v.getAbilities().add(locateAbility(ability1Name));
+					v.getAbilities().add(locateAbility(ability2Name));
+					v.getAbilities().add(locateAbility(ability3Name));
 					v.setSpeed(speed);
 					availableChampions.add(v);
 				}
@@ -227,7 +272,7 @@ public class Game {
 		}
 	}
 
-	private static Ability locateAbiliry(String abilityName) {
+	private static Ability locateAbility(String abilityName) {
 		for (Ability ability : availableAbilities) {
 			if (ability.getName().equals(abilityName))
 				return ability;
