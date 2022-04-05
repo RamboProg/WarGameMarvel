@@ -12,4 +12,7 @@
 <fullyQualifiedTypeName name="model.world.Hero"/>
 <fullyQualifiedTypeName name="model.world.Villain"/>
 <fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="model.effects.Disarm"/>
+<fullyQualifiedTypeName name="model.effects.Silence"/>
+<fullyQualifiedTypeName name="model.effects.Root"/>
 </qualifiedTypeNameHistroy>

@@ -1,9 +1,0 @@
-package engine;
-import model.world.Champion;
-
-public class Player {
-	
-	private String name;
-	private Champion leader;
-	
-}

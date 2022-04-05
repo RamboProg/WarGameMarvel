@@ -90,9 +90,7 @@ public class Game {
 		for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
 			board[0][i + 1] = firstPlayer.getTeam().get(i);
 			firstPlayer.getTeam().get(i).setLocation(new Point(0, i + 1));
-		}
 
-		for (int i = 0; i < secondPlayer.getTeam().size(); i++) {
 			board[4][i + 1] = secondPlayer.getTeam().get(i);
 			secondPlayer.getTeam().get(i).setLocation(new Point(4, i + 1));
 		}
@@ -104,10 +102,10 @@ public class Game {
 		Random rnd1 = new Random();
 		int k = 0;
 		while (k < 5) {
-			int i = rnd.nextInt((3)) + 1;
-			int j = rnd1.nextInt((5));
-			if (board[i][j] == null) {
-				board[i][j] = new Cover(i, j);
+			int coloumn = rnd.nextInt((3)) + 1;
+			int row = rnd1.nextInt((5));
+			if (board[coloumn][row] == null) {
+				board[coloumn][row] = new Cover(coloumn, row);
 				k++;
 			}
 		}

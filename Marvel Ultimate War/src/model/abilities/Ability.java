@@ -23,7 +23,11 @@ public class Ability {
 	}
 
 	public void setCurrentCooldown(int currentCooldown) {
-		this.currentCooldown = currentCooldown;
+		if(currentCooldown > this.baseCooldown)
+			this.currentCooldown = baseCooldown;
+		else if (currentCooldown < 0 )
+			this.currentCooldown = 0;
+		else this.currentCooldown = currentCooldown;
 	}
 
 	public String getName() {
