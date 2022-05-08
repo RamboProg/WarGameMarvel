@@ -3,7 +3,7 @@ package model.world;
 import java.awt.Point;
 import java.util.*;
 
-public class Cover {
+public class Cover implements Damageable {
 
 	private int currentHP;
 	private Point location;

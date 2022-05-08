@@ -5,7 +5,7 @@ import model.abilities.*;
 import model.effects.*;
 import java.util.*;
 
-public class Champion {
+public class Champion{
 
 	private String name; // read only
 	private int maxHP; // read only
