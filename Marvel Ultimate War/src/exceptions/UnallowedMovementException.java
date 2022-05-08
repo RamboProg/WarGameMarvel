@@ -6,6 +6,6 @@ public class UnallowedMovementException extends GameActionException {
 	}
 	
 	public UnallowedMovementException(String s){
-		s = " custom_message_5 ";
+		s = " This movement is not allowed ";
 	}
 }

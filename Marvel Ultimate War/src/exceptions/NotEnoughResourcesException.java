@@ -6,7 +6,7 @@ public class NotEnoughResourcesException extends GameActionException {
 	}
 	
 	public NotEnoughResourcesException(String s){
-		s = " custom_message_2";
+		s = " Not enough resources! ";
 	}
 
 }
