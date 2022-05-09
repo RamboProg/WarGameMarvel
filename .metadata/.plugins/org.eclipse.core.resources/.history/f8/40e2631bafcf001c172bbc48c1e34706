@@ -1,0 +1,21 @@
+package model.effects;
+
+import model.world.Champion;
+
+public class Dodge extends Effect{
+	public Dodge(int duration) {
+		super("Dodge" , duration, EffectType.BUFF);
+		//Dodge e = new Dodge(name, duration, type);
+	}
+	
+	
+	
+	public void apply(Champion c){
+		double chanceTemp =  Math.random()*100;
+		int chance = (int) chanceTemp;
+		if(cha)
+		c.setSpeed(c.getSpeed()*105/100);
+		
+	}
+
+}

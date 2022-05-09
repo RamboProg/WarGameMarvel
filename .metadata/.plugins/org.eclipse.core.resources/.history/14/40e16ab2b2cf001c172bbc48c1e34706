@@ -1,0 +1,15 @@
+package model.effects;
+
+import model.world.Champion;
+
+public class Embrace extends Effect{
+	public Embrace(int duration) {
+		super("Embrace" , duration, EffectType.BUFF);
+		//type = EffectType.BUFF;
+	}
+	
+	public void apply(Champion c){
+		c.setMana(c.getMana()*120/100);
+		
+	}
+}
