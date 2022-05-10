@@ -3,6 +3,8 @@ package model.effects;
 import model.world.Champion;
 
 public class Embrace extends Effect {
+	private int count = 0;
+
 	public Embrace(int duration) {
 		super("Embrace", duration, EffectType.BUFF);
 	}
@@ -13,18 +15,14 @@ public class Embrace extends Effect {
 
 		c.setAttackDamage((int) (c.getAttackDamage() * 120 / 100));
 		c.setSpeed((int) (c.getSpeed() * 120 / 100));
-
-		c.getAppliedEffects().add(new Embrace(getDuration()));
+		this.count++;
 	}
 
 	public void remove(Champion c) {
-		c.setSpeed((int) (c.getSpeed() * 100 / 120));
-		c.setAttackDamage((int) (c.getAttackDamage() * 100 / 120));
-		for (Effect effect : c.getAppliedEffects()) {
-			if (effect.getName().equals("Embrace")) {
-				c.getAbilities().remove(effect);
-				break;
-			}
+		for (int i = 0; i < this.count; i++) {
+			c.setSpeed((int) (c.getSpeed() * 100 / 120));
+			c.setAttackDamage((int) (c.getAttackDamage() * 100 / 120));
+
 		}
 	}
 }

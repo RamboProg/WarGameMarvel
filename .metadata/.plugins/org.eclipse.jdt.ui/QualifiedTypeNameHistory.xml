@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="model.effects.Effect"/>
 <fullyQualifiedTypeName name="model.effects.EffectType"/>
-<fullyQualifiedTypeName name="model.abilities.HealingAbility"/>
 <fullyQualifiedTypeName name="model.abilities.CrowdControlAbility"/>
 <fullyQualifiedTypeName name="model.world.AntiHero"/>
 <fullyQualifiedTypeName name="model.world.Hero"/>
@@ -12,8 +10,10 @@
 <fullyQualifiedTypeName name="model.effects.Disarm"/>
 <fullyQualifiedTypeName name="model.effects.Silence"/>
 <fullyQualifiedTypeName name="model.effects.Root"/>
-<fullyQualifiedTypeName name="model.abilities.DamagingAbility"/>
 <fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
 <fullyQualifiedTypeName name="model.world.Champion"/>
 <fullyQualifiedTypeName name="model.abilities.Ability"/>
+<fullyQualifiedTypeName name="model.abilities.DamagingAbility"/>
+<fullyQualifiedTypeName name="model.abilities.HealingAbility"/>
+<fullyQualifiedTypeName name="model.effects.Effect"/>
 </qualifiedTypeNameHistroy>

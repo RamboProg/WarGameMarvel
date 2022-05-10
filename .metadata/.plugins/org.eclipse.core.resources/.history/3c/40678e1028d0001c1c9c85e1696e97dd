@@ -26,8 +26,6 @@ public class Disarm extends Effect{
 			for (Effect effect : c.getAppliedEffects()) {
 				if (effect.getName().equals("Disarm"))
 					c.getAbilities().remove(effect);
-
-			}
 	}
 		
 	

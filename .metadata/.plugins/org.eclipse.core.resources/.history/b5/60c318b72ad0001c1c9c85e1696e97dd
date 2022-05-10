@@ -15,11 +15,6 @@ public class Dodge extends Effect {
 	}
 
 	public void remove(Champion c) {
-		for (Effect effect : c.getAppliedEffects()) {
-			if (effect.getName().equals("Dodge")){
-				c.getAbilities().remove(effect);
-				break;
-			}
-		}
+		c.getAppliedEffects().remove(new Dodge(getDuration()));
 	}
 }

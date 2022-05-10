@@ -9,7 +9,7 @@ public class PowerUp extends Effect {
 	public PowerUp(int duration) {
 		super("PowerUp", duration, EffectType.BUFF);
 	}
-
+	
 	public void apply(Champion c) {
 		for (Ability ability : c.getAbilities()) {
 			if (ability instanceof DamagingAbility)
