@@ -10,7 +10,7 @@ public class Dodge extends Effect {
 	}
 
 	public void apply(Champion c) {
-		c.setSpeed((int) (c.getSpeed()*1.5));
+		c.setSpeed((int) (c.getSpeed() * 105 / 100));
 		c.getAppliedEffects().add(new Dodge(getDuration()));
 	}
 
@@ -18,7 +18,6 @@ public class Dodge extends Effect {
 		for (Effect effect : c.getAppliedEffects()) {
 			if (effect.getName().equals("Dodge")){
 				c.getAbilities().remove(effect);
-				c.setSpeed((int) (c.getSpeed()/1.5));
 				break;
 			}
 		}
