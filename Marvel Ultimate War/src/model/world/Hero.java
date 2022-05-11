@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.effects.*;
 
-
 public class Hero extends Champion {
 
 	public Hero(String name, int maxHP, int mana, int maxActions, int speed,
@@ -14,15 +13,15 @@ public class Hero extends Champion {
 		setCondition(Condition.ACTIVE);
 	}
 
-	public void useLeaderAbility(ArrayList<Champion> targets){
+	public void useLeaderAbility(ArrayList<Champion> targets) {
 		for (Champion c : targets) {
 			for (Effect e : c.getAppliedEffects()) {
-				if(e.getType().equals(EffectType.DEBUFF)){
+				if (e.getType().equals(EffectType.DEBUFF)) {
 					e.remove(c);
 				}
 			}
-			//c.getAppliedEffects().add(new Embrace());
-			
+			c.getAppliedEffects().add(new Embrace(2));
+
 		}
 	}
 

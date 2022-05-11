@@ -6,31 +6,28 @@ public abstract class Effect implements Cloneable {
 	private String name;
 	private int duration;
 	private EffectType type;
-	
-	 protected Object clone()
-		        throws CloneNotSupportedException
-		    {
-		        return super.clone();
-		    }
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 
 	public Effect(String name, int duration, EffectType type) {
 		this.name = name;
 		this.duration = duration;
 		this.type = type;
 	}
-	
-	public void apply(Champion c){
-		
+
+	public void apply(Champion c) {
+
 	}
-	
+
 	public void remove(Champion c) {
-		
+
 	}
 
 	public int getDuration() {
 		return duration;
 	}
-	
 
 	public void setDuration(int duration) {
 		this.duration = duration;
@@ -44,5 +41,4 @@ public abstract class Effect implements Cloneable {
 		return type;
 	}
 
-	
 }
