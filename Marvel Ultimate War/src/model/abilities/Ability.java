@@ -1,6 +1,10 @@
 package model.abilities;
 
-public class Ability {
+import java.util.ArrayList;
+
+import model.world.Damageable;
+
+public abstract class Ability {
 	private String name; //name of the ability
 	private int manaCost; //mana cost for the ability
 	private int baseCooldown; //representing the number of turns the champion has to wait to play the ability again
@@ -16,6 +20,10 @@ public class Ability {
 		this.castRange = castRange;
 		this.castArea = area;
 		this.requiredActionPoints = required;
+	}
+	
+	public void execute(ArrayList<Damageable> targets){
+		
 	}
 
 	public int getCurrentCooldown() {

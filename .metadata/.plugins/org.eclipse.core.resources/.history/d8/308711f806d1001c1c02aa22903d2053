@@ -1,0 +1,21 @@
+package model.world;
+
+public class Hero extends Champion {
+
+	public Hero(String name, int maxHP, int mana, int maxActions, int speed,
+			int attackRange, int attackDamage) {
+		super(name, maxHP, mana, maxActions, speed, attackRange, attackDamage);
+		setCurrentHP(maxHP);
+		setCondition(Condition.ACTIVE);
+	}
+
+	public int compareTo(Object o) {
+		if(o instanceof Champion){
+			Champion p = (Champion) o;
+			if(this.getSpeed() != p.age)
+				return 
+		}
+		return 0;
+	}
+
+}
