@@ -21,4 +21,8 @@
 <fullyQualifiedTypeName name="model.effects.Stun"/>
 <fullyQualifiedTypeName name="model.world.Champion"/>
 <fullyQualifiedTypeName name="model.world.Condition"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
 </qualifiedTypeNameHistroy>

@@ -1,5 +1,7 @@
 package engine;
 
+import model.world.*;
+
 public class PriorityQueue {
 
 	private Comparable[] elements;
@@ -42,4 +44,5 @@ public class PriorityQueue {
 	public int size() {
 		return nItems;
 	}
+
 }
