@@ -5,6 +5,7 @@ import exceptions.*;
 import model.world.AntiHero;
 import model.world.Condition;
 import model.world.Cover;
+import model.world.Damageable;
 import model.world.Direction;
 import model.world.Hero;
 import model.world.Villain;
@@ -36,6 +37,7 @@ public class Game {
 	private PriorityQueue turnOrder;
 	private final static int BOARDHEIGHT = 5;
 	private final static int BOARDWIDTH = 5;
+	
 
 	public Game(Player firstPlayer, Player secondPlayer) {
 		this.firstPlayer = firstPlayer;
@@ -330,11 +332,67 @@ public class Game {
 
 	public void move(Direction d) throws UnallowedMovementException,
 			NotEnoughResourcesException {
-		if (getCurrentChampion().getCurrentActionPoints() < 1
-				|| getCurrentChampion().getCondition() != Condition.ACTIVE)
-			throw new NotEnoughResourcesException();
+
+		if (getCurrentChampion().getCondition() != Condition.ROOTED
+				&& getCurrentChampion().getCurrentActionPoints() > 0) {
+			int x = getCurrentChampion().getLocation().x;
+			int y = getCurrentChampion().getLocation().y;
+			if ((x < 5 && x > -1) && (y < 5 && y > -1)) {
+				switch (d) {
+				case UP:
+					if (getBoard()[y + 1][x] == null)
+						getCurrentChampion().setLocation(new Point(y + 1, x));
+					else
+						throw new UnallowedMovementException(
+								"You cannot move here!");
+					break;
+				case DOWN:
+					if (getBoard()[y - 1][x] == null)
+						getCurrentChampion().setLocation(new Point(y - 1, x));
+					else
+						throw new UnallowedMovementException(
+								"You cannot move here!");
+					break;
+				case RIGHT:
+					if (getBoard()[y][x + 1] == null)
+						getCurrentChampion().setLocation(new Point(y, x + 1));
+					else
+						throw new UnallowedMovementException(
+								"You cannot move here!");
+					break;
+				case LEFT:
+					if (getBoard()[y][x - 1] == null)
+						getCurrentChampion().setLocation(new Point(y, x - 1));
+					else
+						throw new UnallowedMovementException(
+								"You cannot move here!");
+					break;
+				default:
+					throw new UnallowedMovementException("Invalid input");
+				}
+			} else
+				throw new UnallowedMovementException();
+		} else
+			throw new NotEnoughResourcesException(
+					"you do not have the enough resources!");
+
+	}
+
+//	private Player checkFriendly(ArrayList<Damageable> target){
+//		//for(int i = 0; i < )
+//	}
+	
+	public void attack(Direction d) throws ChampionDisarmedException,
+			InvalidTargetException, NotEnoughResourcesException {
+
+		if (getCurrentChampion().getCurrentActionPoints() > 0
+				&& getCurrentChampion().getCondition() == Condition.ACTIVE
+				&& getCurrentChampion().getAttackRange() < 5) {
+			ArrayList<Damageable> targets = new ArrayList<Damageable>();
 		
-		
+			
+		}
+
 	}
 
 }

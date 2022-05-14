@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="model.abilities.CrowdControlAbility"/>
-<fullyQualifiedTypeName name="model.world.AntiHero"/>
 <fullyQualifiedTypeName name="model.world.Hero"/>
 <fullyQualifiedTypeName name="model.world.Villain"/>
 <fullyQualifiedTypeName name="java.awt.Point"/>
@@ -19,10 +18,15 @@
 <fullyQualifiedTypeName name="model.effects.Embrace"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.effects.Stun"/>
-<fullyQualifiedTypeName name="model.world.Champion"/>
-<fullyQualifiedTypeName name="model.world.Condition"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="engine.PriorityQueue"/>
+<fullyQualifiedTypeName name="model.world.Champion"/>
+<fullyQualifiedTypeName name="model.world.AntiHero"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.world.Direction"/>
+<fullyQualifiedTypeName name="exceptions.UnallowedMovementException"/>
+<fullyQualifiedTypeName name="model.world.Condition"/>
 </qualifiedTypeNameHistroy>

@@ -6,7 +6,6 @@ public class LeaderAbilityAlreadyUsedException extends GameActionException {
 	}
 	
 	public LeaderAbilityAlreadyUsedException(String s){
-		s = " custom_message_4 ";
 	}
 	
 }

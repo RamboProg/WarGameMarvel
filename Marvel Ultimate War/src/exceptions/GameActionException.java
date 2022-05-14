@@ -7,6 +7,5 @@ abstract class GameActionException extends Exception {
 	}
 	
 	public GameActionException(String s){
-		s = " custom_message_ ";
 	}
 }

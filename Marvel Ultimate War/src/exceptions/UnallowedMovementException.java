@@ -6,6 +6,5 @@ public class UnallowedMovementException extends GameActionException {
 	}
 	
 	public UnallowedMovementException(String s){
-		s = " This movement is not allowed ";
 	}
 }

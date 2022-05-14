@@ -6,7 +6,6 @@ public class AbilityUseException extends GameActionException {
 	}
 	
 	public AbilityUseException(String s){
-		s = " custom_message_3 ";
 	}
 
 }
