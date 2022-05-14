@@ -659,35 +659,6 @@ public class Game {
 	}
 
 	public void castAbility(Ability a, Direction d){
-		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
-					targets.add((Damageable) board[j][i]);
-				}
-			}
-		}
-		
-		switch(d){
-		case UP:
-		case DOWN:
-		case RIGHT:
-		case LEFT:
-		}
-
-		if (a.getCastArea() == AreaOfEffect.DIRECTIONAL)
-			a.execute(targets);
-	}
-	
-	public void castAbility(Ability a, int x, int y){
-		
-	}
-	
-	public void useLeaderAbility(){
-		
-	}
-	
-	public void endTurn(){
 		
 	}
 	

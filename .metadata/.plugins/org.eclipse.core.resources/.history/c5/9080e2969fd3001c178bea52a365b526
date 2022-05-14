@@ -667,13 +667,6 @@ public class Game {
 				}
 			}
 		}
-		
-		switch(d){
-		case UP:
-		case DOWN:
-		case RIGHT:
-		case LEFT:
-		}
 
 		if (a.getCastArea() == AreaOfEffect.DIRECTIONAL)
 			a.execute(targets);

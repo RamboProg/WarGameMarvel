@@ -333,7 +333,7 @@ public class Game {
 			NotEnoughResourcesException {
 
 		if (getCurrentChampion().getCondition() != Condition.ROOTED
-				&& getCurrentChampion().getCurrentActionPoints() > 1) {
+				&& getCurrentChampion().getCurrentActionPoints() > 0) {
 			int x = getCurrentChampion().getLocation().x;
 			int y = getCurrentChampion().getLocation().y;
 			if ((x < 5 && x > -1) && (y < 5 && y > -1)) {
@@ -377,318 +377,50 @@ public class Game {
 
 	}
 
-	private static int manhattanDist(int M, int N, int X1, int Y1, int X2,
-			int Y2) {
+	private static int manhattanDist(int M, int N, int X1, int Y1, int X2, int Y2) {
 		int dist = Math.abs(X2 - X1) + Math.abs(Y2 - Y1);
 		return dist;
 	}
 
 	public void attack(Direction d) throws ChampionDisarmedException,
 			InvalidTargetException, NotEnoughResourcesException {
-		boolean containsDisarm = false;
-		for (int k = 0; k < getCurrentChampion().getAppliedEffects().size(); k++) {
-			if (getCurrentChampion().getAppliedEffects().get(k) instanceof Disarm) {
-				containsDisarm = true;
-			}
-			if (containsDisarm == true) {
-				throw new ChampionDisarmedException();
-			} else {
-				if (getCurrentChampion().getCurrentActionPoints() > 0
-						&& getCurrentChampion().getCondition() == Condition.ACTIVE
-						&& getCurrentChampion().getAttackRange() < 5) {
-					ArrayList<Damageable> targets = new ArrayList<Damageable>();
 
-					/*
-					 * The below nested loop adds to the ArrayList the valid
-					 * targets that are within range of the attacker
-					 */
-					for (int i = 0; i <= getCurrentChampion().getAttackRange(); i++) {
-						for (int j = 0; j <= getCurrentChampion()
-								.getAttackDamage(); j++) {
-							if (board[j][i] != null
-									&& board[j][i] != getCurrentChampion()) {
-								targets.add((Damageable) board[j][i]);
-							}
-						}
+		if (getCurrentChampion().getCurrentActionPoints() > 0
+				&& getCurrentChampion().getCondition() == Condition.ACTIVE
+				&& getCurrentChampion().getAttackRange() < 5) {
+			ArrayList<Damageable> targets = new ArrayList<Damageable>();
+
+			/*
+			 * The below nested loop adds to the ArrayList the valid targets
+			 * that are within range of the attacker
+			 */
+			for (int i = 0; i <= getCurrentChampion().getAttackRange(); i++) {
+				for (int j = 0; j <= getCurrentChampion().getAttackDamage(); j++) {
+					if (board[j][i] != null
+							&& board[j][i] != getCurrentChampion()) {
+						targets.add((Damageable) board[j][i]);
 					}
-
-					switch (d) {
-					case UP:
-						int min = getCurrentChampion().getAttackRange();
-						int minDistIndex = 0;
-						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().x - getCurrentChampion()
-									.getLocation().x) < min && min > -1) {
-								min = targets.get(i).getLocation().x
-										- getCurrentChampion().getLocation().x;
-								minDistIndex = i;
-							}
-						}
-
-						if (getCurrentChampion() instanceof Hero) {
-							if (targets.get(minDistIndex) instanceof Villain
-									|| targets.get(minDistIndex) instanceof AntiHero) {
-								targets.get(minDistIndex)
-										.setCurrentHP(
-												(int) (targets
-														.get(minDistIndex)
-														.getCurrentHP() - getCurrentChampion()
-														.getAttackDamage() * 1.5));
-							} else {
-								if (getCurrentChampion() instanceof Villain) {
-									if (targets.get(minDistIndex) instanceof Hero
-											|| targets.get(minDistIndex) instanceof AntiHero) {
-										targets.get(minDistIndex)
-												.setCurrentHP(
-														(int) (targets.get(
-																minDistIndex)
-																.getCurrentHP() - getCurrentChampion()
-																.getAttackDamage() * 1.5));
-									} else if (getCurrentChampion() instanceof AntiHero) {
-										if (targets.get(minDistIndex) instanceof Villain
-												|| targets.get(minDistIndex) instanceof Hero) {
-											targets.get(minDistIndex)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage() * 1.5));
-										} else if (targets.get(minDistIndex) instanceof Champion
-												|| targets.get(minDistIndex) instanceof Cover) {
-											targets.get(minDistIndex)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage()));
-										}
-									}
-								}
-							}
-						}
-						break;
-					case RIGHT:
-						int min1 = getCurrentChampion().getAttackRange();
-						int minDistIndex1 = 0;
-						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().y - getCurrentChampion()
-									.getLocation().y) < min1 && min1 > -1) {
-								min = targets.get(i).getLocation().y
-										- getCurrentChampion().getLocation().y;
-								minDistIndex = i;
-							}
-						}
-
-						if (getCurrentChampion() instanceof Hero) {
-							if (targets.get(minDistIndex1) instanceof Villain
-									|| targets.get(minDistIndex1) instanceof AntiHero) {
-								targets.get(minDistIndex1)
-										.setCurrentHP(
-												(int) (targets.get(
-														minDistIndex1)
-														.getCurrentHP() - getCurrentChampion()
-														.getAttackDamage() * 1.5));
-							} else {
-								if (getCurrentChampion() instanceof Villain) {
-									if (targets.get(minDistIndex1) instanceof Hero
-											|| targets.get(minDistIndex1) instanceof AntiHero) {
-										targets.get(minDistIndex1)
-												.setCurrentHP(
-														(int) (targets.get(
-																minDistIndex1)
-																.getCurrentHP() - getCurrentChampion()
-																.getAttackDamage() * 1.5));
-									} else if (getCurrentChampion() instanceof AntiHero) {
-										if (targets.get(minDistIndex1) instanceof Villain
-												|| targets.get(minDistIndex1) instanceof Hero) {
-											targets.get(minDistIndex1)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex1)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage() * 1.5));
-										} else if (targets.get(minDistIndex1) instanceof Champion
-												|| targets.get(minDistIndex1) instanceof Cover) {
-											targets.get(minDistIndex1)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex1)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage()));
-										}
-									}
-								}
-							}
-						}
-						break;
-					case LEFT:
-						int min2 = getCurrentChampion().getAttackRange();
-						int minDistIndex2 = 0;
-						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().y - getCurrentChampion()
-									.getLocation().y) < min2 && min2 < 0) {
-								min = targets.get(i).getLocation().y
-										- getCurrentChampion().getLocation().y;
-								minDistIndex = i;
-							}
-						}
-
-						if (getCurrentChampion() instanceof Hero) {
-							if (targets.get(minDistIndex2) instanceof Villain
-									|| targets.get(minDistIndex2) instanceof AntiHero) {
-								targets.get(minDistIndex2)
-										.setCurrentHP(
-												(int) (targets.get(
-														minDistIndex2)
-														.getCurrentHP() - getCurrentChampion()
-														.getAttackDamage() * 1.5));
-							} else {
-								if (getCurrentChampion() instanceof Villain) {
-									if (targets.get(minDistIndex2) instanceof Hero
-											|| targets.get(minDistIndex2) instanceof AntiHero) {
-										targets.get(minDistIndex2)
-												.setCurrentHP(
-														(int) (targets.get(
-																minDistIndex2)
-																.getCurrentHP() - getCurrentChampion()
-																.getAttackDamage() * 1.5));
-									} else if (getCurrentChampion() instanceof AntiHero) {
-										if (targets.get(minDistIndex2) instanceof Villain
-												|| targets.get(minDistIndex2) instanceof Hero) {
-											targets.get(minDistIndex2)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex2)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage() * 1.5));
-										} else if (targets.get(minDistIndex2) instanceof Champion
-												|| targets.get(minDistIndex2) instanceof Cover) {
-											targets.get(minDistIndex2)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex2)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage()));
-										}
-									}
-								}
-							}
-						}
-						break;
-					case DOWN:
-						int min3 = getCurrentChampion().getAttackRange();
-						int minDistIndex3 = 0;
-						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().x - getCurrentChampion()
-									.getLocation().x) < min3 && min3 < 0) {
-								min = targets.get(i).getLocation().x
-										- getCurrentChampion().getLocation().x;
-								minDistIndex = i;
-							}
-						}
-
-						if (getCurrentChampion() instanceof Hero) {
-							if (targets.get(minDistIndex3) instanceof Villain
-									|| targets.get(minDistIndex3) instanceof AntiHero) {
-								targets.get(minDistIndex3)
-										.setCurrentHP(
-												(int) (targets.get(
-														minDistIndex3)
-														.getCurrentHP() - getCurrentChampion()
-														.getAttackDamage() * 1.5));
-							} else {
-								if (getCurrentChampion() instanceof Villain) {
-									if (targets.get(minDistIndex3) instanceof Hero
-											|| targets.get(minDistIndex3) instanceof AntiHero) {
-										targets.get(minDistIndex3)
-												.setCurrentHP(
-														(int) (targets.get(
-																minDistIndex3)
-																.getCurrentHP() - getCurrentChampion()
-																.getAttackDamage() * 1.5));
-									} else if (getCurrentChampion() instanceof AntiHero) {
-										if (targets.get(minDistIndex3) instanceof Villain
-												|| targets.get(minDistIndex3) instanceof Hero) {
-											targets.get(minDistIndex3)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex3)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage() * 1.5));
-										} else if (targets.get(minDistIndex3) instanceof Champion
-												|| targets.get(minDistIndex3) instanceof Cover) {
-											targets.get(minDistIndex3)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex3)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage()));
-										}
-									}
-								}
-							}
-						}
-						break;
-					default:
-						throw new InvalidTargetException();
-					}
-
-					// DO THE REST OF THE DIRECTIONS WHEN U GET HOME
-				} else if (getCurrentChampion().getCurrentActionPoints() < 2)
-					throw new NotEnoughResourcesException();
-				else if (getCurrentChampion().getCondition() != Condition.ACTIVE)
-					throw new ChampionDisarmedException();
-			}
-		}
-	}
-
-	public void castAbility(Ability a) {
-		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
-					targets.add((Damageable) board[j][i]);
 				}
 			}
-		}
 
-		if (a.getCastArea() == AreaOfEffect.SELFTARGET
-				|| a.getCastArea() == AreaOfEffect.TEAMTARGET
-				|| a.getCastArea() == AreaOfEffect.SURROUND)
-			a.execute(targets);
-	}
-
-	public void castAbility(Ability a, Direction d){
-		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
-					targets.add((Damageable) board[j][i]);
+			switch(d){
+			case UP:
+				int min = getCurrentChampion().getAttackRange();
+				int minDistIndex = 0;
+				for(int i = 0; i < targets.size();i++){
+					if((targets.get(i).getLocation().x - getCurrentChampion().getLocation().x) < min){
+						min = targets.get(i).getLocation().x - getCurrentChampion().getLocation().x;
+						minDistIndex = i;
+					}
 				}
+				if(getCurrentChampion() instanceof Hero){
+					if(targets.get(minDistIndex) instanceof Villain){
+						targets.get(minDistIndex).setCurrentHP((int)(targets.get(minDistIndex).getCurrentHP() - getCurrentChampion().getAttackDamage() * 1.5));
+					}
+				}
+				
 			}
+			
 		}
-		
-		switch(d){
-		case UP:
-		case DOWN:
-		case RIGHT:
-		case LEFT:
-		}
-
-		if (a.getCastArea() == AreaOfEffect.DIRECTIONAL)
-			a.execute(targets);
 	}
-	
-	public void castAbility(Ability a, int x, int y){
-		
-	}
-	
-	public void useLeaderAbility(){
-		
-	}
-	
-	public void endTurn(){
-		
-	}
-	
 }

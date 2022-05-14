@@ -526,7 +526,7 @@ public class Game {
 						int minDistIndex2 = 0;
 						for (int i = 0; i < targets.size(); i++) {
 							if ((targets.get(i).getLocation().y - getCurrentChampion()
-									.getLocation().y) < min2 && min2 < 0) {
+									.getLocation().y) < min2 && min2 < -1) {
 								min = targets.get(i).getLocation().y
 										- getCurrentChampion().getLocation().y;
 								minDistIndex = i;
@@ -575,62 +575,6 @@ public class Game {
 							}
 						}
 						break;
-					case DOWN:
-						int min3 = getCurrentChampion().getAttackRange();
-						int minDistIndex3 = 0;
-						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().x - getCurrentChampion()
-									.getLocation().x) < min3 && min3 < 0) {
-								min = targets.get(i).getLocation().x
-										- getCurrentChampion().getLocation().x;
-								minDistIndex = i;
-							}
-						}
-
-						if (getCurrentChampion() instanceof Hero) {
-							if (targets.get(minDistIndex3) instanceof Villain
-									|| targets.get(minDistIndex3) instanceof AntiHero) {
-								targets.get(minDistIndex3)
-										.setCurrentHP(
-												(int) (targets.get(
-														minDistIndex3)
-														.getCurrentHP() - getCurrentChampion()
-														.getAttackDamage() * 1.5));
-							} else {
-								if (getCurrentChampion() instanceof Villain) {
-									if (targets.get(minDistIndex3) instanceof Hero
-											|| targets.get(minDistIndex3) instanceof AntiHero) {
-										targets.get(minDistIndex3)
-												.setCurrentHP(
-														(int) (targets.get(
-																minDistIndex3)
-																.getCurrentHP() - getCurrentChampion()
-																.getAttackDamage() * 1.5));
-									} else if (getCurrentChampion() instanceof AntiHero) {
-										if (targets.get(minDistIndex3) instanceof Villain
-												|| targets.get(minDistIndex3) instanceof Hero) {
-											targets.get(minDistIndex3)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex3)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage() * 1.5));
-										} else if (targets.get(minDistIndex3) instanceof Champion
-												|| targets.get(minDistIndex3) instanceof Cover) {
-											targets.get(minDistIndex3)
-													.setCurrentHP(
-															(int) (targets
-																	.get(minDistIndex3)
-																	.getCurrentHP() - getCurrentChampion()
-																	.getAttackDamage()));
-										}
-									}
-								}
-							}
-						}
-						break;
-					default:
-						throw new InvalidTargetException();
 					}
 
 					// DO THE REST OF THE DIRECTIONS WHEN U GET HOME
@@ -639,56 +583,7 @@ public class Game {
 				else if (getCurrentChampion().getCondition() != Condition.ACTIVE)
 					throw new ChampionDisarmedException();
 			}
+
 		}
 	}
-
-	public void castAbility(Ability a) {
-		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
-					targets.add((Damageable) board[j][i]);
-				}
-			}
-		}
-
-		if (a.getCastArea() == AreaOfEffect.SELFTARGET
-				|| a.getCastArea() == AreaOfEffect.TEAMTARGET
-				|| a.getCastArea() == AreaOfEffect.SURROUND)
-			a.execute(targets);
-	}
-
-	public void castAbility(Ability a, Direction d){
-		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
-					targets.add((Damageable) board[j][i]);
-				}
-			}
-		}
-		
-		switch(d){
-		case UP:
-		case DOWN:
-		case RIGHT:
-		case LEFT:
-		}
-
-		if (a.getCastArea() == AreaOfEffect.DIRECTIONAL)
-			a.execute(targets);
-	}
-	
-	public void castAbility(Ability a, int x, int y){
-		
-	}
-	
-	public void useLeaderAbility(){
-		
-	}
-	
-	public void endTurn(){
-		
-	}
-	
 }
