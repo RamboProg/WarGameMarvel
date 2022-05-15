@@ -7,7 +7,6 @@
 <fullyQualifiedTypeName name="model.effects.Disarm"/>
 <fullyQualifiedTypeName name="model.effects.Silence"/>
 <fullyQualifiedTypeName name="model.effects.Root"/>
-<fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
 <fullyQualifiedTypeName name="model.abilities.DamagingAbility"/>
 <fullyQualifiedTypeName name="model.abilities.HealingAbility"/>
 <fullyQualifiedTypeName name="model.abilities.Ability"/>
@@ -29,7 +28,12 @@
 <fullyQualifiedTypeName name="exceptions.UnallowedMovementException"/>
 <fullyQualifiedTypeName name="model.world.Damageable"/>
 <fullyQualifiedTypeName name="model.world.Cover"/>
-<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
 <fullyQualifiedTypeName name="exceptions.ChampionDisarmedException"/>
 <fullyQualifiedTypeName name="exceptions.InvalidTargetException"/>
+<fullyQualifiedTypeName name="java.rmi.AlreadyBoundException"/>
+<fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
+<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
+<fullyQualifiedTypeName name="exceptions.AbilityUseException"/>
+<fullyQualifiedTypeName name="exceptions.LeaderAbilityAlreadyUsedException"/>
+<fullyQualifiedTypeName name="exceptions.LeaderNotCurrentException"/>
 </qualifiedTypeNameHistroy>

@@ -823,55 +823,28 @@ public class Game {
 		} else
 			throw new LeaderNotCurrentException();
 	}
-
-	// Method is called when the current champion decides to end his turn
-	public void endTurn() {
-		// removes the current Champion form the turnOrder Queue
-		if (turnOrder.peekMin().equals(getCurrentChampion()))
-			turnOrder.remove();
-
-		if (turnOrder.size() == 0)
-			prepareChampionTurns();
-		else {
-			// Removes an inactive champion from the turn order queue
-			ArrayList<Champion> nxtChamp = new ArrayList<>();
-			nxtChamp.add((Champion) turnOrder.remove());
-			for (int i = 0; i < nxtChamp.size(); i++) {
-				if (nxtChamp.get(i).getCondition() != Condition.INACTIVE)
-					nxtChamp.get(i).setCurrentActionPoints(
-							nxtChamp.get(i).getMaxActionPointsPerTurn());
-				turnOrder.insert(nxtChamp.remove(i));
-			}
-			prepareChampionTurns();
-		}
-		for (int j = 0; j < 5; j++) {
-			for (int k = 0; k < 5; k++) {
-				if (board[j][k] instanceof Champion) {
-					Champion c = (Champion) board[j][k];
-					if (c.getAppliedEffects().size() > 0) {
-						for (int l = 0; l < c.getAppliedEffects().size(); l++) {
-							c.getAppliedEffects()
-									.get(l)
-									.setDuration(
-											c.getAppliedEffects().get(l)
-													.getDuration() - 1);
-						}
-					}
-					if (c.getAbilities().size() > 0) {
-						if (!(c instanceof AntiHero)) {
-							for (int m = 0; m < c.getAbilities().size(); m++) {
-								c.getAbilities()
-										.get(m)
-										.setCurrentCooldown(
-												c.getAbilities().get(m)
-														.getCurrentCooldown() - 1);
-							}
-						}
-					}
+	
+	//Method is called when the current champion decides to end his turn
+	public void endTurn(){
+		//removes the current Champion form the turnOrder Queue
+			if(turnOrder.peekMin().equals(getCurrentChampion()))
+				turnOrder.remove();
+			
+			if(turnOrder.size() == 0)
+				prepareChampionTurns();
+			else{
+				ArrayList<Champion> nxtChamp = new ArrayList<>();
+				nxtChamp.add((Champion)turnOrder.remove());
+				for(int i = 0; i< nxtChamp.size(); i++){
+					if(nxtChamp.get(i).getCondition() != Condition.INACTIVE)
+						turnOrder.insert(nxtChamp.remove(i));
 				}
-			}
-		}
+				
 
+			}
+			
+		
+		
 	}
 
 }

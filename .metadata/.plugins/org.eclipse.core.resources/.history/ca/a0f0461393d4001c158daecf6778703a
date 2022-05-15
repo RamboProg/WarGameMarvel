@@ -838,40 +838,31 @@ public class Game {
 			nxtChamp.add((Champion) turnOrder.remove());
 			for (int i = 0; i < nxtChamp.size(); i++) {
 				if (nxtChamp.get(i).getCondition() != Condition.INACTIVE)
-					nxtChamp.get(i).setCurrentActionPoints(
-							nxtChamp.get(i).getMaxActionPointsPerTurn());
-				turnOrder.insert(nxtChamp.remove(i));
+					turnOrder.insert(nxtChamp.remove(i));
 			}
 			prepareChampionTurns();
 		}
-		for (int j = 0; j < 5; j++) {
-			for (int k = 0; k < 5; k++) {
-				if (board[j][k] instanceof Champion) {
-					Champion c = (Champion) board[j][k];
-					if (c.getAppliedEffects().size() > 0) {
-						for (int l = 0; l < c.getAppliedEffects().size(); l++) {
-							c.getAppliedEffects()
-									.get(l)
-									.setDuration(
-											c.getAppliedEffects().get(l)
-													.getDuration() - 1);
+		for(int j = 0; j < 5; j++){
+			for(int k = 0; k < 5; k++){
+				if(board[j][k] instanceof Champion){
+					Champion c =(Champion)board[j][k];
+					if(c.getAppliedEffects().size() > 0){
+						for(int l = 0; l < c.getAppliedEffects().size(); l++){
+							c.getAppliedEffects().get(l).setDuration(c.getAppliedEffects().get(l).getDuration() - 1);
 						}
 					}
-					if (c.getAbilities().size() > 0) {
-						if (!(c instanceof AntiHero)) {
-							for (int m = 0; m < c.getAbilities().size(); m++) {
-								c.getAbilities()
-										.get(m)
-										.setCurrentCooldown(
-												c.getAbilities().get(m)
-														.getCurrentCooldown() - 1);
+					if(c.getAbilities().size() > 0){
+						if(!(c instanceof AntiHero)){
+							for(int m = 0; m < c.getAbilities().size(); m++){
+								c.getAbilities().get(m).setCurrentCooldown(c.getAbilities().get(m).getCurrentCooldown()-1);
 							}
 						}
 					}
 				}
 			}
 		}
-
+		
+		
 	}
 
 }
