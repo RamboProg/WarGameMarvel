@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.rmi.AlreadyBoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -636,13 +637,11 @@ public class Game {
 					// DO THE REST OF THE DIRECTIONS WHEN U GET HOME
 				} else if (getCurrentChampion().getCurrentActionPoints() < 2)
 					throw new NotEnoughResourcesException();
-				else if (getCurrentChampion().getCondition() != Condition.ACTIVE)
-					throw new ChampionDisarmedException();
 			}
 		}
 	}
 
-	public void castAbility(Ability a) {
+	public void castAbility(Ability a) throws NotEnoughResourcesException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -656,9 +655,12 @@ public class Game {
 				|| a.getCastArea() == AreaOfEffect.TEAMTARGET
 				|| a.getCastArea() == AreaOfEffect.SURROUND)
 			a.execute(targets);
+		else
+			throw new NotEnoughResourcesException("Not enough mana!");
 	}
 
-	public void castAbility(Ability a, Direction d){
+	public void castAbility(Ability a, Direction d)
+			throws NotEnoughResourcesException, AbilityUseException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
 		for (int i = 0; i <= 5; i++) {
 			for (int j = 0; j <= 5; j++) {
@@ -667,28 +669,160 @@ public class Game {
 				}
 			}
 		}
-		
-		switch(d){
-		case UP:
-		case DOWN:
-		case RIGHT:
-		case LEFT:
+		if (a.getCastArea() == AreaOfEffect.DIRECTIONAL) {
+			switch (d) {
+			case UP:
+				int dist = 0;
+				if (getCurrentChampion().getMana() >= a.getManaCost()) {
+					for (int l = 0; l < targets.size(); l++) {
+						dist = manhattanDist(a.getCastRange(),
+								a.getCastRange(),
+								targets.get(l).getLocation().x, targets.get(l)
+										.getLocation().y, getCurrentChampion()
+										.getLocation().x, getCurrentChampion()
+										.getLocation().y);
+						if (dist > a.getCastRange()) {
+							targets.remove(l);
+						}
+					}
+					a.execute(targets);
+				} else
+					throw new NotEnoughResourcesException();
+				break;
+			case DOWN:
+				int dist1 = 0;
+				if (getCurrentChampion().getMana() >= a.getManaCost()) {
+					for (int l = 0; l < targets.size(); l++) {
+						dist1 = manhattanDist(a.getCastRange(),
+								a.getCastRange(),
+								targets.get(l).getLocation().x, targets.get(l)
+										.getLocation().y, getCurrentChampion()
+										.getLocation().x, getCurrentChampion()
+										.getLocation().y);
+						if (dist1 > a.getCastRange()) {
+							targets.remove(l);
+						}
+					}
+					a.execute(targets);
+				} else
+					throw new NotEnoughResourcesException();
+				break;
+			case RIGHT:
+				int dist2 = 0;
+				if (getCurrentChampion().getMana() >= a.getManaCost()) {
+					for (int l = 0; l < targets.size(); l++) {
+						dist2 = manhattanDist(a.getCastRange(),
+								a.getCastRange(),
+								targets.get(l).getLocation().x, targets.get(l)
+										.getLocation().y, getCurrentChampion()
+										.getLocation().x, getCurrentChampion()
+										.getLocation().y);
+						if (dist2 > a.getCastRange()) {
+							targets.remove(l);
+						}
+					}
+					a.execute(targets);
+				} else
+					throw new NotEnoughResourcesException();
+				break;
+			case LEFT:
+				int dist3 = 0;
+				if (getCurrentChampion().getMana() >= a.getManaCost()) {
+					for (int l = 0; l < targets.size(); l++) {
+						dist3 = manhattanDist(a.getCastRange(),
+								a.getCastRange(),
+								targets.get(l).getLocation().x, targets.get(l)
+										.getLocation().y, getCurrentChampion()
+										.getLocation().x, getCurrentChampion()
+										.getLocation().y);
+						if (dist3 > a.getCastRange()) {
+							targets.remove(l);
+						}
+					}
+					a.execute(targets);
+				} else
+					throw new NotEnoughResourcesException();
+				break;
+			default:
+				throw new AbilityUseException();
+			}
+		}
+	}
+
+	public void castAbility(Ability a, int x, int y)
+			throws AbilityUseException, NotEnoughResourcesException {
+		ArrayList<Damageable> targets = new ArrayList<Damageable>();
+		for (int i = 0; i <= 5; i++) {
+			for (int j = 0; j <= 5; j++) {
+				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
+					targets.add((Damageable) board[j][i]);
+				}
+			}
+		}
+		if (a.getCastArea() == AreaOfEffect.SINGLETARGET) {
+			int dist = 0;
+			dist = manhattanDist(a.getCastRange(), a.getCastRange(), x, y,
+					getCurrentChampion().getLocation().x, getCurrentChampion()
+							.getLocation().y);
+			if (dist < a.getCastRange()) {
+				if (getCurrentChampion().getMana() >= a.getManaCost())
+					a.execute(targets);
+				else
+					throw new NotEnoughResourcesException();
+			} else
+				throw new AbilityUseException();
 		}
 
-		if (a.getCastArea() == AreaOfEffect.DIRECTIONAL)
-			a.execute(targets);
 	}
+
+	public void useLeaderAbility() throws LeaderNotCurrentException, LeaderAbilityAlreadyUsedException{
+		if(firstPlayer.getLeader().equals(getCurrentChampion())){
+			int count = 0;
+			ArrayList<Damageable> targets = new ArrayList<Damageable>();
+			for (int i = 0; i <= 5; i++) {
+				for (int j = 0; j <= 5; j++) {
+					if (board[j][i] != null && board[j][i] != getCurrentChampion() && board[j][i] instanceof Champion) {
+						targets.add((Damageable)board[j][i]);
+					}
+				}
+			}
+			ArrayList<Champion> targetChamp = new ArrayList<Champion>();
+			for(int k = 0; k < targets.size();k++){
+				targetChamp.add((Champion)targets.get(k));
+			}
+				if(getCurrentChampion() instanceof Hero){
+					for(int l = 0; l < targetChamp.size(); l++){
+					if(!(targetChamp.get(l) instanceof Villain) && !(targetChamp.get(l) instanceof AntiHero))
+						targetChamp.remove(l);
+					}
+					getCurrentChampion().useLeaderAbility(targetChamp);
+					count++;
+				}
+					else if(getCurrentChampion() instanceof Villain){
+						for(int l = 0; l < targetChamp.size(); l++){
+							if(!(targetChamp.get(l) instanceof Hero) && !(targetChamp.get(l) instanceof AntiHero))
+								targetChamp.remove(l);
+							}
+						getCurrentChampion().useLeaderAbility(targetChamp);
+						count++;
+					}
+					else if(getCurrentChampion() instanceof AntiHero){
+						for(int l = 0; l < targetChamp.size(); l++){
+							if(!(targetChamp.get(l) instanceof Villain) && !(targetChamp.get(l) instanceof Hero))
+								targetChamp.remove(l);
+							}
+						getCurrentChampion().useLeaderAbility(targetChamp);
+						count++;
+						}
+					else if(count > 0)
+						throw new LeaderAbilityAlreadyUsedException();
+				}
+		else throw new LeaderNotCurrentException();
+			}
 	
-	public void castAbility(Ability a, int x, int y){
+
+	public void endTurn() {
 		
 	}
-	
-	public void useLeaderAbility(){
-		
-	}
-	
-	public void endTurn(){
-		
-	}
-	
+
 }

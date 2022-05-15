@@ -10,8 +10,6 @@
 <fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
 <fullyQualifiedTypeName name="model.abilities.DamagingAbility"/>
 <fullyQualifiedTypeName name="model.abilities.HealingAbility"/>
-<fullyQualifiedTypeName name="model.world.Damageable"/>
-<fullyQualifiedTypeName name="model.world.Cover"/>
 <fullyQualifiedTypeName name="model.abilities.Ability"/>
 <fullyQualifiedTypeName name="model.effects.Effect"/>
 <fullyQualifiedTypeName name="model.effects.EffectType"/>
@@ -27,6 +25,11 @@
 <fullyQualifiedTypeName name="model.world.AntiHero"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="model.world.Direction"/>
-<fullyQualifiedTypeName name="exceptions.UnallowedMovementException"/>
 <fullyQualifiedTypeName name="model.world.Condition"/>
+<fullyQualifiedTypeName name="exceptions.UnallowedMovementException"/>
+<fullyQualifiedTypeName name="model.world.Damageable"/>
+<fullyQualifiedTypeName name="model.world.Cover"/>
+<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
+<fullyQualifiedTypeName name="exceptions.ChampionDisarmedException"/>
+<fullyQualifiedTypeName name="exceptions.InvalidTargetException"/>
 </qualifiedTypeNameHistroy>
