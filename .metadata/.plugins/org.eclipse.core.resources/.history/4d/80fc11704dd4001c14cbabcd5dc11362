@@ -8,10 +8,10 @@ public class Cover implements Damageable {
 	private int currentHP;
 	private Point location;
 
-	// public void setLocation(int x, int y) {
-	// this.location.x = x;
-	// this.location.y = y;
-	// }
+//	public void setLocation(int x, int y) {
+//		this.location.x = x;
+//		this.location.y = y;
+//	}
 
 	public Cover(int x, int y) {
 		Random rnd = new Random();
@@ -34,5 +34,21 @@ public class Cover implements Damageable {
 	public Point getLocation() {
 		return location;
 	}
+	
+
+//	public Point getLocation() {
+//		return this.location;
+//	}
+//
+//	public int getHp() {
+//		return this.currentHP;
+//	}
+//
+//	public void setHp(int hp) {
+//		if (hp < 0)
+//			this.currentHP = 0;
+//		else
+//			this.currentHP = hp;
+//	}
 
 }
