@@ -285,17 +285,6 @@ public class Game {
 		return null;
 	}
 
-	//
-	// // Helper method to set the turn order
-	// public void setQueue(Player firstPLayer, Player secondPlayer) {
-	// for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
-	// for (int j = 0; j < secondPlayer.getTeam().size(); j++) {
-	// turnOrder.insert((firstPlayer.getTeam().get(i)
-	// .compareTo(secondPlayer.getTeam().get(j))));
-	// }
-	// }
-	// }
-
 	private void prepareChampionTurns() {
 		for (Champion c : firstPlayer.getTeam()) {
 			turnOrder.insert(c);
@@ -717,18 +706,34 @@ public class Game {
 
 	public void castAbility(Ability a) throws NotEnoughResourcesException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
+		for (int i = 0; i < a.getCastRange(); i++) {
+			for (int j = 0; j < a.getCastRange(); j++) {
+				if (board[j][i] != null && board[j][i] != getCurrentChampion()
+						&& !(board[j][i] instanceof Cover)) {
 					targets.add((Damageable) board[j][i]);
 				}
 			}
 		}
 
-		if (a.getCastArea() == AreaOfEffect.SELFTARGET
-				|| a.getCastArea() == AreaOfEffect.TEAMTARGET
-				|| a.getCastArea() == AreaOfEffect.SURROUND)
+		if((a.getCastArea() == AreaOfEffect.SELFTARGET) || (a.getCastArea() == AreaOfEffect.TEAMTARGET) || (a.getCastArea() == AreaOfEffect.SURROUND))
 			a.execute(targets);
+//		if ((a.getCastArea() == AreaOfEffect.SELFTARGET)){
+//			for(int k = 0; k < targets.size();k++){
+//				if(targets.get(k) != getCurrentChampion()){
+//					targets.remove(k);
+//				}
+//			}
+//			a.execute(targets);
+//		}else if((a.getCastArea() == AreaOfEffect.TEAMTARGET)){
+//			for(int k = 0; k < targets.size();k++){
+//				if(firstPlayer.getTeam().contains(getCurrentChampion())){
+//					
+//				}
+//			}
+//		}
+		
+		
+			
 		else
 			throw new NotEnoughResourcesException("Not enough mana!");
 	}
@@ -736,8 +741,8 @@ public class Game {
 	public void castAbility(Ability a, Direction d)
 			throws NotEnoughResourcesException, AbilityUseException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
+		for (int i = 0; i < a.getCastRange(); i++) {
+			for (int j = 0; j < a.getCastRange(); j++) {
 				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
 					targets.add((Damageable) board[j][i]);
 				}
@@ -826,8 +831,8 @@ public class Game {
 	public void castAbility(Ability a, int x, int y)
 			throws AbilityUseException, NotEnoughResourcesException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
+		for (int i = 0; i < a.getCastRange(); i++) {
+			for (int j = 0; j < a.getCastRange(); j++) {
 				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
 					targets.add((Damageable) board[j][i]);
 				}
@@ -893,10 +898,9 @@ public class Game {
 				count++;
 			} else if (count > 0)
 				throw new LeaderAbilityAlreadyUsedException();
-		} else if(secondPlayer.getLeader().equals(getCurrentChampion())){
+		} else if (secondPlayer.getLeader().equals(getCurrentChampion())) {
 			
-		}
-		else
+		} else
 			throw new LeaderNotCurrentException();
 	}
 
