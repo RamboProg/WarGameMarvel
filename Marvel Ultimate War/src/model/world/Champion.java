@@ -43,7 +43,7 @@ public abstract class Champion implements Comparable {
 		if (o instanceof Champion) {
 			Champion p = (Champion) o;
 			if (this.getSpeed() != p.getSpeed())
-				return this.getSpeed() - p.getSpeed();
+				return (this.getSpeed() - p.getSpeed())*-1;
 			else
 				return this.getName().compareTo(p.getName());
 		}

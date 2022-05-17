@@ -341,30 +341,46 @@ public class Game {
 			if ((x < 5 && x > -1) && (y < 5 && y > -1)) {
 				switch (d) {
 				case UP:
-					if (getBoard()[y + 1][x] == null)
+					if (getBoard()[y + 1][x] == null) {
 						getCurrentChampion().setLocation(new Point(y + 1, x));
-					else
+						getCurrentChampion()
+								.setCurrentActionPoints(
+										getCurrentChampion()
+												.getCurrentActionPoints() - 1);
+					} else
 						throw new UnallowedMovementException(
 								"You cannot move here!");
 					break;
 				case DOWN:
-					if (getBoard()[y - 1][x] == null)
+					if (getBoard()[y - 1][x] == null) {
 						getCurrentChampion().setLocation(new Point(y - 1, x));
-					else
+						getCurrentChampion()
+								.setCurrentActionPoints(
+										getCurrentChampion()
+												.getCurrentActionPoints() - 1);
+					} else
 						throw new UnallowedMovementException(
 								"You cannot move here!");
 					break;
 				case RIGHT:
-					if (getBoard()[y][x + 1] == null)
+					if (getBoard()[y][x + 1] == null) {
 						getCurrentChampion().setLocation(new Point(y, x + 1));
-					else
+						getCurrentChampion()
+								.setCurrentActionPoints(
+										getCurrentChampion()
+												.getCurrentActionPoints() - 1);
+					} else
 						throw new UnallowedMovementException(
 								"You cannot move here!");
 					break;
 				case LEFT:
-					if (getBoard()[y][x - 1] == null)
+					if (getBoard()[y][x - 1] == null) {
 						getCurrentChampion().setLocation(new Point(y, x - 1));
-					else
+						getCurrentChampion()
+								.setCurrentActionPoints(
+										getCurrentChampion()
+												.getCurrentActionPoints() - 1);
+					} else
 						throw new UnallowedMovementException(
 								"You cannot move here!");
 					break;
@@ -888,7 +904,7 @@ public class Game {
 		if (turnOrder.peekMin().equals(getCurrentChampion()))
 			turnOrder.remove();
 
-		if (turnOrder.size() == 0)
+		if (turnOrder.isEmpty())
 			prepareChampionTurns();
 		else {
 			// Removes an inactive champion from the turn order queue
