@@ -49,7 +49,7 @@ public class Game {
 		placeCovers();
 		this.turnOrder = new PriorityQueue(firstPlayer.getTeam().size()
 				+ secondPlayer.getTeam().size());
-		setQueue(this.firstPlayer, this.secondPlayer);
+		prepareChampionTurns();
 
 	}
 
@@ -285,34 +285,27 @@ public class Game {
 		return null;
 	}
 
-	// Helper method to set the turn order
-	public void setQueue(Player firstPLayer, Player secondPlayer) {
-		for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
-			for (int j = 0; j < secondPlayer.getTeam().size(); j++) {
-				turnOrder.insert((firstPlayer.getTeam().get(i)
-						.compareTo(secondPlayer.getTeam().get(j))));
-			}
-		}
-	}
+	//
+	// // Helper method to set the turn order
+	// public void setQueue(Player firstPLayer, Player secondPlayer) {
+	// for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
+	// for (int j = 0; j < secondPlayer.getTeam().size(); j++) {
+	// turnOrder.insert((firstPlayer.getTeam().get(i)
+	// .compareTo(secondPlayer.getTeam().get(j))));
+	// }
+	// }
+	// }
 
 	private void prepareChampionTurns() {
-		if (turnOrder.isEmpty()) {
-			for (Champion c : firstPlayer.getTeam()) {
-				if (c.getCondition() != Condition.KNOCKEDOUT)
-					setQueue(this.firstPlayer, this.secondPlayer);
-			}
-			for (Champion c : secondPlayer.getTeam()) {
-				if (c.getCondition() != Condition.KNOCKEDOUT)
-					setQueue(this.firstPlayer, this.secondPlayer);
-
-			}
-
+		for (Champion c : firstPlayer.getTeam()) {
+			turnOrder.insert(c);
 		}
-
+		for (Champion c : secondPlayer.getTeam()) {
+			turnOrder.insert(c);
+		}
 	}
 
 	public Champion getCurrentChampion() {
-		prepareChampionTurns();
 		return (Champion) turnOrder.peekMin();
 	}
 
@@ -724,8 +717,8 @@ public class Game {
 
 	public void castAbility(Ability a) throws NotEnoughResourcesException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
 				if (board[j][i] != null && board[j][i] != getCurrentChampion()) {
 					targets.add((Damageable) board[j][i]);
 				}
@@ -861,8 +854,8 @@ public class Game {
 		if (firstPlayer.getLeader().equals(getCurrentChampion())) {
 			int count = 0;
 			ArrayList<Damageable> targets = new ArrayList<Damageable>();
-			for (int i = 0; i <= 5; i++) {
-				for (int j = 0; j <= 5; j++) {
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
 					if (board[j][i] != null
 							&& board[j][i] != getCurrentChampion()
 							&& board[j][i] instanceof Champion) {
@@ -900,7 +893,10 @@ public class Game {
 				count++;
 			} else if (count > 0)
 				throw new LeaderAbilityAlreadyUsedException();
-		} else
+		} else if(secondPlayer.getLeader().equals(getCurrentChampion())){
+			
+		}
+		else
 			throw new LeaderNotCurrentException();
 	}
 
@@ -922,7 +918,6 @@ public class Game {
 							nxtChamp.get(i).getMaxActionPointsPerTurn());
 				turnOrder.insert(nxtChamp.remove(i));
 			}
-			prepareChampionTurns();
 		}
 		for (int j = 0; j < 5; j++) {
 			for (int k = 0; k < 5; k++) {

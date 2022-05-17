@@ -7,7 +7,7 @@ import model.effects.*;
 
 import java.util.*;
 
-public abstract class Champion implements Comparable {
+public abstract class Champion implements Comparable, Damageable {
 
 	private String name; // read only
 	private int maxHP; // read only
