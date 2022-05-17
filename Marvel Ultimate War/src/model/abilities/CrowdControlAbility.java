@@ -21,8 +21,11 @@ public class CrowdControlAbility extends Ability {
 
 	public void execute(ArrayList<Damageable> targets) {
 		for (Damageable d : targets) {
-			if (d instanceof Champion)
+			if (d instanceof Champion) {
 				this.effect.apply((Champion) d);
+				((Champion) d).getAppliedEffects().add(this.effect);
+
+			}
 		}
 	}
 

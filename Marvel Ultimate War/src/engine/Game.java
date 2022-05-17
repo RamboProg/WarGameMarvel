@@ -290,23 +290,29 @@ public class Game {
 		for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
 			for (int j = 0; j < secondPlayer.getTeam().size(); j++) {
 				turnOrder.insert((firstPlayer.getTeam().get(i)
-						.compareTo(secondPlayer.getTeam().get(j))) * -1);
+						.compareTo(secondPlayer.getTeam().get(j))));
 			}
 		}
 	}
 
 	private void prepareChampionTurns() {
-		for (Champion c : firstPlayer.getTeam()) {
-			if (c.getCurrentHP() != 0)
-				setQueue(this.firstPlayer, this.secondPlayer);
+		if (turnOrder.isEmpty()) {
+			for (Champion c : firstPlayer.getTeam()) {
+				if (c.getCondition() != Condition.KNOCKEDOUT)
+					setQueue(this.firstPlayer, this.secondPlayer);
+			}
+			for (Champion c : secondPlayer.getTeam()) {
+				if (c.getCondition() != Condition.KNOCKEDOUT)
+					setQueue(this.firstPlayer, this.secondPlayer);
+
+			}
+
 		}
-		for (Champion c : secondPlayer.getTeam()) {
-			if (c.getCurrentHP() != 0)
-				setQueue(this.firstPlayer, this.secondPlayer);
-		}
+
 	}
 
 	public Champion getCurrentChampion() {
+		prepareChampionTurns();
 		return (Champion) turnOrder.peekMin();
 	}
 
@@ -335,14 +341,14 @@ public class Game {
 			NotEnoughResourcesException {
 
 		if (getCurrentChampion().getCondition() != Condition.ROOTED
-				&& getCurrentChampion().getCurrentActionPoints() > 1) {
+				&& getCurrentChampion().getCurrentActionPoints() > 0) {
 			int x = getCurrentChampion().getLocation().x;
 			int y = getCurrentChampion().getLocation().y;
 			if ((x < 5 && x > -1) && (y < 5 && y > -1)) {
 				switch (d) {
 				case UP:
-					if (getBoard()[y + 1][x] == null) {
-						getCurrentChampion().setLocation(new Point(y + 1, x));
+					if (getBoard()[x + 1][y] == null) {
+						getCurrentChampion().setLocation(new Point(x + 1, y));
 						getCurrentChampion()
 								.setCurrentActionPoints(
 										getCurrentChampion()
@@ -352,8 +358,8 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case DOWN:
-					if (getBoard()[y - 1][x] == null) {
-						getCurrentChampion().setLocation(new Point(y - 1, x));
+					if (getBoard()[x - 1][y] == null) {
+						getCurrentChampion().setLocation(new Point(x - 1, y));
 						getCurrentChampion()
 								.setCurrentActionPoints(
 										getCurrentChampion()
@@ -363,8 +369,8 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case RIGHT:
-					if (getBoard()[y][x + 1] == null) {
-						getCurrentChampion().setLocation(new Point(y, x + 1));
+					if (getBoard()[x][y + 1] == null) {
+						getCurrentChampion().setLocation(new Point(x, y + 1));
 						getCurrentChampion()
 								.setCurrentActionPoints(
 										getCurrentChampion()
@@ -374,8 +380,8 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case LEFT:
-					if (getBoard()[y][x - 1] == null) {
-						getCurrentChampion().setLocation(new Point(y, x - 1));
+					if (getBoard()[x][y - 1] == null) {
+						getCurrentChampion().setLocation(new Point(x, y - 1));
 						getCurrentChampion()
 								.setCurrentActionPoints(
 										getCurrentChampion()
