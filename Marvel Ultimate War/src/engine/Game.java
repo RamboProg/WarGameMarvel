@@ -287,9 +287,11 @@ public class Game {
 
 	private void prepareChampionTurns() {
 		for (Champion c : firstPlayer.getTeam()) {
+			if(c.getCondition() != Condition.KNOCKEDOUT)
 			turnOrder.insert(c);
 		}
 		for (Champion c : secondPlayer.getTeam()) {
+			if(c.getCondition() != Condition.KNOCKEDOUT)
 			turnOrder.insert(c);
 		}
 	}
@@ -425,17 +427,25 @@ public class Game {
 						int min = getCurrentChampion().getAttackRange();
 						int minDistIndex = 0;
 						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().x - getCurrentChampion()
-									.getLocation().x) < min && min > -1) {
-								min = targets.get(i).getLocation().x
-										- getCurrentChampion().getLocation().x;
+							if ((targets.get(i).getLocation().y - getCurrentChampion()
+									.getLocation().y) < min && min > -1) {
+								min = targets.get(i).getLocation().y
+										- getCurrentChampion().getLocation().y;
 								minDistIndex = i;
 							}
 						}
 
 						if (getCurrentChampion() instanceof Hero) {
-							if (targets.get(minDistIndex) instanceof Villain
-									|| targets.get(minDistIndex) instanceof AntiHero) {
+							Champion c = (Champion) targets.get(minDistIndex);
+							if (c instanceof Villain
+									|| c instanceof AntiHero) {
+								for(int j = 0; j<c.getAppliedEffects().size();j++){
+									if(c.getAppliedEffects().get(j) instanceof Dodge){
+										for(int n = 0; k<c.getAppliedEffects().size();k++){
+											
+										}
+									}
+								}
 								targets.get(minDistIndex)
 										.setCurrentHP(
 												(int) (targets
@@ -443,8 +453,12 @@ public class Game {
 														.getCurrentHP() - getCurrentChampion()
 														.getAttackDamage() * 1.5));
 								if (targets.get(minDistIndex).getCurrentHP() == 0)
+								{
+									c = (Champion) targets.get(minDistIndex);
+									c.setCondition(Condition.KNOCKEDOUT);
 									targets.remove(targets.get(minDistIndex));
-							} else {
+									
+								}							} else {
 								if (getCurrentChampion() instanceof Villain) {
 									if (targets.get(minDistIndex) instanceof Hero
 											|| targets.get(minDistIndex) instanceof AntiHero) {
@@ -456,8 +470,12 @@ public class Game {
 																.getAttackDamage() * 1.5));
 										if (targets.get(minDistIndex)
 												.getCurrentHP() == 0)
-											targets.remove(targets
-													.get(minDistIndex));
+										{
+											c = (Champion) targets.get(minDistIndex);
+											c.setCondition(Condition.KNOCKEDOUT);
+											targets.remove(targets.get(minDistIndex));
+											
+										}
 									} else if (getCurrentChampion() instanceof AntiHero) {
 										if (targets.get(minDistIndex) instanceof Villain
 												|| targets.get(minDistIndex) instanceof Hero) {
@@ -469,8 +487,12 @@ public class Game {
 																	.getAttackDamage() * 1.5));
 											if (targets.get(minDistIndex)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex));
+											{
+												c = (Champion) targets.get(minDistIndex);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex));
+												
+											}
 										} else if (targets.get(minDistIndex) instanceof Champion
 												|| targets.get(minDistIndex) instanceof Cover) {
 											targets.get(minDistIndex)
@@ -481,8 +503,12 @@ public class Game {
 																	.getAttackDamage()));
 											if (targets.get(minDistIndex)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex));
+											{
+												c = (Champion) targets.get(minDistIndex);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex));
+												
+											}
 										}
 									}
 								}
@@ -493,11 +519,11 @@ public class Game {
 						int min1 = getCurrentChampion().getAttackRange();
 						int minDistIndex1 = 0;
 						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().y - getCurrentChampion()
-									.getLocation().y) < min1 && min1 > -1) {
-								min = targets.get(i).getLocation().y
-										- getCurrentChampion().getLocation().y;
-								minDistIndex = i;
+							if ((targets.get(i).getLocation().x - getCurrentChampion()
+									.getLocation().x) < min1 && min1 > -1) {
+								min = targets.get(i).getLocation().x
+										- getCurrentChampion().getLocation().x;
+								minDistIndex1 = i;
 							}
 						}
 
@@ -511,8 +537,12 @@ public class Game {
 														.getCurrentHP() - getCurrentChampion()
 														.getAttackDamage() * 1.5));
 								if (targets.get(minDistIndex1).getCurrentHP() == 0)
+								{
+									Champion c = (Champion) targets.get(minDistIndex1);
+									c.setCondition(Condition.KNOCKEDOUT);
 									targets.remove(targets.get(minDistIndex1));
-							} else {
+									
+								}							} else {
 								if (getCurrentChampion() instanceof Villain) {
 									if (targets.get(minDistIndex1) instanceof Hero
 											|| targets.get(minDistIndex1) instanceof AntiHero) {
@@ -524,8 +554,12 @@ public class Game {
 																.getAttackDamage() * 1.5));
 										if (targets.get(minDistIndex1)
 												.getCurrentHP() == 0)
-											targets.remove(targets
-													.get(minDistIndex1));
+										{
+											Champion c = (Champion) targets.get(minDistIndex1);
+											c.setCondition(Condition.KNOCKEDOUT);
+											targets.remove(targets.get(minDistIndex1));
+											
+										}
 									} else if (getCurrentChampion() instanceof AntiHero) {
 										if (targets.get(minDistIndex1) instanceof Villain
 												|| targets.get(minDistIndex1) instanceof Hero) {
@@ -537,8 +571,12 @@ public class Game {
 																	.getAttackDamage() * 1.5));
 											if (targets.get(minDistIndex1)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex1));
+											{
+												Champion c = (Champion) targets.get(minDistIndex1);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex1));
+												
+											}
 										} else if (targets.get(minDistIndex1) instanceof Champion
 												|| targets.get(minDistIndex1) instanceof Cover) {
 											targets.get(minDistIndex1)
@@ -549,8 +587,12 @@ public class Game {
 																	.getAttackDamage()));
 											if (targets.get(minDistIndex1)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex1));
+											{
+												Champion c = (Champion) targets.get(minDistIndex1);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex1));
+												
+											}
 										}
 									}
 								}
@@ -561,11 +603,11 @@ public class Game {
 						int min2 = getCurrentChampion().getAttackRange();
 						int minDistIndex2 = 0;
 						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().y - getCurrentChampion()
-									.getLocation().y) < min2 && min2 < 0) {
-								min = targets.get(i).getLocation().y
-										- getCurrentChampion().getLocation().y;
-								minDistIndex = i;
+							if ((targets.get(i).getLocation().x - getCurrentChampion()
+									.getLocation().x) < min2 && min2 < 0) {
+								min = targets.get(i).getLocation().x
+										- getCurrentChampion().getLocation().x;
+								minDistIndex2 = i;
 							}
 						}
 
@@ -578,8 +620,13 @@ public class Game {
 														minDistIndex2)
 														.getCurrentHP() - getCurrentChampion()
 														.getAttackDamage() * 1.5));
-								if (targets.get(minDistIndex2).getCurrentHP() == 0)
+								if (targets.get(minDistIndex2).getCurrentHP() == 0){
+									Champion c = (Champion) targets.get(minDistIndex2);
+									c.setCondition(Condition.KNOCKEDOUT);
 									targets.remove(targets.get(minDistIndex2));
+									
+								}
+									
 							} else {
 								if (getCurrentChampion() instanceof Villain) {
 									if (targets.get(minDistIndex2) instanceof Hero
@@ -592,8 +639,12 @@ public class Game {
 																.getAttackDamage() * 1.5));
 										if (targets.get(minDistIndex2)
 												.getCurrentHP() == 0)
-											targets.remove(targets
-													.get(minDistIndex2));
+										{
+											Champion c = (Champion) targets.get(minDistIndex2);
+											c.setCondition(Condition.KNOCKEDOUT);
+											targets.remove(targets.get(minDistIndex2));
+											
+										}
 									} else if (getCurrentChampion() instanceof AntiHero) {
 										if (targets.get(minDistIndex2) instanceof Villain
 												|| targets.get(minDistIndex2) instanceof Hero) {
@@ -605,8 +656,12 @@ public class Game {
 																	.getAttackDamage() * 1.5));
 											if (targets.get(minDistIndex2)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex2));
+											{
+												Champion c = (Champion) targets.get(minDistIndex2);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex2));
+												
+											};
 										} else if (targets.get(minDistIndex2) instanceof Champion
 												|| targets.get(minDistIndex2) instanceof Cover) {
 											targets.get(minDistIndex2)
@@ -617,8 +672,12 @@ public class Game {
 																	.getAttackDamage()));
 											if (targets.get(minDistIndex2)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex2));
+											{
+												Champion c = (Champion) targets.get(minDistIndex2);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex2));
+												
+											}
 										}
 									}
 								}
@@ -629,11 +688,11 @@ public class Game {
 						int min3 = getCurrentChampion().getAttackRange();
 						int minDistIndex3 = 0;
 						for (int i = 0; i < targets.size(); i++) {
-							if ((targets.get(i).getLocation().x - getCurrentChampion()
-									.getLocation().x) < min3 && min3 < 0) {
-								min = targets.get(i).getLocation().x
-										- getCurrentChampion().getLocation().x;
-								minDistIndex = i;
+							if ((targets.get(i).getLocation().y - getCurrentChampion()
+									.getLocation().y) < min3 && min3 < 0) {
+								min = targets.get(i).getLocation().y
+										- getCurrentChampion().getLocation().y;
+								minDistIndex3 = i;
 							}
 						}
 
@@ -647,7 +706,13 @@ public class Game {
 														.getCurrentHP() - getCurrentChampion()
 														.getAttackDamage() * 1.5));
 								if (targets.get(minDistIndex3).getCurrentHP() == 0)
+									
+								{
+									Champion c = (Champion) targets.get(minDistIndex3);
+									c.setCondition(Condition.KNOCKEDOUT);
 									targets.remove(targets.get(minDistIndex3));
+									
+								}
 							} else {
 								if (getCurrentChampion() instanceof Villain) {
 									if (targets.get(minDistIndex3) instanceof Hero
@@ -660,8 +725,12 @@ public class Game {
 																.getAttackDamage() * 1.5));
 										if (targets.get(minDistIndex3)
 												.getCurrentHP() == 0)
-											targets.remove(targets
-													.get(minDistIndex3));
+										{
+											Champion c = (Champion) targets.get(minDistIndex3);
+											c.setCondition(Condition.KNOCKEDOUT);
+											targets.remove(targets.get(minDistIndex3));
+											
+										}
 									} else if (getCurrentChampion() instanceof AntiHero) {
 										if (targets.get(minDistIndex3) instanceof Villain
 												|| targets.get(minDistIndex3) instanceof Hero) {
@@ -673,8 +742,14 @@ public class Game {
 																	.getAttackDamage() * 1.5));
 											if (targets.get(minDistIndex3)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex3));
+											{
+												Champion c = (Champion) targets.get(minDistIndex3);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex3));
+												
+											}
+											
+											
 										} else if (targets.get(minDistIndex3) instanceof Champion
 												|| targets.get(minDistIndex3) instanceof Cover) {
 											targets.get(minDistIndex3)
@@ -685,8 +760,12 @@ public class Game {
 																	.getAttackDamage()));
 											if (targets.get(minDistIndex3)
 													.getCurrentHP() == 0)
-												targets.remove(targets
-														.get(minDistIndex3));
+											{
+												Champion c = (Champion) targets.get(minDistIndex3);
+												c.setCondition(Condition.KNOCKEDOUT);
+												targets.remove(targets.get(minDistIndex3));
+												
+											}
 										}
 									}
 								}
@@ -704,7 +783,7 @@ public class Game {
 		}
 	}
 
-	public void castAbility(Ability a) throws NotEnoughResourcesException {
+	public void castAbility(Ability a) throws NotEnoughResourcesException, CloneNotSupportedException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
 		for (int i = 0; i < a.getCastRange(); i++) {
 			for (int j = 0; j < a.getCastRange(); j++) {
@@ -715,31 +794,31 @@ public class Game {
 			}
 		}
 
-		if((a.getCastArea() == AreaOfEffect.SELFTARGET) || (a.getCastArea() == AreaOfEffect.TEAMTARGET) || (a.getCastArea() == AreaOfEffect.SURROUND))
+		if ((a.getCastArea() == AreaOfEffect.SELFTARGET)
+				|| (a.getCastArea() == AreaOfEffect.TEAMTARGET)
+				|| (a.getCastArea() == AreaOfEffect.SURROUND))
 			a.execute(targets);
-//		if ((a.getCastArea() == AreaOfEffect.SELFTARGET)){
-//			for(int k = 0; k < targets.size();k++){
-//				if(targets.get(k) != getCurrentChampion()){
-//					targets.remove(k);
-//				}
-//			}
-//			a.execute(targets);
-//		}else if((a.getCastArea() == AreaOfEffect.TEAMTARGET)){
-//			for(int k = 0; k < targets.size();k++){
-//				if(firstPlayer.getTeam().contains(getCurrentChampion())){
-//					
-//				}
-//			}
-//		}
-		
-		
-			
+		if ((a.getCastArea() == AreaOfEffect.SELFTARGET)) {
+			for (int k = 0; k < targets.size(); k++) {
+				if (targets.get(k) != getCurrentChampion()) {
+					targets.remove(k);
+				}
+			}
+			a.execute(targets);
+		} else if ((a.getCastArea() == AreaOfEffect.TEAMTARGET)) {
+			for (int k = 0; k < targets.size(); k++) {
+				if (firstPlayer.getTeam().contains(getCurrentChampion())) {
+
+				}
+			}
+		}
+
 		else
 			throw new NotEnoughResourcesException("Not enough mana!");
 	}
 
 	public void castAbility(Ability a, Direction d)
-			throws NotEnoughResourcesException, AbilityUseException {
+			throws NotEnoughResourcesException, AbilityUseException, CloneNotSupportedException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
 		for (int i = 0; i < a.getCastRange(); i++) {
 			for (int j = 0; j < a.getCastRange(); j++) {
@@ -829,7 +908,7 @@ public class Game {
 	}
 
 	public void castAbility(Ability a, int x, int y)
-			throws AbilityUseException, NotEnoughResourcesException {
+			throws AbilityUseException, NotEnoughResourcesException, CloneNotSupportedException {
 		ArrayList<Damageable> targets = new ArrayList<Damageable>();
 		for (int i = 0; i < a.getCastRange(); i++) {
 			for (int j = 0; j < a.getCastRange(); j++) {
@@ -899,7 +978,7 @@ public class Game {
 			} else if (count > 0)
 				throw new LeaderAbilityAlreadyUsedException();
 		} else if (secondPlayer.getLeader().equals(getCurrentChampion())) {
-			
+
 		} else
 			throw new LeaderNotCurrentException();
 	}
@@ -917,7 +996,7 @@ public class Game {
 			ArrayList<Champion> nxtChamp = new ArrayList<>();
 			nxtChamp.add((Champion) turnOrder.remove());
 			for (int i = 0; i < nxtChamp.size(); i++) {
-				if (nxtChamp.get(i).getCondition() != Condition.INACTIVE)
+				if (nxtChamp.get(i).getCondition() != Condition.INACTIVE && nxtChamp.get(i).getCondition() != Condition.KNOCKEDOUT)
 					nxtChamp.get(i).setCurrentActionPoints(
 							nxtChamp.get(i).getMaxActionPointsPerTurn());
 				turnOrder.insert(nxtChamp.remove(i));
@@ -929,22 +1008,20 @@ public class Game {
 					Champion c = (Champion) board[j][k];
 					if (c.getAppliedEffects().size() > 0) {
 						for (int l = 0; l < c.getAppliedEffects().size(); l++) {
-							c.getAppliedEffects()
-									.get(l)
-									.setDuration(
-											c.getAppliedEffects().get(l)
-													.getDuration() - 1);
-						}
-					}
-					if (c.getAbilities().size() > 0) {
-						if (!(c instanceof AntiHero)) {
-							for (int m = 0; m < c.getAbilities().size(); m++) {
-								c.getAbilities()
-										.get(m)
-										.setCurrentCooldown(
-												c.getAbilities().get(m)
-														.getBaseCooldown() - 1);
-							}
+							if (c.getAppliedEffects().get(l).getDuration() == 1) {
+								c.getAppliedEffects()
+										.get(l)
+										.setDuration(
+												c.getAppliedEffects().get(l)
+														.getDuration() - 1);
+								c.getAppliedEffects().get(l).remove(c);
+							} else
+								c.getAppliedEffects()
+										.get(l)
+										.setDuration(
+												c.getAppliedEffects().get(l)
+														.getDuration() - 1);
+
 						}
 					}
 				}

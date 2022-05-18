@@ -19,11 +19,12 @@ public class CrowdControlAbility extends Ability {
 		return effect;
 	}
 
-	public void execute(ArrayList<Damageable> targets) {
+	public void execute(ArrayList<Damageable> targets) throws CloneNotSupportedException {
 		for (Damageable d : targets) {
 			if (d instanceof Champion) {
-				this.effect.apply((Champion) d);
-				((Champion) d).getAppliedEffects().add(this.effect);
+				Effect e = (Effect) this.effect.clone();
+				e.apply((Champion) d);
+				((Champion) d).getAppliedEffects().add(e);
 
 			}
 		}

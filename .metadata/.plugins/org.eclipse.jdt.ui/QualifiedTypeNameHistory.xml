@@ -20,20 +20,21 @@
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="engine.PriorityQueue"/>
-<fullyQualifiedTypeName name="model.world.Champion"/>
 <fullyQualifiedTypeName name="model.world.AntiHero"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="model.world.Direction"/>
-<fullyQualifiedTypeName name="model.world.Condition"/>
 <fullyQualifiedTypeName name="exceptions.UnallowedMovementException"/>
 <fullyQualifiedTypeName name="model.world.Damageable"/>
 <fullyQualifiedTypeName name="model.world.Cover"/>
 <fullyQualifiedTypeName name="exceptions.ChampionDisarmedException"/>
 <fullyQualifiedTypeName name="exceptions.InvalidTargetException"/>
 <fullyQualifiedTypeName name="java.rmi.AlreadyBoundException"/>
-<fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
-<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
 <fullyQualifiedTypeName name="exceptions.AbilityUseException"/>
 <fullyQualifiedTypeName name="exceptions.LeaderAbilityAlreadyUsedException"/>
 <fullyQualifiedTypeName name="exceptions.LeaderNotCurrentException"/>
+<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
+<fullyQualifiedTypeName name="model.world.Condition"/>
+<fullyQualifiedTypeName name="model.world.Champion"/>
+<fullyQualifiedTypeName name="java.lang.CloneNotSupportedException"/>
+<fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
 </qualifiedTypeNameHistroy>
