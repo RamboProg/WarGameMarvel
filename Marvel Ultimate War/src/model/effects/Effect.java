@@ -17,13 +17,9 @@ public abstract class Effect implements Cloneable {
 		this.type = type;
 	}
 
-	public void apply(Champion c) {
+	public abstract void apply(Champion c);
 
-	}
-
-	public void remove(Champion c) {
-
-	}
+	public abstract void remove(Champion c);
 
 	public int getDuration() {
 		return duration;

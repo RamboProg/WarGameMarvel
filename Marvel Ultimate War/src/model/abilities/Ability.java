@@ -22,9 +22,7 @@ public abstract class Ability {
 		this.requiredActionPoints = required;
 	}
 	
-	public void execute(ArrayList<Damageable> targets) throws CloneNotSupportedException{
-		
-	}
+	public abstract void execute(ArrayList<Damageable> targets) throws CloneNotSupportedException;
 
 	public int getCurrentCooldown() {
 		return currentCooldown;

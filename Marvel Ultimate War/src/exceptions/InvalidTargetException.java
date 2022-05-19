@@ -1,12 +1,12 @@
 package exceptions;
 
 public class InvalidTargetException extends Exception {
-	
+	String message = "";
 	public InvalidTargetException(){
 		super();
 	}
 	
 	public InvalidTargetException(String s){
-		s = " custom_message_ ";
+	this.message = s;
 	}
 }

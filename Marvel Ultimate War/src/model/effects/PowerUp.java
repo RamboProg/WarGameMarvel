@@ -16,7 +16,7 @@ public class PowerUp extends Effect {
 				((DamagingAbility) ability)
 						.setDamageAmount((int)(((DamagingAbility) ability)
 								.getDamageAmount() * 1.2));
-			else if (ability instanceof HealingAbility)
+			if (ability instanceof HealingAbility)
 				((HealingAbility) ability)
 						.setHealAmount((int)(((HealingAbility) ability)
 								.getHealAmount() * 1.2));
@@ -29,7 +29,7 @@ public class PowerUp extends Effect {
 				((DamagingAbility) ability)
 						.setDamageAmount((int)(((DamagingAbility) ability)
 								.getDamageAmount() /1.2));
-			else if (ability instanceof HealingAbility)
+			if (ability instanceof HealingAbility)
 				((HealingAbility) ability)
 						.setHealAmount((int)(((HealingAbility) ability)
 								.getHealAmount() / 1.2));
