@@ -12,7 +12,6 @@ public class Villain extends Champion {
 
 	public void useLeaderAbility(ArrayList<Champion> targets) {
 		for (Champion c : targets) {
-
 			c.setCondition(Condition.KNOCKEDOUT);
 		}
 	}

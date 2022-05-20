@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.abilities.CrowdControlAbility"/>
 <fullyQualifiedTypeName name="model.world.Hero"/>
 <fullyQualifiedTypeName name="model.world.Villain"/>
 <fullyQualifiedTypeName name="java.awt.Point"/>
 <fullyQualifiedTypeName name="model.effects.Disarm"/>
 <fullyQualifiedTypeName name="model.effects.Silence"/>
 <fullyQualifiedTypeName name="model.effects.Root"/>
-<fullyQualifiedTypeName name="model.abilities.DamagingAbility"/>
-<fullyQualifiedTypeName name="model.abilities.HealingAbility"/>
-<fullyQualifiedTypeName name="model.abilities.Ability"/>
 <fullyQualifiedTypeName name="model.effects.Effect"/>
-<fullyQualifiedTypeName name="model.effects.EffectType"/>
 <fullyQualifiedTypeName name="model.effects.Embrace"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.effects.Stun"/>
@@ -24,17 +19,24 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="model.world.Direction"/>
 <fullyQualifiedTypeName name="exceptions.UnallowedMovementException"/>
-<fullyQualifiedTypeName name="model.world.Damageable"/>
 <fullyQualifiedTypeName name="model.world.Cover"/>
 <fullyQualifiedTypeName name="exceptions.ChampionDisarmedException"/>
-<fullyQualifiedTypeName name="exceptions.InvalidTargetException"/>
 <fullyQualifiedTypeName name="java.rmi.AlreadyBoundException"/>
 <fullyQualifiedTypeName name="exceptions.AbilityUseException"/>
-<fullyQualifiedTypeName name="exceptions.LeaderAbilityAlreadyUsedException"/>
 <fullyQualifiedTypeName name="exceptions.LeaderNotCurrentException"/>
-<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
 <fullyQualifiedTypeName name="model.world.Condition"/>
 <fullyQualifiedTypeName name="model.world.Champion"/>
 <fullyQualifiedTypeName name="java.lang.CloneNotSupportedException"/>
+<fullyQualifiedTypeName name="javax.activity.InvalidActivityException"/>
+<fullyQualifiedTypeName name="exceptions.InvalidTargetException"/>
+<fullyQualifiedTypeName name="exceptions.LeaderAbilityAlreadyUsedException"/>
+<fullyQualifiedTypeName name="model.abilities.HealingAbility"/>
+<fullyQualifiedTypeName name="model.abilities.DamagingAbility"/>
+<fullyQualifiedTypeName name="exceptions.NotEnoughResourcesException"/>
+<fullyQualifiedTypeName name="model.abilities.CrowdControlAbility"/>
 <fullyQualifiedTypeName name="model.abilities.AreaOfEffect"/>
+<fullyQualifiedTypeName name="model.effects.EffectType"/>
+<fullyQualifiedTypeName name="model.abilities.Ability"/>
+<fullyQualifiedTypeName name="model.effects.SpeedUp"/>
+<fullyQualifiedTypeName name="model.world.Damageable"/>
 </qualifiedTypeNameHistroy>

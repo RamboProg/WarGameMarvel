@@ -21,7 +21,9 @@ public class Disarm extends Effect {
 		for (Ability ability : c.getAbilities()) {
 			if (ability.getName().equals("Punch"))
 				c.getAbilities().remove(ability);
+			break;
 		}
+		
 	}
 
 }

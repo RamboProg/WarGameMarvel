@@ -19,11 +19,6 @@ public class Embrace extends Effect {
 	public void remove(Champion c) {
 		c.setSpeed((int) (c.getSpeed() / 1.2));
 		c.setAttackDamage((int) (c.getAttackDamage() / 1.2));
-		for (Effect effect : c.getAppliedEffects()) {
-			if (effect.getName().equals("Embrace")) {
-				c.getAbilities().remove(effect);
-				break;
-			}
-		}
+	
 	}
 }

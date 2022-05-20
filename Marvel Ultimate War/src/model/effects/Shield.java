@@ -8,10 +8,10 @@ public class Shield extends Effect {
 	}
 
 	public void apply(Champion c) {
-		c.setSpeed((int)(c.getSpeed()*1.02));
+		c.setSpeed((int) (c.getSpeed() * 1.02));
 	}
 
 	public void remove(Champion c) {
-		c.setSpeed((int)(c.getSpeed()/1.02));
+		c.setSpeed((int) (c.getSpeed() / 1.02));
 	}
 }

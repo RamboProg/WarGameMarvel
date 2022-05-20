@@ -1,5 +1,6 @@
 package model.effects;
 
+import model.abilities.Ability;
 import model.world.Champion;
 import model.world.Condition;
 
@@ -7,13 +8,17 @@ public class Root extends Effect {
 	public Root(int duration) {
 		super("Root", duration, EffectType.DEBUFF);
 	}
-//check applied effects
+
+	// check applied effects
 	public void apply(Champion c) {
-		c.setCondition(Condition.ROOTED);
+		if (c.getCondition() != Condition.INACTIVE)
+			c.setCondition(Condition.ROOTED);
 	}
 
 	public void remove(Champion c) {
-		c.setCondition();
+		c.setCondition(Condition.ACTIVE);
+		
+
 	}
 
 }

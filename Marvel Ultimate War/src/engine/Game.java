@@ -326,14 +326,13 @@ public class Game {
 	public void move(Direction d) throws UnallowedMovementException,
 			NotEnoughResourcesException {
 
-		if (getCurrentChampion().getCondition() != Condition.ROOTED
 				&& getCurrentChampion().getCurrentActionPoints() > 0) {
 			int x = getCurrentChampion().getLocation().x;
 			int y = getCurrentChampion().getLocation().y;
-			if ((x < 4 && x > -1) && (y < 4 && y > -1)) {
+			if ((x < 4 && x > 0) && (y < 4 && y > 0)) {
 				switch (d) {
 				case UP:
-					if (getBoard()[x + 1][y] == null) {
+					if (getBoard()[y + 1][x] == null) {
 						getCurrentChampion().setLocation(new Point(x, y + 1));
 						getCurrentChampion()
 								.setCurrentActionPoints(
@@ -344,7 +343,7 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case DOWN:
-					if (getBoard()[x - 1][y] == null) {
+					if (getBoard()[y - 1][x] == null) {
 						getCurrentChampion().setLocation(new Point(x, y - 1));
 						getCurrentChampion()
 								.setCurrentActionPoints(
@@ -355,7 +354,7 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case RIGHT:
-					if (getBoard()[x][y + 1] == null) {
+					if (getBoard()[y][x + 1] == null) {
 						getCurrentChampion().setLocation(new Point(x + 1, y));
 						getCurrentChampion()
 								.setCurrentActionPoints(
@@ -366,7 +365,7 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case LEFT:
-					if (getBoard()[x][y - 1] == null) {
+					if (getBoard()[y][x - 1] == null) {
 						getCurrentChampion().setLocation(new Point(x - 1, y));
 						getCurrentChampion()
 								.setCurrentActionPoints(
@@ -389,10 +388,64 @@ public class Game {
 
 	}
 
-	private static int manhattanDist(int M, int N, int X1, int Y1, int X2,
-			int Y2) {
+	private static int manhattanDist(int X1, int Y1, int X2, int Y2) {
 		int dist = Math.abs(X2 - X1) + Math.abs(Y2 - Y1);
 		return dist;
+	}
+
+	private boolean dodgePresent(Champion c) {
+		for (Effect e : c.getAppliedEffects()) {
+			if (e instanceof Dodge)
+				return true;
+		}
+		return false;
+	}
+
+	private boolean shieldPresent(Champion c) {
+		for (Effect e : c.getAppliedEffects()) {
+			if (e instanceof Shield)
+				return true;
+		}
+		return false;
+	}
+
+	private ArrayList<Damageable> loadValidChamps(int max, Direction d) {
+		Champion c = getCurrentChampion();
+		Point p = c.getLocation();
+		ArrayList<Damageable> targets = new ArrayList<Damageable>();
+		for (int i = 0; i < max; i++) {
+			switch (d) {
+			case UP:
+				p.y++;
+				if ((p.x < 6 || p.x >= 0 || p.y < 6 || p.y >= 0)
+						&& board[p.y][p.x] instanceof Champion
+						|| board[p.y][p.x] instanceof Cover)
+					targets.add((Damageable) board[p.y][p.x]);
+				break;
+			case DOWN:
+				p.y--;
+				if ((p.x < 6 || p.x >= 0 || p.y < 6 || p.y >= 0)
+						&& board[p.y][p.x] instanceof Champion
+						|| board[p.y][p.x] instanceof Cover)
+					targets.add((Damageable) board[p.y][p.x]);
+				break;
+			case RIGHT:
+				p.x++;
+				if ((p.x < 6 || p.x >= 0 || p.y < 6 || p.y >= 0)
+						&& board[p.y][p.x] instanceof Champion
+						|| board[p.y][p.x] instanceof Cover)
+					targets.add((Damageable) board[p.y][p.x]);
+				break;
+			case LEFT:
+				p.x--;
+				if ((p.x < 6 || p.x >= 0 || p.y < 6 || p.y >= 0)
+						&& board[p.y][p.x] instanceof Champion
+						|| board[p.y][p.x] instanceof Cover)
+					targets.add((Damageable) board[p.y][p.x]);
+				break;
+			}
+		}
+		return targets;
 	}
 
 	public void attack(Direction d) throws ChampionDisarmedException,
@@ -428,86 +481,95 @@ public class Game {
 			switch (d) {
 			case UP:
 
-				int min = getCurrentChampion().getAttackRange();
+				int dist = getCurrentChampion().getAttackRange();
 
 				for (int i = 0; i < targets.size(); i++) {
-					if ((targets.get(i).getLocation().x - getCurrentChampion()
-							.getLocation().x) < min && min > 0) {
-						min = targets.get(i).getLocation().x
-								- getCurrentChampion().getLocation().x;
-						min = i;
+					if (manhattanDist(getCurrentChampion().getLocation().x,
+							getCurrentChampion().getLocation().y, targets
+									.get(i).getLocation().x, targets.get(i)
+									.getLocation().y) < dist
+							&& manhattanDist(
+									getCurrentChampion().getLocation().x,
+									getCurrentChampion().getLocation().y,
+									targets.get(i).getLocation().x, targets
+											.get(i).getLocation().y) != 0) {
+						dist = i;
 					}
 				}
 
 				if (getCurrentChampion() instanceof Hero) {
-					if (targets.get(min) instanceof Villain
-							|| targets.get(min) instanceof AntiHero) {
-						int x = (int) (Math.random() * 2);
-						if (x == 1) {
-							Champion c = (Champion) targets.get(min);
+					if (targets.get(dist) instanceof Villain
+							|| targets.get(dist) instanceof AntiHero) {
+						Champion c = (Champion) targets.get(dist);
+						if (dodgePresent(c)) {
+							int x = (int) (Math.random() * 2);
+							if (x == 1) {
+								c.setCurrentHP((int) (c.getCurrentHP() - getCurrentChampion()
+										.getAttackDamage() * 1.5));
+								if (c.getCurrentHP() == 0) {
+									c.setCondition(Condition.KNOCKEDOUT);
+									targets.remove(c);
 
-							c.setCurrentHP((int) (targets.get(min)
-									.getCurrentHP() - getCurrentChampion()
+								}
+							}
+						}
+
+						if (shieldPresent(c) == false) {
+							c.setCurrentHP((int) (c.getCurrentHP() - getCurrentChampion()
 									.getAttackDamage() * 1.5));
-							if (targets.get(min).getCurrentHP() == 0) {
+							if (c.getCurrentHP() == 0) {
 								c.setCondition(Condition.KNOCKEDOUT);
-								targets.remove(targets.get(min));
+								targets.remove(c);
 
 							}
 						}
+
 					} else {
 						if (getCurrentChampion() instanceof Villain) {
-							if (targets.get(min) instanceof Hero
-									|| targets.get(min) instanceof AntiHero) {
+							if (targets.get(dist) instanceof Hero
+									|| targets.get(dist) instanceof AntiHero) {
 								int x = (int) (Math.random() * 2);
 								if (x == 1) {
-									targets.get(min)
+									targets.get(dist)
 											.setCurrentHP(
-													(int) (targets.get(min)
+													(int) (targets.get(dist)
 															.getCurrentHP() - getCurrentChampion()
 															.getAttackDamage() * 1.5));
-									if (targets.get(min).getCurrentHP() == 0) {
+									if (targets.get(dist).getCurrentHP() == 0) {
 										Champion c = (Champion) targets
-												.get(min);
+												.get(dist);
 										c.setCondition(Condition.KNOCKEDOUT);
-										targets.remove(targets.get(min));
+										targets.remove(targets.get(dist));
 
 									}
 								}
 							} else if (getCurrentChampion() instanceof AntiHero) {
-								if (targets.get(min) instanceof Villain
-										|| targets.get(min) instanceof Hero) {
+								if (targets.get(dist) instanceof Villain
+										|| targets.get(dist) instanceof Hero) {
 									int x = (int) (Math.random() * 2);
 									if (x == 1) {
-										targets.get(min)
+										targets.get(dist)
 												.setCurrentHP(
-														(int) (targets.get(min)
+														(int) (targets
+																.get(dist)
 																.getCurrentHP() - getCurrentChampion()
 																.getAttackDamage() * 1.5));
-										if (targets.get(min).getCurrentHP() == 0) {
+										if (targets.get(dist).getCurrentHP() == 0) {
 											Champion c = (Champion) targets
-													.get(min);
+													.get(dist);
 											c.setCondition(Condition.KNOCKEDOUT);
-											targets.remove(targets.get(min));
+											targets.remove(targets.get(dist));
 
 										}
 									}
-								} else if (targets.get(min) instanceof Champion
-										|| targets.get(min) instanceof Cover) {
-									int x = (int) (Math.random() * 2);
-									if (x == 1) {
-										targets.get(min)
-												.setCurrentHP(
-														(int) (targets.get(min)
-																.getCurrentHP() - getCurrentChampion()
-																.getAttackDamage()));
-										if (targets.get(min).getCurrentHP() == 0) {
-											Champion c = (Champion) targets
-													.get(min);
-											c.setCondition(Condition.KNOCKEDOUT);
-											targets.remove(targets.get(min));
+								} else if (targets.get(dist) instanceof Champion
+										|| targets.get(dist) instanceof Cover) {
+									if (targets.get(dist).getCurrentHP() == 0) {
+										Champion c = (Champion) targets
+												.get(dist);
+										c.setCondition(Condition.KNOCKEDOUT);
+										targets.remove(targets.get(dist));
 
-										}
 									}
 								}
 							}
@@ -579,19 +641,14 @@ public class Game {
 									}
 								} else if (targets.get(min1) instanceof Champion
 										|| targets.get(min1) instanceof Cover) {
-									int x = (int) (Math.random() * 2);
-									if (x == 1) {
-										Champion c = (Champion) targets
-												.get(min1);
+									Champion c = (Champion) targets.get(min1);
 
-										c.setCurrentHP((int) (targets.get(min1)
-												.getCurrentHP() - getCurrentChampion()
-												.getAttackDamage() * 1.5));
-										if (targets.get(min1).getCurrentHP() == 0) {
-											c.setCondition(Condition.KNOCKEDOUT);
-											targets.remove(targets.get(min1));
-
-										}
+									c.setCurrentHP((int) (targets.get(min1)
+											.getCurrentHP() - getCurrentChampion()
+											.getAttackDamage()));
+									if (targets.get(min1).getCurrentHP() == 0) {
+										c.setCondition(Condition.KNOCKEDOUT);
+										targets.remove(targets.get(min1));
 									}
 								}
 							}
@@ -805,6 +862,7 @@ public class Game {
 			return false;
 	}
 
+	// Which team has the current champion
 	private Player whoContainCurrent() {
 		if (firstPlayer.getTeam().contains(getCurrentChampion()))
 			return firstPlayer;
@@ -833,112 +891,205 @@ public class Game {
 					}
 					if (a.getCastArea() == AreaOfEffect.TEAMTARGET) {
 						targets.addAll(whoContainCurrent().getTeam());
-						a.execute(targets);
-					}
-					if (a.getCastArea() == AreaOfEffect.SURROUND) {
-						Point currentLoc = getCurrentChampion().getLocation();
-
-						for (int i = currentLoc.x; i < a.getCastRange(); i++) {
-							for (int j = currentLoc.y; j < a.getCastRange(); j++) {
-
-								if (whoContainCurrent().getTeam().get(i + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											i - 1)); // Right one
-								if (whoContainCurrent().getTeam().get(i + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											i - 1));// Left one
-								if (whoContainCurrent().getTeam().get(j + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											j + 1));// Up one
-								if (whoContainCurrent().getTeam().get(j - 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											j - 1));// Down one
-
-								// Checks if the top right corner slot is within
-								// the team
-								Point cornerXY = getCurrentChampion()
-										.getLocation();
-								int cornerXY_X = getCurrentChampion()
-										.getLocation().x + 1;
-								int cornerXY_Y = getCurrentChampion()
-										.getLocation().y + 1;
-
-								if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerXY_Y][cornerXY_X])) {
-										targets.add((Damageable) board[cornerXY_Y][cornerXY_X]);
-									}
-								}
-
-								// Checks if the bottom right corner slot is
-								// within the team
-								Point cornerXy = getCurrentChampion()
-										.getLocation();
-								int cornerXy_X = getCurrentChampion()
-										.getLocation().x + 1;
-								int cornerXy_Y = getCurrentChampion()
-										.getLocation().y - 1;
-
-								if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerXy_Y][cornerXy_X])) {
-										targets.add((Damageable) board[cornerXy_Y][cornerXy_X]);
-									}
-								}
-
-								// Checks if the bottom left corner slot is
-								// within the team
-								Point cornerxy = getCurrentChampion()
-										.getLocation();
-								int cornerxy_X = getCurrentChampion()
-										.getLocation().x - 1;
-								int cornerxy_Y = getCurrentChampion()
-										.getLocation().y - 1;
-
-								if (board[cornerxy_Y][cornerxy_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerxy_Y][cornerxy_X])) {
-										targets.add((Damageable) board[cornerxy_Y][cornerxy_X]);
-									}
-								}
-
-								// Checks if the top left corner slot is within
-								// the team
-								Point cornerxY = getCurrentChampion()
-										.getLocation();
-								int cornerxY_X = getCurrentChampion()
-										.getLocation().x - 1;
-								int cornerxY_Y = getCurrentChampion()
-										.getLocation().y + 1;
-
-								if (board[cornerxY_Y][cornerxY_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerxY_Y][cornerxY_X])) {
-										targets.add((Damageable) board[cornerxY_Y][cornerxY_X]);
-									}
-								}
+						for (Damageable d : targets) {
+							if ((manhattanDist(d.getLocation().x,
+									d.getLocation().y, getCurrentChampion()
+											.getLocation().x,
+									getCurrentChampion().getLocation().y) > a
+									.getCastRange())) {
+								targets.remove(d);
 							}
 						}
 						a.execute(targets);
 					}
-				} else if (isDmg(a)) {
-					Point currentLoc = getCurrentChampion().getLocation();
+					if (a.getCastArea() == AreaOfEffect.SURROUND) {
+						Point currentLoc = getCurrentChampion().getLocation();
+						targets.addAll(whoContainCurrent().getTeam());
+						for (Damageable d : targets) {
+							if ((manhattanDist(d.getLocation().x,
+									d.getLocation().y, getCurrentChampion()
+											.getLocation().x,
+									getCurrentChampion().getLocation().y) > 1)) {
+								targets.remove(d);
+							}
+						}
 
-					for (int i = currentLoc.x; i < a.getCastRange(); i++) {
-						for (int j = currentLoc.y; j < a.getCastRange(); j++) {
+						// Checks if the top right corner slot is within
+						// the team
+						Point cornerXY = getCurrentChampion().getLocation();
+						int cornerXY_X = getCurrentChampion().getLocation().x + 1;
+						int cornerXY_Y = getCurrentChampion().getLocation().y + 1;
 
-							if (oppositeTeam().getTeam().get(i + 1) != null)
-								targets.add(oppositeTeam().getTeam().get(i - 1)); // Right
-																					// one
-							if (oppositeTeam().getTeam().get(i + 1) != null)
-								targets.add(oppositeTeam().getTeam().get(i - 1));// Left
-																					// one
-							if (oppositeTeam().getTeam().get(j + 1) != null)
-								targets.add(oppositeTeam().getTeam().get(j + 1));// Up
-																					// one
-							if (oppositeTeam().getTeam().get(j - 1) != null)
-								targets.add(oppositeTeam().getTeam().get(j - 1));// Down
-																					// one
+						if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
+							if (whoContainCurrent().getTeam().contains(
+									board[cornerXY_Y][cornerXY_X])) {
+								targets.add((Damageable) board[cornerXY_Y][cornerXY_X]);
+							}
+						}
+
+						// Checks if the bottom right corner slot is
+						// within the team
+						Point cornerXy = getCurrentChampion().getLocation();
+						int cornerXy_X = getCurrentChampion().getLocation().x + 1;
+						int cornerXy_Y = getCurrentChampion().getLocation().y - 1;
+
+						if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
+							if (whoContainCurrent().getTeam().contains(
+									board[cornerXy_Y][cornerXy_X])) {
+								targets.add((Damageable) board[cornerXy_Y][cornerXy_X]);
+							}
+						}
+
+						// Checks if the bottom left corner slot is
+						// within the team
+						Point cornerxy = getCurrentChampion().getLocation();
+						int cornerxy_X = getCurrentChampion().getLocation().x - 1;
+						int cornerxy_Y = getCurrentChampion().getLocation().y - 1;
+
+						if (board[cornerxy_Y][cornerxy_X] instanceof Champion) {
+							if (whoContainCurrent().getTeam().contains(
+									board[cornerxy_Y][cornerxy_X])) {
+								targets.add((Damageable) board[cornerxy_Y][cornerxy_X]);
+							}
+						}
+
+						// Checks if the top left corner slot is within
+						// the team
+						Point cornerxY = getCurrentChampion().getLocation();
+						int cornerxY_X = getCurrentChampion().getLocation().x - 1;
+						int cornerxY_Y = getCurrentChampion().getLocation().y + 1;
+
+						if (board[cornerxY_Y][cornerxY_X] instanceof Champion) {
+							if (whoContainCurrent().getTeam().contains(
+									board[cornerxY_Y][cornerxY_X])) {
+								targets.add((Damageable) board[cornerxY_Y][cornerxY_X]);
+							}
+						}
+					}
+					a.execute(targets);
+				}
+
+				else if (isDmg(a)) {
+					if (a.getCastArea() == AreaOfEffect.TEAMTARGET) {
+
+						targets.addAll(oppositeTeam().getTeam());
+						for (Damageable d : targets) {
+							if ((manhattanDist(d.getLocation().x,
+									d.getLocation().y, getCurrentChampion()
+											.getLocation().x,
+									getCurrentChampion().getLocation().y) > a
+									.getCastRange())) {
+								targets.remove(d);
+							}
+						}
+						a.execute(targets);
+					}
+
+					// Calculate distance is better (manhattan)
+					if (a.getCastArea() == AreaOfEffect.SURROUND) {
+						Point currentLoc = getCurrentChampion().getLocation();
+
+						targets.addAll(whoContainCurrent().getTeam());
+						for (Damageable d : targets) {
+							if ((manhattanDist(d.getLocation().x,
+									d.getLocation().y, getCurrentChampion()
+											.getLocation().x,
+									getCurrentChampion().getLocation().y) > a
+									.getCastRange())) {
+								targets.remove(d);
+							}
+						}
+
+						// Checks if the top right corner slot is within
+						// the team
+						Point cornerXY = getCurrentChampion().getLocation();
+						int cornerXY_X = getCurrentChampion().getLocation().x + 1;
+						int cornerXY_Y = getCurrentChampion().getLocation().y + 1;
+
+						if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
+							if (oppositeTeam().getTeam().contains(
+									board[cornerXY_Y][cornerXY_X])) {
+								targets.add((Damageable) board[cornerXY_Y][cornerXY_X]);
+							}
+						}
+
+						// Checks if the bottom right corner slot is
+						// within the team
+						Point cornerXy = getCurrentChampion().getLocation();
+						int cornerXy_X = getCurrentChampion().getLocation().x + 1;
+						int cornerXy_Y = getCurrentChampion().getLocation().y - 1;
+
+						if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
+							if (oppositeTeam().getTeam().contains(
+									board[cornerXy_Y][cornerXy_X])) {
+								targets.add((Damageable) board[cornerXy_Y][cornerXy_X]);
+							}
+						}
+
+						// Checks if the bottom left corner slot is
+						// within the team
+						Point cornerxy = getCurrentChampion().getLocation();
+						int cornerxy_X = getCurrentChampion().getLocation().x - 1;
+						int cornerxy_Y = getCurrentChampion().getLocation().y - 1;
+
+						if (board[cornerxy_Y][cornerxy_X] instanceof Champion) {
+							if (oppositeTeam().getTeam().contains(
+									board[cornerxy_Y][cornerxy_X])) {
+								targets.add((Damageable) board[cornerxy_Y][cornerxy_X]);
+							}
+						}
+
+						// Checks if the top left corner slot is within
+						// the team
+						Point cornerxY = getCurrentChampion().getLocation();
+						int cornerxY_X = getCurrentChampion().getLocation().x - 1;
+						int cornerxY_Y = getCurrentChampion().getLocation().y + 1;
+
+						if (board[cornerxY_Y][cornerxY_X] instanceof Champion) {
+							if (oppositeTeam().getTeam().contains(
+									board[cornerxY_Y][cornerxY_X])) {
+								targets.add((Damageable) board[cornerxY_Y][cornerxY_X]);
+							}
+						}
+					}
+					a.execute(targets);
+
+				} else if (isCC(a)) {
+
+					CrowdControlAbility ccA = (CrowdControlAbility) a;
+					if (ccA.getEffect().getType() == EffectType.DEBUFF) {
+						if (a.getCastArea() == AreaOfEffect.SURROUND) {
+							Point currentLoc = getCurrentChampion()
+									.getLocation();
+
+							targets.addAll(oppositeTeam().getTeam());
+							for (Damageable d : targets) {
+								if ((manhattanDist(d.getLocation().x,
+										d.getLocation().y, getCurrentChampion()
+												.getLocation().x,
+										getCurrentChampion().getLocation().y) > a
+										.getCastRange())) {
+									targets.remove(d);
+								}
+							}
+
+							ArrayList<Champion> targetChamps = new ArrayList<Champion>();
+							for (Damageable damageable : targets) {
+								if (damageable instanceof Champion)
+									targetChamps.add((Champion) damageable);
+							}
+
+							for (int i = 0; i < targetChamps.size(); i++) {
+								if (targetChamps.get(i).getAppliedEffects()
+										.get(i) instanceof Shield) {
+									targetChamps.remove(i);
+									targetChamps
+											.get(i)
+											.getAppliedEffects()
+											.remove(targetChamps.get(i)
+													.getAppliedEffects().get(i));
+								}
+							}
 
 							// Checks if the top right corner slot is within
 							// the team
@@ -992,181 +1143,86 @@ public class Game {
 								}
 							}
 						}
+						a.execute(targets);
+
 					}
-					a.execute(targets);
 
-				} else if (isCC(a)) {
-					CrowdControlAbility ccA = (CrowdControlAbility) a;
-					if (ccA.getEffect().getType() == EffectType.DEBUFF) {
-						Point currentLoc = getCurrentChampion().getLocation();
+					else if (ccA.getEffect().getType() == EffectType.BUFF) {
+						if (a.getCastArea() == AreaOfEffect.SURROUND) {
+							Point currentLoc = getCurrentChampion()
+									.getLocation();
 
-						for (int i = currentLoc.x; i < a.getCastRange(); i++) {
-							for (int j = currentLoc.y; j < a.getCastRange(); j++) {
-
-								if (oppositeTeam().getTeam().get(i + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											i - 1)); // Right one
-								if (oppositeTeam().getTeam().get(i + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											i - 1));// Left one
-								if (oppositeTeam().getTeam().get(j + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											j + 1));// Up one
-								if (oppositeTeam().getTeam().get(j - 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											j - 1));// Down one
-
-								// Checks if the top right corner slot is within
-								// the team
-								Point cornerXY = getCurrentChampion()
-										.getLocation();
-								int cornerXY_X = getCurrentChampion()
-										.getLocation().x + 1;
-								int cornerXY_Y = getCurrentChampion()
-										.getLocation().y + 1;
-
-								if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
-									if (oppositeTeam().getTeam().contains(
-											board[cornerXY_Y][cornerXY_X])) {
-										targets.add((Damageable) board[cornerXY_Y][cornerXY_X]);
-									}
+							targets.addAll(whoContainCurrent().getTeam());
+							for (Damageable d : targets) {
+								if ((manhattanDist(d.getLocation().x,
+										d.getLocation().y, getCurrentChampion()
+												.getLocation().x,
+										getCurrentChampion().getLocation().y) > a
+										.getCastRange())) {
+									targets.remove(d);
 								}
+							}
 
-								// Checks if the bottom right corner slot is
-								// within the team
-								Point cornerXy = getCurrentChampion()
-										.getLocation();
-								int cornerXy_X = getCurrentChampion()
-										.getLocation().x + 1;
-								int cornerXy_Y = getCurrentChampion()
-										.getLocation().y - 1;
+							ArrayList<Champion> targetChamps = new ArrayList<Champion>();
+							for (Damageable damageable : targets) {
+								if (damageable instanceof Champion)
+									targetChamps.add((Champion) damageable);
+							}
 
-								if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
-									if (oppositeTeam().getTeam().contains(
-											board[cornerXy_Y][cornerXy_X])) {
-										targets.add((Damageable) board[cornerXy_Y][cornerXy_X]);
-									}
+							// Checks if the top right corner slot is within
+							// the team
+							Point cornerXY = getCurrentChampion().getLocation();
+							int cornerXY_X = getCurrentChampion().getLocation().x + 1;
+							int cornerXY_Y = getCurrentChampion().getLocation().y + 1;
+
+							if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
+								if (oppositeTeam().getTeam().contains(
+										board[cornerXY_Y][cornerXY_X])) {
+									targets.add((Damageable) board[cornerXY_Y][cornerXY_X]);
 								}
+							}
 
-								// Checks if the bottom left corner slot is
-								// within the team
-								Point cornerxy = getCurrentChampion()
-										.getLocation();
-								int cornerxy_X = getCurrentChampion()
-										.getLocation().x - 1;
-								int cornerxy_Y = getCurrentChampion()
-										.getLocation().y - 1;
+							// Checks if the bottom right corner slot is
+							// within the team
+							Point cornerXy = getCurrentChampion().getLocation();
+							int cornerXy_X = getCurrentChampion().getLocation().x + 1;
+							int cornerXy_Y = getCurrentChampion().getLocation().y - 1;
 
-								if (board[cornerxy_Y][cornerxy_X] instanceof Champion) {
-									if (oppositeTeam().getTeam().contains(
-											board[cornerxy_Y][cornerxy_X])) {
-										targets.add((Damageable) board[cornerxy_Y][cornerxy_X]);
-									}
+							if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
+								if (oppositeTeam().getTeam().contains(
+										board[cornerXy_Y][cornerXy_X])) {
+									targets.add((Damageable) board[cornerXy_Y][cornerXy_X]);
 								}
+							}
 
-								// Checks if the top left corner slot is within
-								// the team
-								Point cornerxY = getCurrentChampion()
-										.getLocation();
-								int cornerxY_X = getCurrentChampion()
-										.getLocation().x - 1;
-								int cornerxY_Y = getCurrentChampion()
-										.getLocation().y + 1;
+							// Checks if the bottom left corner slot is
+							// within the team
+							Point cornerxy = getCurrentChampion().getLocation();
+							int cornerxy_X = getCurrentChampion().getLocation().x - 1;
+							int cornerxy_Y = getCurrentChampion().getLocation().y - 1;
 
-								if (board[cornerxY_Y][cornerxY_X] instanceof Champion) {
-									if (oppositeTeam().getTeam().contains(
-											board[cornerxY_Y][cornerxY_X])) {
-										targets.add((Damageable) board[cornerxY_Y][cornerxY_X]);
-									}
+							if (board[cornerxy_Y][cornerxy_X] instanceof Champion) {
+								if (oppositeTeam().getTeam().contains(
+										board[cornerxy_Y][cornerxy_X])) {
+									targets.add((Damageable) board[cornerxy_Y][cornerxy_X]);
+								}
+							}
+
+							// Checks if the top left corner slot is within
+							// the team
+							Point cornerxY = getCurrentChampion().getLocation();
+							int cornerxY_X = getCurrentChampion().getLocation().x - 1;
+							int cornerxY_Y = getCurrentChampion().getLocation().y + 1;
+
+							if (board[cornerxY_Y][cornerxY_X] instanceof Champion) {
+								if (oppositeTeam().getTeam().contains(
+										board[cornerxY_Y][cornerxY_X])) {
+									targets.add((Damageable) board[cornerxY_Y][cornerxY_X]);
 								}
 							}
 						}
 						a.execute(targets);
-					} else if (ccA.getEffect().getType() == EffectType.BUFF) {
-						Point currentLoc = getCurrentChampion().getLocation();
 
-						for (int i = currentLoc.x; i < a.getCastRange(); i++) {
-							for (int j = currentLoc.y; j < a.getCastRange(); j++) {
-
-								if (whoContainCurrent().getTeam().get(i + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											i - 1)); // Right one
-								if (whoContainCurrent().getTeam().get(i + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											i - 1));// Left one
-								if (whoContainCurrent().getTeam().get(j + 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											j + 1));// Up one
-								if (whoContainCurrent().getTeam().get(j - 1) != null)
-									targets.add(oppositeTeam().getTeam().get(
-											j - 1));// Down one
-
-								// Checks if the top right corner slot is within
-								// the team
-								Point cornerXY = getCurrentChampion()
-										.getLocation();
-								int cornerXY_X = getCurrentChampion()
-										.getLocation().x + 1;
-								int cornerXY_Y = getCurrentChampion()
-										.getLocation().y + 1;
-
-								if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerXY_Y][cornerXY_X])) {
-										targets.add((Damageable) board[cornerXY_Y][cornerXY_X]);
-									}
-								}
-
-								// Checks if the bottom right corner slot is
-								// within the team
-								Point cornerXy = getCurrentChampion()
-										.getLocation();
-								int cornerXy_X = getCurrentChampion()
-										.getLocation().x + 1;
-								int cornerXy_Y = getCurrentChampion()
-										.getLocation().y - 1;
-
-								if (board[cornerXY_Y][cornerXY_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerXy_Y][cornerXy_X])) {
-										targets.add((Damageable) board[cornerXy_Y][cornerXy_X]);
-									}
-								}
-
-								// Checks if the bottom left corner slot is
-								// within the team
-								Point cornerxy = getCurrentChampion()
-										.getLocation();
-								int cornerxy_X = getCurrentChampion()
-										.getLocation().x - 1;
-								int cornerxy_Y = getCurrentChampion()
-										.getLocation().y - 1;
-
-								if (board[cornerxy_Y][cornerxy_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerxy_Y][cornerxy_X])) {
-										targets.add((Damageable) board[cornerxy_Y][cornerxy_X]);
-									}
-								}
-
-								// Checks if the top left corner slot is within
-								// the team
-								Point cornerxY = getCurrentChampion()
-										.getLocation();
-								int cornerxY_X = getCurrentChampion()
-										.getLocation().x - 1;
-								int cornerxY_Y = getCurrentChampion()
-										.getLocation().y + 1;
-
-								if (board[cornerxY_Y][cornerxY_X] instanceof Champion) {
-									if (whoContainCurrent().getTeam().contains(
-											board[cornerxY_Y][cornerxY_X])) {
-										targets.add((Damageable) board[cornerxY_Y][cornerxY_X]);
-									}
-								}
-							}
-						}
-						a.execute(targets);
 					}
 				}
 			} else
@@ -1174,134 +1230,6 @@ public class Game {
 		} else
 			throw new NotEnoughResourcesException();
 
-		// ArrayList<Damageable> targets = new ArrayList<Damageable>();
-		// for (int i = 0; i < a.getCastRange(); i++) {
-		// for (int j = 0; j < a.getCastRange(); j++) {
-		// if (board[j][i] != null && board[j][i] != getCurrentChampion()
-		// && !(board[j][i] instanceof Cover)) {
-		// targets.add((Damageable) board[j][i]);
-		// }
-		// }
-		// }
-		//
-		// if ((a.getCastArea() == AreaOfEffect.SELFTARGET)) {
-		// ArrayList<Damageable> targetMan = new ArrayList<Damageable>();
-		// targetMan.add(getCurrentChampion());
-		// a.execute(targetMan);
-		// } else if ((a.getCastArea() == AreaOfEffect.TEAMTARGET)) {
-		// ArrayList<Damageable> targetMan = new ArrayList<Damageable>();
-		// if (firstPlayer.getTeam().contains(getCurrentChampion())) {
-		// targetMan.addAll(firstPlayer.getTeam());
-		// a.execute(targetMan);
-		// } else if (secondPlayer.getTeam().contains(getCurrentChampion())) {
-		// targetMan.addAll(secondPlayer.getTeam());
-		// a.execute(targetMan);
-		// }
-		// } else if (a.getCastArea() == AreaOfEffect.SURROUND) {
-		// ArrayList<Damageable> targetMan = new ArrayList<Damageable>();
-		// Point currentLoc = getCurrentChampion().getLocation();
-		//
-		// // Ask here about the type of ability a
-		// if (currentLoc.y + 1 < 5 && currentLoc.y + 1 > 0)
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x][(int) (currentLoc.y +
-		// 1)]);
-		// if (currentLoc.y - 1 > 0 && currentLoc.y - 1 < 5)
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x][(int) (currentLoc.y -
-		// 1)]);
-		// if (currentLoc.x + 1 > 0 && currentLoc.x + 1 < 5)
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x + 1][(int)
-		// (currentLoc.y)]);
-		// if (currentLoc.x - 1 > 0 && currentLoc.x - 1 < 5)
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x - 1][(int)
-		// (currentLoc.y)]);
-		// if ((currentLoc.y + 1 < 5 && currentLoc.y + 1 > 0)
-		// && (currentLoc.x + 1 > 0 && currentLoc.x + 1 < 5))
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x + 1][(int) (currentLoc.y +
-		// 1)]);
-		// if ((currentLoc.y - 1 < 5 && currentLoc.y - 1 > 0)
-		// && (currentLoc.x + 1 > 0 && currentLoc.x + 1 < 5))
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x + 1][(int) (currentLoc.y -
-		// 1)]);
-		// if ((currentLoc.y - 1 < 5 && currentLoc.y - 1 > 0)
-		// && (currentLoc.x - 1 > 0 && currentLoc.x - 1 < 5))
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x - 1][(int) (currentLoc.y -
-		// 1)]);
-		// if ((currentLoc.y + 1 < 5 && currentLoc.y + 1 > 0)
-		// && (currentLoc.x - 1 > 0 && currentLoc.x - 1 < 5))
-		// targetMan
-		// .add((Damageable) board[(int) currentLoc.x - 1][(int) (currentLoc.y +
-		// 1)]);
-		// if (isHealing(a)) {
-		// ArrayList<Damageable> targetFriend = new ArrayList<Damageable>();
-		// for (int i = 0; i < targetMan.size(); i++) {
-		// Champion c = (Champion) targetMan.get(i);
-		// if (firstPlayer.getTeam().contains(c)) {
-		// targetFriend.addAll(firstPlayer.getTeam());
-		// } else if (secondPlayer.getTeam().contains(c)) {
-		// targetFriend.addAll(secondPlayer.getTeam());
-		// }
-		// }
-		// a.execute(targetFriend);
-		// } else if (isDmg(a)) {
-		// ArrayList<Damageable> targetEnemy = new ArrayList<Damageable>();
-		// for (int i = 0; i < targetMan.size(); i++) {
-		// Champion c = (Champion) targetMan.get(i);
-		// if (firstPlayer.getTeam().contains(c)) {
-		// targetEnemy.addAll(secondPlayer.getTeam());
-		// } else if (secondPlayer.getTeam().contains(c)) {
-		// targetEnemy.addAll(firstPlayer.getTeam());
-		// }
-		// }
-		// a.execute(targetEnemy);
-		// } else if (isCC(a)) {
-		// CrowdControlAbility ccA = (CrowdControlAbility) a;
-		// if (ccA.getEffect().getType() == EffectType.BUFF) {
-		// ArrayList<Damageable> targetFriend = new ArrayList<Damageable>();
-		// for (int i = 0; i < targetMan.size(); i++) {
-		// Champion c = (Champion) targetMan.get(i);
-		// if (firstPlayer.getTeam().contains(c)) {
-		// targetFriend.addAll(firstPlayer.getTeam());
-		// if (firstPlayer.getTeam().contains(
-		// getCurrentChampion()))
-		// targetFriend.remove(getCurrentChampion());
-		// } else if (secondPlayer.getTeam().contains(c)) {
-		// targetFriend.addAll(secondPlayer.getTeam());
-		// if (secondPlayer.getTeam().contains(
-		// getCurrentChampion()))
-		// targetFriend.remove(getCurrentChampion());
-		// }
-		// }
-		// a.execute(targetFriend);
-		// } else if (ccA.getEffect().getType() == EffectType.DEBUFF) {
-		// ArrayList<Damageable> targetEnemy = new ArrayList<Damageable>();
-		// for (int i = 0; i < targetMan.size(); i++) {
-		// Champion c = (Champion) targetMan.get(i);
-		// if (firstPlayer.getTeam().contains(c)) {
-		// targetEnemy.addAll(secondPlayer.getTeam());
-		// if (secondPlayer.getTeam().contains(
-		// getCurrentChampion()))
-		// targetEnemy.remove(getCurrentChampion());
-		// } else if (secondPlayer.getTeam().contains(c)) {
-		// targetEnemy.addAll(firstPlayer.getTeam());
-		// if (firstPlayer.getTeam().contains(
-		// getCurrentChampion()))
-		// targetEnemy.remove(getCurrentChampion());
-		// }
-		// }
-		// a.execute(targetEnemy);
-		// }
-		// }
-		// }
-		//
-		// else
-		// throw new NotEnoughResourcesException("Not enough mana!");
 	}
 
 	public void castAbility(Ability a, Direction d)
@@ -1321,12 +1249,10 @@ public class Game {
 				int dist = 0;
 				if (getCurrentChampion().getMana() >= a.getManaCost()) {
 					for (int l = 0; l < targets.size(); l++) {
-						dist = manhattanDist(a.getCastRange(),
-								a.getCastRange(),
-								targets.get(l).getLocation().x, targets.get(l)
-										.getLocation().y, getCurrentChampion()
-										.getLocation().x, getCurrentChampion()
-										.getLocation().y);
+						dist = manhattanDist(targets.get(l).getLocation().x,
+								targets.get(l).getLocation().y,
+								getCurrentChampion().getLocation().x,
+								getCurrentChampion().getLocation().y);
 						if (dist > a.getCastRange()) {
 							targets.remove(l);
 						}
@@ -1339,12 +1265,10 @@ public class Game {
 				int dist1 = 0;
 				if (getCurrentChampion().getMana() >= a.getManaCost()) {
 					for (int l = 0; l < targets.size(); l++) {
-						dist1 = manhattanDist(a.getCastRange(),
-								a.getCastRange(),
-								targets.get(l).getLocation().x, targets.get(l)
-										.getLocation().y, getCurrentChampion()
-										.getLocation().x, getCurrentChampion()
-										.getLocation().y);
+						dist1 = manhattanDist(targets.get(l).getLocation().x,
+								targets.get(l).getLocation().y,
+								getCurrentChampion().getLocation().x,
+								getCurrentChampion().getLocation().y);
 						if (dist1 > a.getCastRange()) {
 							targets.remove(l);
 						}
@@ -1357,12 +1281,10 @@ public class Game {
 				int dist2 = 0;
 				if (getCurrentChampion().getMana() >= a.getManaCost()) {
 					for (int l = 0; l < targets.size(); l++) {
-						dist2 = manhattanDist(a.getCastRange(),
-								a.getCastRange(),
-								targets.get(l).getLocation().x, targets.get(l)
-										.getLocation().y, getCurrentChampion()
-										.getLocation().x, getCurrentChampion()
-										.getLocation().y);
+						dist2 = manhattanDist(targets.get(l).getLocation().x,
+								targets.get(l).getLocation().y,
+								getCurrentChampion().getLocation().x,
+								getCurrentChampion().getLocation().y);
 						if (dist2 > a.getCastRange()) {
 							targets.remove(l);
 						}
@@ -1375,12 +1297,10 @@ public class Game {
 				int dist3 = 0;
 				if (getCurrentChampion().getMana() >= a.getManaCost()) {
 					for (int l = 0; l < targets.size(); l++) {
-						dist3 = manhattanDist(a.getCastRange(),
-								a.getCastRange(),
-								targets.get(l).getLocation().x, targets.get(l)
-										.getLocation().y, getCurrentChampion()
-										.getLocation().x, getCurrentChampion()
-										.getLocation().y);
+						dist3 = manhattanDist(targets.get(l).getLocation().x,
+								targets.get(l).getLocation().y,
+								getCurrentChampion().getLocation().x,
+								getCurrentChampion().getLocation().y);
 						if (dist3 > a.getCastRange()) {
 							targets.remove(l);
 						}
@@ -1408,9 +1328,8 @@ public class Game {
 		}
 		if (a.getCastArea() == AreaOfEffect.SINGLETARGET) {
 			int dist = 0;
-			dist = manhattanDist(a.getCastRange(), a.getCastRange(), x, y,
-					getCurrentChampion().getLocation().x, getCurrentChampion()
-							.getLocation().y);
+			dist = manhattanDist(x, y, getCurrentChampion().getLocation().x,
+					getCurrentChampion().getLocation().y);
 			if (dist < a.getCastRange()) {
 				if (getCurrentChampion().getMana() >= a.getManaCost())
 					a.execute(targets);
@@ -1430,37 +1349,43 @@ public class Game {
 			ArrayList<Champion> targetChamp = new ArrayList<Champion>();
 			if (getCurrentChampion() instanceof Hero) {
 				targetChamp.addAll(firstPlayer.getTeam());
+				getCurrentChampion().useLeaderAbility(targetChamp);
 			} else if (getCurrentChampion() instanceof Villain) {
 				for (Champion champion : secondPlayer.getTeam()) {
 					if (champion.getCurrentHP() <= (int) (0.3 * champion
 							.getMaxHP()))
 						targetChamp.add(champion);
+					getCurrentChampion().useLeaderAbility(targetChamp);
 				}
 			} else if (getCurrentChampion() instanceof AntiHero) {
 				targetChamp.addAll(firstPlayer.getTeam());
 				targetChamp.addAll(secondPlayer.getTeam());
 				targetChamp.remove(firstPlayer.getLeader());
 				targetChamp.remove(secondPlayer.getLeader());
+				getCurrentChampion().useLeaderAbility(targetChamp);
 			}
 			getCurrentChampion().useLeaderAbility(targetChamp);
 			firstLeaderAbilityUsed = true;
 		} else if (secondPlayer.getLeader().equals(getCurrentChampion())) {
-			if (firstLeaderAbilityUsed)
+			if (secondLeaderAbilityUsed)
 				throw new LeaderAbilityAlreadyUsedException();
 			ArrayList<Champion> targetChamp = new ArrayList<Champion>();
 			if (getCurrentChampion() instanceof Hero) {
 				targetChamp.addAll(secondPlayer.getTeam());
+				getCurrentChampion().useLeaderAbility(targetChamp);
 			} else if (getCurrentChampion() instanceof Villain) {
 				for (Champion champion : firstPlayer.getTeam()) {
 					if (champion.getCurrentHP() <= (int) (0.3 * champion
 							.getMaxHP()))
 						targetChamp.add(champion);
+					getCurrentChampion().useLeaderAbility(targetChamp);
 				}
 			} else if (getCurrentChampion() instanceof AntiHero) {
 				targetChamp.addAll(firstPlayer.getTeam());
 				targetChamp.addAll(secondPlayer.getTeam());
 				targetChamp.remove(firstPlayer.getLeader());
 				targetChamp.remove(secondPlayer.getLeader());
+				getCurrentChampion().useLeaderAbility(targetChamp);
 			}
 			getCurrentChampion().useLeaderAbility(targetChamp);
 			secondLeaderAbilityUsed = true;

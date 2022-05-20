@@ -8,17 +8,18 @@ public class Shock extends Effect {
 	}
 
 	public void apply(Champion c) {
-		c.setSpeed((int) (c.getSpeed()* 1.2));
+		c.setSpeed((int) (c.getSpeed() * 1.2));
 		c.setMaxActionPointsPerTurn(c.getMaxActionPointsPerTurn() - 1);
 		c.setCurrentActionPoints(c.getCurrentActionPoints() - 1);
-		c.setAttackDamage((int)(c.getAttackDamage() - (c.getAttackDamage()*0.1)));
+		c.setAttackDamage((int) (c.getAttackDamage() - (c.getAttackDamage() * 0.1)));
 	}
 
 	public void remove(Champion c) {
+
 		c.setSpeed((int) (c.getSpeed() / 1.2));
 		c.setMaxActionPointsPerTurn(c.getMaxActionPointsPerTurn() + 1);
 		c.setCurrentActionPoints(c.getCurrentActionPoints() + 1);
-		c.setAttackDamage((int)(c.getAttackDamage() + (c.getAttackDamage()*0.9)));
+		c.setAttackDamage((int) (c.getAttackDamage() + (c.getAttackDamage() * 0.9)));
 
 	}
 }

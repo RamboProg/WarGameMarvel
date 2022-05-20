@@ -14,25 +14,29 @@ public class PowerUp extends Effect {
 		for (Ability ability : c.getAbilities()) {
 			if (ability instanceof DamagingAbility)
 				((DamagingAbility) ability)
-						.setDamageAmount((int)(((DamagingAbility) ability)
+						.setDamageAmount((int) (((DamagingAbility) ability)
 								.getDamageAmount() * 1.2));
 			if (ability instanceof HealingAbility)
 				((HealingAbility) ability)
-						.setHealAmount((int)(((HealingAbility) ability)
+						.setHealAmount((int) (((HealingAbility) ability)
 								.getHealAmount() * 1.2));
 		}
 	}
 
 	public void remove(Champion c) {
 		for (Ability ability : c.getAbilities()) {
-			if (ability instanceof DamagingAbility)
+			if (ability instanceof DamagingAbility) {
 				((DamagingAbility) ability)
-						.setDamageAmount((int)(((DamagingAbility) ability)
-								.getDamageAmount() /1.2));
-			if (ability instanceof HealingAbility)
+						.setDamageAmount((int) (((DamagingAbility) ability)
+								.getDamageAmount() / 1.2));
+				break;
+			}
+			if (ability instanceof HealingAbility) {
 				((HealingAbility) ability)
-						.setHealAmount((int)(((HealingAbility) ability)
+						.setHealAmount((int) (((HealingAbility) ability)
 								.getHealAmount() / 1.2));
+				break;
+			}
 
 		}
 	}
