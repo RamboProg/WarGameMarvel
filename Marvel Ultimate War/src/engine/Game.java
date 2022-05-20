@@ -1,32 +1,44 @@
 package engine;
 
-import engine.Player;
-import exceptions.*;
+import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+
+import exceptions.AbilityUseException;
+import exceptions.ChampionDisarmedException;
+import exceptions.InvalidTargetException;
+import exceptions.LeaderAbilityAlreadyUsedException;
+import exceptions.LeaderNotCurrentException;
+import exceptions.NotEnoughResourcesException;
+import exceptions.UnallowedMovementException;
+import model.abilities.Ability;
+import model.abilities.AreaOfEffect;
+import model.abilities.CrowdControlAbility;
+import model.abilities.DamagingAbility;
+import model.abilities.HealingAbility;
+import model.effects.Disarm;
+import model.effects.Dodge;
+import model.effects.Effect;
+import model.effects.EffectType;
+import model.effects.Embrace;
+import model.effects.PowerUp;
+import model.effects.Root;
+import model.effects.Shield;
+import model.effects.Shock;
+import model.effects.Silence;
+import model.effects.SpeedUp;
+import model.effects.Stun;
 import model.world.AntiHero;
+import model.world.Champion;
 import model.world.Condition;
 import model.world.Cover;
 import model.world.Damageable;
 import model.world.Direction;
 import model.world.Hero;
 import model.world.Villain;
-
-import java.awt.Point;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.rmi.AlreadyBoundException;
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.activity.InvalidActivityException;
-
-import model.world.Champion;
-import model.abilities.Ability;
-import model.abilities.AreaOfEffect;
-import model.abilities.CrowdControlAbility;
-import model.abilities.DamagingAbility;
-import model.abilities.HealingAbility;
-import model.effects.*;
 
 public class Game {
 
@@ -325,8 +337,8 @@ public class Game {
 
 	public void move(Direction d) throws UnallowedMovementException,
 			NotEnoughResourcesException {
-
-				&& getCurrentChampion().getCurrentActionPoints() > 0) {
+	if(	getCurrentChampion().getCurrentActionPoints() > 0) {
+	}
 			int x = getCurrentChampion().getLocation().x;
 			int y = getCurrentChampion().getLocation().y;
 			if ((x < 4 && x > 0) && (y < 4 && y > 0)) {
@@ -340,7 +352,7 @@ public class Game {
 												.getCurrentActionPoints() - 1);
 					} else
 						throw new UnallowedMovementException(
-								"You cannot move here!");
+								"You cannot move here!");  
 					break;
 				case DOWN:
 					if (getBoard()[y - 1][x] == null) {
@@ -365,26 +377,29 @@ public class Game {
 								"You cannot move here!");
 					break;
 				case LEFT:
-					if (getBoard()[y][x - 1] == null) {
+					if  (getBoard()[y][x - 1] == null) {
 						getCurrentChampion().setLocation(new Point(x - 1, y));
 						getCurrentChampion()
 								.setCurrentActionPoints(
 										getCurrentChampion()
 												.getCurrentActionPoints() - 1);
-					} else
+					} else {
 						throw new UnallowedMovementException(
 								"You cannot move here!");
+						}
 					break;
+					
 				default:
 					throw new UnallowedMovementException("Invalid input");
 				}
-			} else
+			} else {
 				throw new UnallowedMovementException();
-		} else if (getCurrentChampion().getCondition() == Condition.ROOTED)
+		} if (getCurrentChampion().getCondition() == Condition.ROOTED) {
 			throw new UnallowedMovementException("Your champion is ROOTED!");
-		else
+		}		else {
 			throw new NotEnoughResourcesException(
 					"You do not have enough resources!");
+		}
 
 	}
 
@@ -485,21 +500,13 @@ public class Game {
 
 				for (int i = 0; i < targets.size(); i++) {
 					if (manhattanDist(getCurrentChampion().getLocation().x,
-							getCurrentChampion().getLocation().y, targets
-									.get(i).getLocation().x, targets.get(i)
-									.getLocation().y) < dist
-							&& manhattanDist(
-									getCurrentChampion().getLocation().x,
-									getCurrentChampion().getLocation().y,
-									targets.get(i).getLocation().x, targets
-											.get(i).getLocation().y) != 0) {
+							getCurrentChampion().getLocation().y, targets.get(i).getLocation().x, targets.get(i).getLocation().y) < dist && manhattanDist(getCurrentChampion().getLocation().x,getCurrentChampion().getLocation().y,targets.get(i).getLocation().x, targets.get(i).getLocation().y) != 0) {
 						dist = i;
 					}
 				}
 
 				if (getCurrentChampion() instanceof Hero) {
-					if (targets.get(dist) instanceof Villain
-							|| targets.get(dist) instanceof AntiHero) {
+					if (targets.get(dist) instanceof Villain || targets.get(dist) instanceof AntiHero) {
 						Champion c = (Champion) targets.get(dist);
 						if (dodgePresent(c)) {
 							int x = (int) (Math.random() * 2);
@@ -509,7 +516,6 @@ public class Game {
 								if (c.getCurrentHP() == 0) {
 									c.setCondition(Condition.KNOCKEDOUT);
 									targets.remove(c);
-
 								}
 							}
 						}
