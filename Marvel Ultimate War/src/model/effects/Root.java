@@ -13,11 +13,13 @@ public class Root extends Effect {
 	public void apply(Champion c) {
 		if (c.getCondition() != Condition.INACTIVE)
 			c.setCondition(Condition.ROOTED);
+		else
+			c.setCondition(Condition.INACTIVE);
 	}
 
 	public void remove(Champion c) {
-		c.setCondition(Condition.ACTIVE);
-		
+		if (c.getCondition() == Condition.INACTIVE)
+			c.setCondition(Condition.INACTIVE);
 
 	}
 

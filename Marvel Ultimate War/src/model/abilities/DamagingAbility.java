@@ -25,10 +25,7 @@ public class DamagingAbility extends Ability {
 
 	public void execute(ArrayList<Damageable> targets) {
 		for (Damageable d : targets) {
-			if (d instanceof Champion)
-				d.setCurrentHP(d.getCurrentHP() - this.damageAmount);
-			else if (d instanceof Cover)
-				d.setCurrentHP(d.getCurrentHP() - this.damageAmount);
+			d.setCurrentHP(d.getCurrentHP() - this.damageAmount);
 		}
 	}
 

@@ -10,12 +10,12 @@ public class Dodge extends Effect {
 	}
 
 	public void apply(Champion c) {
-		c.setSpeed((int) (c.getSpeed() * 1.5));
+		c.setSpeed((int) (c.getSpeed() * 1.05));
 	}
 
 	public void remove(Champion c) {
 
-		c.setSpeed((int) (c.getSpeed() / 1.5));
+		c.setSpeed((int) (c.getSpeed() / 1.05));
 
 	}
 }

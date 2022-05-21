@@ -29,13 +29,11 @@ public class PowerUp extends Effect {
 				((DamagingAbility) ability)
 						.setDamageAmount((int) (((DamagingAbility) ability)
 								.getDamageAmount() / 1.2));
-				break;
 			}
 			if (ability instanceof HealingAbility) {
 				((HealingAbility) ability)
 						.setHealAmount((int) (((HealingAbility) ability)
 								.getHealAmount() / 1.2));
-				break;
 			}
 
 		}
