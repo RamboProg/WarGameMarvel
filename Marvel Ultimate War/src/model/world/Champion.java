@@ -50,9 +50,7 @@ public abstract class Champion implements Comparable, Damageable {
 		return 0;
 	}
 
-	public void useLeaderAbility(ArrayList<Champion> targets) {
-
-	}
+	public abstract void useLeaderAbility(ArrayList<Champion> targets) ;
 
 	public String getName() {
 		return name;

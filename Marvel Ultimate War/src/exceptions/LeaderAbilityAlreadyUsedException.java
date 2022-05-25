@@ -7,7 +7,7 @@ public class LeaderAbilityAlreadyUsedException extends GameActionException {
 	}
 	
 	public LeaderAbilityAlreadyUsedException(String s){
-	this.message = s;
+		super(s);
 	}
 	
 }

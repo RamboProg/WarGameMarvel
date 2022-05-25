@@ -16,10 +16,9 @@ public class Shock extends Effect {
 
 	public void remove(Champion c) {
 
-		c.setSpeed((int) (c.getSpeed() + (c.getSpeed() * 0.9)));
+		c.setSpeed((int) (c.getSpeed() * 10 /9.0));
+		c.setAttackDamage((int) (c.getAttackDamage() * 10 / 9.0));
 		c.setMaxActionPointsPerTurn(c.getMaxActionPointsPerTurn() + 1);
 		c.setCurrentActionPoints(c.getCurrentActionPoints() + 1);
-		c.setAttackDamage((int) (c.getAttackDamage() + (c.getAttackDamage() * 0.9)));
-
 	}
 }

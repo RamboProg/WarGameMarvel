@@ -13,6 +13,12 @@ public class Stun extends Effect {
 	}
 
 	public void remove(Champion c) {
+		for (Effect e : c.getAppliedEffects()) {
+			if(e instanceof Root) {
+				c.setCondition(Condition.ROOTED);
+				return;
+			}
+		}
 		c.setCondition(Condition.ACTIVE);
 	}
 }

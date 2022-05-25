@@ -10,20 +10,17 @@ public class Disarm extends Effect {
 		super("Disarm", duration, EffectType.DEBUFF);
 	}
 
-	DamagingAbility d = new DamagingAbility("Punch", 0, 1, 1,
-			AreaOfEffect.SINGLETARGET, 1, 50);
-
 	public void apply(Champion c) {
-		c.getAbilities().add(d);
+		c.getAbilities().add(new DamagingAbility("Punch", 0, 1, 1, AreaOfEffect.SINGLETARGET, 1, 50));
 	}
 
 	public void remove(Champion c) {
-		for (Ability ability : c.getAbilities()) {
-			if (ability.getName().equals("Punch"))
-				c.getAbilities().remove(ability);
-			break;
+		for (Ability a : c.getAbilities()) {
+			if(a.getName().equals("Punch")) {
+				c.getAbilities().remove(a);
+				break;
+			}
 		}
-		
 	}
 
 }

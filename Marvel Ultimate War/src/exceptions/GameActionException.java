@@ -7,6 +7,6 @@ abstract class GameActionException extends Exception {
 	}
 	
 	public GameActionException(String s){
-		this.message = s;
+		super(s);
 	}
 }

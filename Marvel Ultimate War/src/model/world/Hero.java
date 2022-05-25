@@ -14,14 +14,20 @@ public class Hero extends Champion {
 	}
 
 	public void useLeaderAbility(ArrayList<Champion> targets) {
-		for (Champion c : targets) {
-			for (Effect e : c.getAppliedEffects()) {
-				if (e.getType().equals(EffectType.DEBUFF)) {
-					e.remove(c);
+		for (Champion champion : targets) {
+			ArrayList<Effect> temp = new ArrayList<Effect>();
+			for (Effect e : champion.getAppliedEffects()) {
+				if (e.getType() != EffectType.DEBUFF) {
+					 temp.add(e);
 				}
 			}
-			c.getAppliedEffects().add(new Embrace(2));
-
+			champion.getAppliedEffects().clear();
+			for (Effect e : temp) {
+				champion.getAppliedEffects().add(e);
+			}
+			Embrace e = new Embrace(2);
+			e.apply(champion);
+			champion.getAppliedEffects().add(e);
 		}
 	}
 
