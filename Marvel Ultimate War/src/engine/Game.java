@@ -447,48 +447,6 @@ public class Game {
     return dist;
   }
 
-  private ArrayList<Damageable> loadValidChamps(int max, Direction d) {
-    Champion c = getCurrentChampion();
-    Point p = c.getLocation();
-    ArrayList<Damageable> targets = new ArrayList<Damageable>();
-    for (int i = 0; i < max; i++) {
-      switch (d) {
-        case UP:
-          p.x++;
-          if (
-            (p.x < 5 || p.x >= 0 || p.y < 5 || p.y >= 0) &&
-            board[p.x][p.y] instanceof Champion ||
-            board[p.x][p.y] instanceof Cover
-          ) targets.add((Damageable) board[p.x][p.y]);
-          break;
-        case DOWN:
-          p.x--;
-          if (
-            (p.x < 5 || p.x >= 0 || p.y < 5 || p.y >= 0) &&
-            board[p.x][p.y] instanceof Champion ||
-            board[p.x][p.y] instanceof Cover
-          ) targets.add((Damageable) board[p.x][p.y]);
-          break;
-        case RIGHT:
-          p.y++;
-          if (
-            (p.x < 5 || p.x >= 0 || p.y < 5 || p.y >= 0) &&
-            board[p.x][p.y] instanceof Champion ||
-            board[p.x][p.y] instanceof Cover
-          ) targets.add((Damageable) board[p.x][p.y]);
-          break;
-        case LEFT:
-          p.y--;
-          if (
-            (p.x < 5 || p.x >= 0 || p.y < 5 || p.y >= 0) &&
-            board[p.x][p.y] instanceof Champion ||
-            board[p.x][p.y] instanceof Cover
-          ) targets.add((Damageable) board[p.x][p.y]);
-          break;
-      }
-    }
-    return targets;
-  }
 
   private boolean checkFriendly(Damageable d) {
 		Champion c = getCurrentChampion();
