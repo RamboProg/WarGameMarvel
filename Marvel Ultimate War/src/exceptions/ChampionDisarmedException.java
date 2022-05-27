@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ChampionDisarmedException extends Exception {
+public class ChampionDisarmedException extends GameActionException {
 	public ChampionDisarmedException(){
 		super();
 	}

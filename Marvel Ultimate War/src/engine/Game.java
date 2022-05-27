@@ -483,20 +483,17 @@ public class Game {
   public void attack(Direction d)
     throws ChampionDisarmedException, InvalidTargetException, NotEnoughResourcesException {
     
-    Champion c = getCurrentChampion();
-    for (Effect e : c.getAppliedEffects()) {
-      if (e instanceof Disarm) 
-        throw new ChampionDisarmedException(); 
-    }
-
-
-    if(c.getCurrentActionPoints() < 2)
-      throw new NotEnoughResourcesException();
-    
-      Damageable target = null;
-      boolean found = false;
+      Champion c = getCurrentChampion();
+      for (Effect e : c.getAppliedEffects()) {
+        if (e instanceof Disarm)
+          throw new ChampionDisarmedException();
+      }
+      if (c.getCurrentActionPoints() < 2)
+        throw new NotEnoughResourcesException();
       int i = 1;
-      while(i <= c.getAttackRange()){
+      boolean found = false;
+      Damageable target = null;
+      while (i <= c.getAttackRange() && !found) {
         if (d == Direction.DOWN && c.getLocation().x - i >= 0
             && board[c.getLocation().x - i][c.getLocation().y] != null) {
           target = (Damageable) board[c.getLocation().x - i][c.getLocation().y];
@@ -520,35 +517,35 @@ public class Game {
         }
         i++;
       }
-
-      if(found){
-          c.setCurrentActionPoints(c.getCurrentActionPoints() - 2);
-          if (target instanceof Champion) {
-            for (Effect e : ((Champion) target).getAppliedEffects()) {
-              if (e instanceof Shield) {
-                e.remove((Champion) target);
-                ((Champion) target).getAppliedEffects().remove(e);
+      if (found) {
+        c.setCurrentActionPoints(c.getCurrentActionPoints() - 2);
+        if (target instanceof Champion) {
+          for (Effect e : ((Champion) target).getAppliedEffects()) {
+            if (e instanceof Shield) {
+              e.remove((Champion) target);
+              ((Champion) target).getAppliedEffects().remove(e);
+              return;
+            }
+          }
+          for (Effect e : ((Champion) target).getAppliedEffects()) {
+            if (e instanceof Dodge) {
+              int rand = (int) (Math.random() * 10);
+              if (rand < 5) {
                 return;
               }
             }
-            for (Effect e : ((Champion) target).getAppliedEffects()) {
-              if (e instanceof Dodge) {
-                int rand = (int) (Math.random() * 10);
-                if (rand < 5) {
-                  return;
-                }
-              }
-            }
           }
-          if (checkBonus(target)) {
-            target.setCurrentHP(target.getCurrentHP() - (int) (c.getAttackDamage() * 1.5));
-          } else
-            target.setCurrentHP(target.getCurrentHP() - c.getAttackDamage());
-          if (target.getCurrentHP() == 0) {
-            clear(target);
-          }
+        }
+        if (checkBonus(target)) {
+          target.setCurrentHP(target.getCurrentHP() - (int) (c.getAttackDamage() * 1.5));
+        } else
+          target.setCurrentHP(target.getCurrentHP() - c.getAttackDamage());
+        if (target.getCurrentHP() == 0) {
+          clear(target);
+        }
       }
-  }
+    }
+  
 
 
   public void validateCastAbility(Ability a) throws AbilityUseException, NotEnoughResourcesException {
