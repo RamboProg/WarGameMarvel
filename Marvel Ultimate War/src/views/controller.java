@@ -10,12 +10,11 @@ public class Controller implements ActionListener {
   private Game model;
   private View view;
 
-  public Controller() {
-    // TODO Auto-generated catch block
-    this.model = new Game(view.p1, view.p2);
+  public Controller() throws IOException {
+    view.popUpUserEntry();
+    model = new Game(view.getP1(), view.getP2());
+    view = new View(view.listener, view.mouseListener);
 
-    //Passing the controller as a parameter (Passing itself)
-    this.view = new View(this);
     Object[][] board = model.getBoard();
     view.updateBoard(board);
   }
@@ -25,9 +24,15 @@ public class Controller implements ActionListener {
     // TODO Auto-generated method stub
     view.popUpUserEntry();
     view.popUpChampChoice();
+    
   }
 
   public static void main(String[] args) {
-    new Controller();
+    try {
+      new Controller();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 }

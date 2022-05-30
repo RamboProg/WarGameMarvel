@@ -26,6 +26,10 @@ public class Player {
 		return name;
 	}
 
+	public void setName(String n){
+		this.name = n;
+	}
+
 	public ArrayList<Champion> getTeam() {
 		return team;
 	}
