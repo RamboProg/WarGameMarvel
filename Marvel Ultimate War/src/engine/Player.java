@@ -13,7 +13,6 @@ public class Player {
 		this.name = name;
 		
 	}
-	//ask about if we should another constructor//done
 
 	public Champion getLeader() {
 		return leader;

@@ -13,31 +13,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import model.abilities.Ability;
-import model.abilities.AreaOfEffect;
-import model.abilities.CrowdControlAbility;
-import model.abilities.DamagingAbility;
-import model.abilities.HealingAbility;
-import model.effects.Disarm;
-import model.effects.Dodge;
-import model.effects.Effect;
-import model.effects.EffectType;
-import model.effects.Embrace;
-import model.effects.PowerUp;
-import model.effects.Root;
-import model.effects.Shield;
-import model.effects.Shock;
-import model.effects.Silence;
-import model.effects.SpeedUp;
-import model.effects.Stun;
-import model.world.AntiHero;
-import model.world.Champion;
-import model.world.Condition;
-import model.world.Cover;
-import model.world.Damageable;
-import model.world.Direction;
-import model.world.Hero;
-import model.world.Villain;
+import model.abilities.*;
+import model.effects.*;
+import model.world.*;
 
 public class Game {
   private Player firstPlayer;
@@ -51,7 +29,7 @@ public class Game {
   private static final int BOARDHEIGHT = 5;
   private static final int BOARDWIDTH = 5;
 
-  public Game(Player firstPlayer, Player secondPlayer) {
+  public Game(Player firstPlayer, Player secondPlayer) throws IOException {
     this.firstPlayer = firstPlayer;
     this.secondPlayer = secondPlayer;
     board = new Object[BOARDHEIGHT][BOARDWIDTH];
