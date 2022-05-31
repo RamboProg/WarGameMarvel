@@ -25,6 +25,9 @@ public class View extends JFrame {
   protected ActionListener listener;
   protected MouseInputListener mouseListener;
   private JPanel boardPanel;
+  private JFrame mainGame;
+  private JFrame firstnameInput;
+  private JFrame secondnameInput;
 
   //for choosing champions
   private JFrame championChoice;
@@ -33,54 +36,52 @@ public class View extends JFrame {
   private JPanel p2Panel;
   private JPanel infoPanel;
 
-  private JPanel firstNamePanel;
-  private JPanel secondNamePanel;
+  private JPanel gameBoard;
 
-  private Player p1 = new Player("Player 1");
-  private Player p2 = new Player("Player 2");
+  protected String p1Name;
+  protected String p2Name;
 
-  public View(ActionListener l, MouseInputListener ml) {
+
+  public View(ActionListener l) {
+    ArrayList a = Game.getAvailableChampions();
     this.listener = l;
-    this.mouseListener = ml;
-
+    popUpUserEntry();
+    popUpChampChoice();
+    //createBoard(Game.getBoard());
     setTitle("Marvel War Game");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximises screen
     setBounds(0, 50, 1280, 720); //when i de-maximise
     setVisible(true);
 
-    boardPanel =
-      new JPanel(new GridLayout(Game.getBoardheight(), Game.getBoardwidth()));
-    boardPanel.setBounds(80, 40, 200, 200);
+    
+    gameBoard = new JPanel(new GridLayout(5,5));
   }
 
-  public Player getP1(){
-      return p1;
-  }
 
-  public Player getP2(){
-      return p2;
-  }
 
   public void createBoard(Object[][] board) {
+    boardPanel = new JPanel(new GridLayout(Game.getBoardheight(), Game.getBoardwidth()));
+    boardPanel.setBounds(80, 40, 200, 200);
     for (int i = 0; i < Game.getBoardwidth(); i++) {
       for (int j = 0; j < Game.getBoardheight(); j++) {
-        
+         
 
       }
     }
+
+
   }
 
   //Creates a button with the corresponding Champion icon
   private JButton champName(int index) {
-    ArrayList a = Game.getAvailableChampions();
     JButton b = new JButton();
     Icon icon;
-    for (int i = 0; i < a.size(); i++) {
+    for (int i = 0; i < Game.getAvailableChampions().size(); i++) {
       switch (index) {
         case 0:
           icon = new ImageIcon("captain_america.png");
-          b = new JButton(icon);
+          b = new JButton("Captain America", icon);
           break;
         case 1:
           icon = new ImageIcon("deadpool.png");
@@ -180,17 +181,13 @@ public class View extends JFrame {
 
   //Prompts the users to enter their names
   public void popUpUserEntry() {
-    JTextField firstName = new JTextField(20);
-    JLabel label1 = new JLabel("Enter 1st Player's name: ");
-    firstNamePanel.add(label1, firstName);
-    firstNamePanel.setBounds(10, 10, 80, 25);
-    p1.setName(firstName.getText());
+    firstnameInput = new JFrame();
+    String firstName = JOptionPane.showInputDialog(firstnameInput, "Enter 1st Player's name: ");
+    p1Name = (firstName);
 
-    JTextField secondName = new JTextField(20);
-    JLabel label2 = new JLabel("Enter the 2nd Player's name: ");
-    secondNamePanel.add(label2, secondName);
-    secondNamePanel.setBounds(10, 10, 80, 25);
-    p2.setName(secondName.getText());
+    secondnameInput = new JFrame();
+    String secondName = JOptionPane.showInputDialog(secondnameInput, "Enter 2nd Player's name: ");
+    p2Name = (secondName);
   }
 
   public void updateBoard(Object[][] board) {
@@ -209,4 +206,9 @@ public class View extends JFrame {
     this.revalidate();
     this.repaint();
   }
+
+  // public static void main(String[] args){
+  //   JButton b = new JButton("Rambo");
+  //   System.out.println(b.getActionCommand());
+  // }
 }
