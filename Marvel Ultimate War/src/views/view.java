@@ -184,10 +184,12 @@ public class View extends JFrame {
     firstnameInput = new JFrame();
     String firstName = JOptionPane.showInputDialog(firstnameInput, "Enter 1st Player's name: ");
     p1Name = (firstName);
+    firstnameInput.dispose();
 
     secondnameInput = new JFrame();
     String secondName = JOptionPane.showInputDialog(secondnameInput, "Enter 2nd Player's name: ");
     p2Name = (secondName);
+    secondnameInput.dispose();
   }
 
   public void updateBoard(Object[][] board) {
