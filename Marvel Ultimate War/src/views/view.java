@@ -65,7 +65,7 @@ public class View extends JFrame {
     boardPanel.setBounds(80, 40, 200, 200);
     for (int i = 0; i < Game.getBoardwidth(); i++) {
       for (int j = 0; j < Game.getBoardheight(); j++) {
-         
+         JButton b = new JButton();
 
       }
     }
@@ -81,7 +81,7 @@ public class View extends JFrame {
       switch (index) {
         case 0:
           icon = new ImageIcon("captain_america.png");
-          b = new JButton("Captain America", icon);
+          //b = new JButton("Captain America", icon);
           break;
         case 1:
           icon = new ImageIcon("deadpool.png");
@@ -155,7 +155,7 @@ public class View extends JFrame {
     ImageIcon p2Image = new ImageIcon("p2.png");
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 5; j++) {
-         champName(j+i);
+         champName(j+i);//fix
       }
     }
 
@@ -164,13 +164,13 @@ public class View extends JFrame {
     //Shows P1
     p1Panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
     p1Panel.setBackground(new java.awt.Color(22, 90, 247));
-    JLabel p1Pic = new JLabel("Player 1", p2Image, JLabel.CENTER);
+    JLabel p1Pic = new JLabel("Player 1", p1Image, JLabel.CENTER);
     p1Panel.add(p1Pic);
 
     //Shows P2
     p2Panel = new JPanel(new FlowLayout(FlowLayout.TRAILING));
     p2Panel.setBackground(new java.awt.Color(247, 22, 82));
-    JLabel p2Pic = new JLabel("Player 2", p1Image, JLabel.CENTER);
+    JLabel p2Pic = new JLabel("Player 2", p2Image, JLabel.CENTER);
     p2Panel.add(p2Pic);
 
     //Panel in the middle that shows the champion's info when hovered over
@@ -182,12 +182,15 @@ public class View extends JFrame {
   //Prompts the users to enter their names
   public void popUpUserEntry() {
     firstnameInput = new JFrame();
-    String firstName = JOptionPane.showInputDialog(firstnameInput, "Enter 1st Player's name: ");
+    Icon p1Image = new ImageIcon("p1.png");
+    JLabel p1ImageLabel = new JLabel();
+    p1ImageLabel.setIcon(p1Image);
+    String firstName = JOptionPane.showInputDialog(firstnameInput, "Enter 1st Player name: ", "Player 1 Name", 3);
     p1Name = (firstName);
     firstnameInput.dispose();
 
     secondnameInput = new JFrame();
-    String secondName = JOptionPane.showInputDialog(secondnameInput, "Enter 2nd Player's name: ");
+    String secondName = JOptionPane.showInputDialog(secondnameInput, "Enter 2nd Player's name: ", "Player 2 Name", 3);
     p2Name = (secondName);
     secondnameInput.dispose();
   }

@@ -16,7 +16,7 @@ public class Controller implements ActionListener {
   private View view;
 
   public Controller() {
-    view = new View(this);
+    view = new View(this);  
     view.popUpUserEntry();
     Player p1 = new Player(view.p1Name);
     Player p2 = new Player(view.p2Name);
