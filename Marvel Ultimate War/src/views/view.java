@@ -65,7 +65,7 @@ public class View extends JFrame {
     // popUpP2entry();
     // popUpChampChoice();
     //createBoard(Game.getBoard());
-    startScreen();
+    // startScreen();
 
     /*
     setTitle("Marvel War Game");
@@ -81,6 +81,7 @@ public class View extends JFrame {
 
   public void startScreen(){
     startScreen = new JFrame();
+    startScreen.setDefaultCloseOperation(EXIT_ON_CLOSE);
     startScreen.setLayout(new BorderLayout());
     
     start = new JButton("Start");
@@ -88,11 +89,12 @@ public class View extends JFrame {
     start.setContentAreaFilled(false);
     start.setBackground(new Color(179, 89, 0));
     startScreen.add(start, BorderLayout.CENTER);
-    JLabel bgPic = new JLabel(new ImageIcon("C:\\M.Ismail\\Coding\\WarGameMarvel\\Marvel Ultimate War\\src\\startScreen.jpg"));
+    JLabel bgPic = new JLabel(new ImageIcon("Marvel Ultimate War\\src\\startScreen2.jpg"));
     startScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
     startScreen.setBounds(0, 50, 1280, 720);
     startScreen.setVisible(true);
     startScreen.add(bgPic);
+    
     
 
     

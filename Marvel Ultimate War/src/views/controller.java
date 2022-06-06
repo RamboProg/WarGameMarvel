@@ -17,8 +17,9 @@ public class Controller implements ActionListener {
 
   public Controller() {
     view = new View(this);  
-    // view.popUpP1entry();
-    // view.popUpP2entry();
+    view.popUpP1entry();
+    view.popUpP2entry();
+    
     Player p1 = new Player(view.p1Name);
     Player p2 = new Player(view.p2Name);
     try {
@@ -36,8 +37,8 @@ public class Controller implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     view.startScreen();
-    view.startScreen.dispose();
     if(e.getSource() == view.start){
+      view.startScreen.dispose();
       view.popUpP1entry();
       view.popUpP2entry();
 
