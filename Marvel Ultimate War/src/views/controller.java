@@ -16,10 +16,7 @@ public class Controller implements ActionListener {
   private View view;
 
   public Controller() {
-    view = new View(this);  
-    view.popUpP1entry();
-    view.popUpP2entry();
-    
+    view = new View(this); 
     Player p1 = new Player(view.p1Name);
     Player p2 = new Player(view.p2Name);
     try {
@@ -28,25 +25,15 @@ public class Controller implements ActionListener {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
-    
     Object[][] board = model.getBoard();
     view.updateBoard(board);
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    view.startScreen();
-    if(e.getSource() == view.start){
-      view.startScreen.dispose();
-      view.popUpP1entry();
-      view.popUpP2entry();
+   
 
     }
-
-    
-    
-  }
 
   public View getView(){
     return view;

@@ -59,46 +59,14 @@ public class View extends JFrame {
 
 
   public View(ActionListener l) {
-    ArrayList a = Game.getAvailableChampions();
     this.listener = l;
-    // popUpP1entry();
-    // popUpP2entry();
-    // popUpChampChoice();
-    //createBoard(Game.getBoard());
-    // startScreen();
-
-    /*
     setTitle("Marvel War Game");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximises screen
     setBounds(0, 50, 1280, 720); //when i de-maximise
     setVisible(true);
     
-    */
-    
     gameBoard = new JPanel(new GridLayout(5,5));
-  }
-
-  public void startScreen(){
-    startScreen = new JFrame();
-    startScreen.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    startScreen.setLayout(new BorderLayout());
-    
-    start = new JButton("Start");
-    start.addActionListener(this.listener);
-    start.setContentAreaFilled(false);
-    start.setBackground(new Color(179, 89, 0));
-    startScreen.add(start, BorderLayout.CENTER);
-    JLabel bgPic = new JLabel(new ImageIcon("Marvel Ultimate War\\src\\startScreen2.jpg"));
-    startScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    startScreen.setBounds(0, 50, 1280, 720);
-    startScreen.setVisible(true);
-    startScreen.add(bgPic);
-    
-    
-
-    
-
   }
 
   public void createBoard(Object[][] board) {
@@ -114,8 +82,8 @@ public class View extends JFrame {
 
   }
 
-  //Creates a button with the corresponding Champion icon
-  private JButton champName(int index) {
+   //Creates a button with the corresponding Champion icon
+   private JButton champName(int index) {
     JButton b = new JButton();
     Icon icon;
     for (int i = 0; i < Game.getAvailableChampions().size(); i++) {
@@ -184,6 +152,7 @@ public class View extends JFrame {
     }
     return b;
   }
+  
 
   //The window where both players choose their champions
   public void popUpChampChoice() {
@@ -218,62 +187,6 @@ public class View extends JFrame {
     infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     JLabel infoLabel = new JLabel();
         
-  }
-
-  //Prompts the users to enter their names
-  public void popUpP1entry() {
-    firstnameInput = new JFrame();
-    firstnameInput.setLayout(new FlowLayout());
-    Icon p1Image = new ImageIcon("p1.png");
-    p1NameButton = new JButton("Submit");
-    p1NameButton.addActionListener(this.listener);
-    JLabel p1ImageLabel = new JLabel();
-    p1ImageLabel.setIcon(p1Image);
-
-    firstnameInput.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-    p1TextField = new JTextField("Player 1", 15);
-    p1TextField.setEditable(true);
-    //p1TextField.addActionListener(this.listener);
-    //p1TextField.add(p1ImageLabel);
-    p1TextField.setPreferredSize(new Dimension(250, 30));
-    p1TextField.setFont(new Font("Times New Roman", Font.ITALIC, 25));    
-    p1TextField.setForeground(new Color(32, 183, 226));
-    p1TextField.setBackground(new Color(2, 48, 61));
-    p1TextField.setCaretColor(new Color(32, 183, 226));
-    
-    firstnameInput.add(p1NameButton);
-    firstnameInput.add(p1TextField);
-    firstnameInput.pack();
-    firstnameInput.setVisible(true);
-    //firstnameInput.dispose();
-
-  }
-  
-  public void popUpP2entry(){
-    secondnameInput = new JFrame();
-    secondnameInput.setLayout(new FlowLayout());
-    // Icon p2Image = new ImageIcon("p2.png");
-    p2NameButton = new JButton("Submit");
-    p2NameButton.addActionListener(this.listener);
-  
-    secondnameInput.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    
-    p2TextField = new JTextField("Player 2", 15);
-    p2TextField.setEditable(true);
-    // p2TextField.addActionListener(this.listener);
-    p2TextField.setPreferredSize(new Dimension(250, 30));
-    p2TextField.setFont(new Font("Times New Roman", Font.ITALIC, 25));
-    p2TextField.setForeground(new Color(184, 9, 62));
-    p2TextField.setBackground(new Color(61, 2, 33));
-    p2TextField.setCaretColor(new Color(61, 2, 33));
-  
-    secondnameInput.add(p2NameButton);
-    secondnameInput.add(p2TextField);
-    secondnameInput.pack();
-    secondnameInput.setVisible(true);
-    //secondnameInput.dispose();
-
   }
 
   public void updateBoard(Object[][] board) {
