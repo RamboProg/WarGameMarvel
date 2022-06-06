@@ -35,8 +35,8 @@ public class Game {
     board = new Object[BOARDHEIGHT][BOARDWIDTH];
     availableChampions = new ArrayList<Champion>();
     availableAbilities = new ArrayList<Ability>();
-    loadAbilities("Abilties.csv");
-    loadChampions("Champions.csv");
+    loadAbilities("Marvel Ultimate War\\src\\Abilities.csv");
+    loadChampions("Marvel Ultimate War\\src\\Champions.csv");
     placeChampions();
     placeCovers();
     this.turnOrder =

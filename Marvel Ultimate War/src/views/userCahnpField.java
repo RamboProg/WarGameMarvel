@@ -26,7 +26,7 @@ public class userCahnpField extends JFrame implements ActionListener {
         Icon p1Image = new ImageIcon("C:\\M.Ismail\\Coding\\WarGameMarvel\\Marvel Ultimate War\\src\\p1.png");
         // JLabel label = new JLabel();
         // label.setIcon(p1Image);
-        b = new JButton("Submit", p1Image);
+        b = new JButton("Submit");
         b.addActionListener(this);
         // p1ImageLabel = new JLabel();
         // Icon p1Image = new ImageIcon("p1.png");

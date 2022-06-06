@@ -19,19 +19,28 @@ public class Controller implements ActionListener {
     view = new View(this); 
     Player p1 = new Player(view.p1Name);
     Player p2 = new Player(view.p2Name);
+    
     try {
       model = new Game(p1, p2);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    Object[][] board = model.getBoard();
-    view.updateBoard(board);
+    view.popUpP1entry();
+    // Object[][] board = model.getBoard();
+    // view.updateBoard(board);
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-   
+    if(e.getSource() == view.p1NameButton){
+      view.firstnameInput.dispose();
+      view.popUpP2entry();
+      if(e.getSource() == view.p2NameButton){
+        view.secondnameInput.dispose();
+        view.createBoard(Game.getBoard());
+      }
+    }
 
     }
 
