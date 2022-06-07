@@ -31,7 +31,7 @@ import model.world.Cover;
 public class View extends JFrame {
   protected ActionListener listener;
   protected MouseInputListener mouseListener;
-  private JPanel boardPanel;
+  private JPanel gameBoard;
   private JFrame mainGame;
   protected JFrame firstnameInput;
   protected JFrame secondnameInput;
@@ -51,7 +51,7 @@ public class View extends JFrame {
   protected JFrame startScreen;
   protected JButton start;
 
-  private JPanel gameBoard;
+  
 
   protected String p1Name;
   protected String p2Name;
@@ -71,21 +71,20 @@ public class View extends JFrame {
     this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximises screen
     this.setBounds(0, 50, 1280, 720); //when i de-maximise
     this.setVisible(true);
-    boardPanel =
-      new JPanel(new GridLayout(Game.getBoardheight(), Game.getBoardwidth()));
-    boardPanel.setBounds(80, 40, 200, 200);
+    this.gameBoard.removeAll();
+    gameBoard.setBounds(80, 40, 200, 200);
 
     for (int i = 0; i < Game.getBoardwidth(); i++) {
       for (int j = 0; j < Game.getBoardheight(); j++) {
         if (board[i][j] instanceof Cover) {
           JButton b = new JButton("Cover");
-          boardPanel.add(b);
+            gameBoard.add(b);
         } else if (board[i][j] instanceof Champion) {
           JButton b = new JButton("Champion");
-          boardPanel.add(b);
+            gameBoard.add(b);
         } else {
           JButton b = new JButton();
-          boardPanel.add(b);
+            gameBoard.add(b);
         }
       }
     }
@@ -245,7 +244,7 @@ public class View extends JFrame {
     }
 
     //Refresh and tell java that something changed
-    this.add(this.boardPanel);
+    this.add(this.gameBoard);
     this.revalidate();
     this.repaint();
   }
