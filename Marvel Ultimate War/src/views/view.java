@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class View extends JFrame {
   protected JButton saveButton;
 
   //for choosing champions
-  private JFrame championChoice;
+  protected JFrame championChoice;
   private JPanel champChoice;
   private JPanel p1Panel;
   private JPanel p2Panel;
@@ -79,6 +80,20 @@ public class View extends JFrame {
   protected JLabel champ2;
   protected JLabel champ3;
 
+  protected JFrame leaderChoice;
+  protected JPanel p1LeaderChoice;
+  protected JPanel p2LeaderChoice;
+  protected ChampionButton cbLeader1;
+  protected ChampionButton cbLeader2;
+  protected ChampionButton cbLeader3;
+  protected ChampionButton cbLeader4;
+  protected ChampionButton cbLeader5;
+  protected ChampionButton cbLeader6;
+  protected ArrayList<ChampionButton> cbLeaders;
+  protected JButton saveLeaderButton;
+
+
+
   public View(ActionListener l) {
     this.listener = l;
 
@@ -100,7 +115,6 @@ public class View extends JFrame {
           b = new JButton("Cover", iconCover);
           gameBoard.add(b);
         } else if (board[i][j] instanceof Champion) {
-          b = new JButton("Champion");
           gameBoard.add(b);
         } else {
           b = new JButton();
@@ -112,6 +126,12 @@ public class View extends JFrame {
     this.revalidate();
     this.repaint();
   }
+  // private ChampionButton mainBoardChamp(){
+  //   champChoiceGrid();
+  //   for()
+
+
+  // }
 
   private void initializeButton(ChampionButton cb, Champion c) {
     cb.addActionListener(this.listener);
@@ -142,7 +162,7 @@ public class View extends JFrame {
     );
   }
 
-  private void champChoiceGrid(int index) {
+  private void champChoiceGrid() {
     cb_0 = new ChampionButton("Captain America");
     cb_0.setChampButton(Game.getAvailableChampions().get(0));
     cb_0.setText("Captain America");
@@ -235,151 +255,51 @@ public class View extends JFrame {
     cb.add(cb_14);
   }
 
-  //Creates a button with the corresponding Champion icon
-  // private JButton champName(int index) {
-  //   cbClass = new ChampionButton();
-  //   cbClass.addActionListener(this.listener);
-  //   cb = new ArrayList<ChampionButton>();
-  //   Champion c;
-  //   Icon icon;
-  //   for (int i = 0; i < Game.getAvailableChampions().size(); i++) {
-  //     c = Game.getAvailableChampions().get(index);
-  //     cbClass.setChampButton(c);
-  //     cbClass.setToolTipText(
-  //       "Name: " +
-  //       c.getName() +
-  //       '\n' +
-  //       ", Max HP: " +
-  //       c.getMaxHP() +
-  //       '\n' +
-  //       ", Attack Damage: " +
-  //       c.getAttackDamage() +
-  //       '\n' +
-  //       ", Attack Range: " +
-  //       c.getAttackRange() +
-  //       '\n' +
-  //       ", Action Points Per Turn: " +
-  //       c.getMaxActionPointsPerTurn() +
-  //       '\n' +
-  //       ", Mana: " +
-  //       c.getMana() +
-  //       '\n' +
-  //       ", Speeeeed" +
-  //       c.getSpeed() +
-  //       '\n' +
-  //       ",  Abilities: " +
-  //       c.getAbilities().toString()
-  //     );
-  //     cb.add(cbClass);
-  //     switch (index) {
-  //       case 0:
-  //         cbClass.setText("Captain America");
-  //         cbClass.setActionCommand("Captain America");
-  //         break;
-  //       case 1:
-  //         cbClass.setText("Deadpool");
-  //         cbClass.setActionCommand("Deadpool");
-  //         break;
-  //       case 2:
-  //         cbClass.setText("Dr. Strange");
-  //         cbClass.setActionCommand("Dr. Strange");
-  //         break;
-  //       case 3:
-  //         cbClass.setText("Electro");
-  //         cbClass.setActionCommand("Electro");
-  //         break;
-  //       case 4:
-  //         cbClass.setText("Ghost Rider");
-  //         cbClass.setActionCommand("Ghost Rider");
-  //         break;
-  //       case 5:
-  //         cbClass.setText("Hela");
-  //         cbClass.setActionCommand("Hela");
-  //         break;
-  //       case 6:
-  //         cbClass.setText("Hulk");
-  //         cbClass.setActionCommand("Hulk");
-  //         break;
-  //       case 7:
-  //         cbClass.setText("Iceman");
-  //         cbClass.setActionCommand("Iceman");
-  //         break;
-  //       case 8:
-  //         cbClass.setText("Iron Man");
-  //         cbClass.setActionCommand("Iron Man");
-  //         break;
-  //       case 9:
-  //         cbClass.setText("Loki");
-  //         cbClass.setActionCommand("Loki");
-  //         break;
-  //       case 10:
-  //         cbClass.setText("Quicksilver");
-  //         cbClass.setActionCommand("Quicksilver");
-  //         break;
-  //       case 11:
-  //         cbClass.setText("Spider-Man");
-  //         cbClass.setActionCommand("Spider-Man");
-  //         break;
-  //       case 12:
-  //         cbClass.setText("Thor");
-  //         cbClass.setActionCommand("Thor");
-  //         break;
-  //       case 13:
-  //         cbClass.setText("Venom");
-  //         cbClass.setActionCommand("Venom");
-  //         break;
-  //       case 14:
-  //         cbClass.setText("Yellow Jacket");
-  //         cbClass.setActionCommand("Yellow Jacket");
-  //         break;
-  //     }
-  //   }
-  //   return cb.get(index);
-  // }
-
   public void popUpP1entry() {
     firstnameInput = new JFrame();
     firstnameInput.setLayout(new FlowLayout());
-    p1NameButton = new JButton("Enter name for Player 2");
+    p1NameButton = new JButton("Enter name for Player 1");
     p1NameButton.addActionListener(this.listener);
 
     firstnameInput.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     p1TextField = new JTextField(15);
+    p1Name = p1TextField.getText();
     p1TextField.setEditable(true);
     p1TextField.setPreferredSize(new Dimension(250, 30));
     p1TextField.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     p1TextField.setForeground(new Color(32, 183, 226));
     p1TextField.setBackground(new Color(2, 48, 61));
     p1TextField.setCaretColor(new Color(32, 183, 226));
-    p1Name = p1TextField.getText();
 
     firstnameInput.add(p1NameButton);
     firstnameInput.add(p1TextField);
     firstnameInput.pack();
+    firstnameInput.setLocationRelativeTo(null);
     firstnameInput.setVisible(true);
   }
 
   public void popUpP2entry() {
     secondnameInput = new JFrame();
     secondnameInput.setLayout(new FlowLayout());
-    p2NameButton = new JButton("Enter name for Player 1");
+    p2NameButton = new JButton("Enter name for Player 2");
     p2NameButton.addActionListener(this.listener);
 
     secondnameInput.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
     p2TextField = new JTextField(15);
+    p2Name = p2TextField.getName();
     p2TextField.setEditable(true);
     p2TextField.setPreferredSize(new Dimension(250, 30));
     p2TextField.setFont(new Font("Times New Roman", Font.ITALIC, 25));
     p2TextField.setForeground(new Color(184, 9, 62));
     p2TextField.setBackground(new Color(61, 2, 33));
     p2TextField.setCaretColor(new Color(61, 2, 33));
-    p2Name = p2TextField.getName();
 
     secondnameInput.add(p2NameButton);
     secondnameInput.add(p2TextField);
     secondnameInput.pack();
+    secondnameInput.setLocationRelativeTo(null);
     secondnameInput.setVisible(true);
   }
 
@@ -389,24 +309,26 @@ public class View extends JFrame {
 
     //Shows the available Champions
     champChoice = new JPanel(new GridLayout(3, 5));
-    champ1 = new JLabel();
-    champ2 = new JLabel();
-    champ3 = new JLabel();
+    // champ1 = new JLabel("" + Controller.model.getFirstPlayer().getTeam().get(0));
+    // p1Panel.add(champ1);
+    // champ2 = new JLabel("" + Controller.model.getFirstPlayer().getTeam().get(1));
+    // p1Panel.add(champ2);
+    // champ3 = new JLabel("" + Controller.model.getFirstPlayer().getTeam().get(2));
+    // p1Panel.add(champ3);
     ImageIcon p1Image = new ImageIcon(
       "Marvel Ultimate War\\src\\mario_jump.gif"
     );
     ImageIcon p2Image = new ImageIcon(
       "Marvel Ultimate War\\src\\mario_car.gif"
     );
+    champChoiceGrid();
     for (int i = 0; i < 15; i++) {
-      champChoiceGrid(i);
       champChoice.add(cb.get(i));
     }
 
     //Shows P1
     p1Panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
     p1Panel.setBackground(new java.awt.Color(22, 90, 247));
-    System.out.println(p1Name);
     JLabel p1Pic = new JLabel(p1Name, p1Image, JLabel.CENTER);
     p1Panel.add(p1Pic);
 
@@ -423,8 +345,7 @@ public class View extends JFrame {
     saveButton.setBackground(new Color(2, 69, 42));
 
     //shows The whole window
-    // p1Panel.add(champ1);
-    // p1Panel.add(champ2);
+    //p1Panel.add(champ2);
     // p1Panel.add(champ3);
     championChoice.add(p1Panel, BorderLayout.PAGE_START);
     championChoice.add(p2Panel, BorderLayout.PAGE_END);
@@ -433,6 +354,47 @@ public class View extends JFrame {
     championChoice.setVisible(true);
     championChoice.setExtendedState(JFrame.MAXIMIZED_BOTH);
     championChoice.setDefaultCloseOperation(EXIT_ON_CLOSE);
+  }
+
+  public void chooseLeader(){
+    leaderChoice = new JFrame();
+    p1LeaderChoice = new JPanel(new GridLayout(1, 3));
+    p2LeaderChoice = new JPanel(new GridLayout(1,3));
+    saveLeaderButton = new JButton("Save");
+    saveLeaderButton.addActionListener(listener);
+    saveLeaderButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
+    saveLeaderButton.setBackground(new Color(2, 69, 42));
+    saveLeaderButton.setForeground(new Color(38, 214, 26));
+
+    cbLeader1.addActionListener(listener);
+    cbLeader2.addActionListener(listener);
+    cbLeader3.addActionListener(listener);
+    cbLeader4.addActionListener(listener);
+    cbLeader5.addActionListener(listener);
+    cbLeader6.addActionListener(listener);
+
+    cbLeaders.add(cbLeader1);
+    cbLeaders.add(cbLeader2);
+    cbLeaders.add(cbLeader3);
+    cbLeaders.add(cbLeader4);
+    cbLeaders.add(cbLeader5);
+    cbLeaders.add(cbLeader6);
+
+    p1LeaderChoice.add(cbLeader1);
+    p1LeaderChoice.add(cbLeader2);
+    p1LeaderChoice.add(cbLeader3);
+    p2LeaderChoice.add(cbLeader4);
+    p2LeaderChoice.add(cbLeader5);
+    p2LeaderChoice.add(cbLeader6);
+
+    leaderChoice.add(p1LeaderChoice);
+    leaderChoice.add(p2LeaderChoice);
+    leaderChoice.setVisible(true);
+    leaderChoice.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+    
+
+
   }
 
   public void updateBoard(Object[][] board) {

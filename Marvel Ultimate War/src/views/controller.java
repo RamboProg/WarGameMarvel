@@ -2,33 +2,30 @@ package views;
 
 import engine.Game;
 import engine.Player;
-import model.world.Champion;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import model.world.Champion;
 
 public class Controller implements ActionListener {
-  private Game model;
+  protected static Game model;
   private View view;
   private Object[][] board;
   private Player p1;
   private Player p2;
+  private int clickCount = 0;
+  private boolean flag1 = false;
+  private boolean flag2 = false;
 
-  public Controller() {
+  public Controller() throws IOException {
     view = new View(this);
     p1 = new Player(view.p1Name);
     p2 = new Player(view.p2Name);
 
-    try {
-      model = new Game(p1, p2);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    model = new Game(p1, p2);
     view.popUpP1entry();
     board = model.getBoard();
     // view.updateBoard(board);
@@ -50,71 +47,92 @@ public class Controller implements ActionListener {
 
   //   }
 
+  // }
 
- // }
-
-
- private void updateChampionChoice(ActionEvent e){
-  int clickCount = 0;
-  for(int i = 0; i < 15; i++){
-    Champion c = Game.getAvailableChampions().get(i);
-    if(((JButton)(e.getSource())) == (view.cb.get(i))){
-      
-      if(e.getActionCommand().equals(view.cb.get(i).getActionCommand())){
-        clickCount++;
-        if(clickCount == 1){System.out.println("done once");
-          p1.getTeam().add(c);
-          // view.champ1 = new JLabel(c.getName());
-          view.cb.get(i).setEnabled(false);
-        }
-        if(clickCount == 2){System.out.println("done twice");
-          p1.getTeam().add(c);
-          // view.champ2 = new JLabel(c.getName());
-          view.cb.get(i).setEnabled(false);
-        }
-        if(clickCount == 3){System.out.println("done throce");
-          p1.getTeam().add(c);
-          // view.champ3 = new JLabel(c.getName());
-          view.cb.get(i).setEnabled(false);
-          for(int j = 0; j < p1.getTeam().size(); j++){
-            System.out.println("" + p1.getTeam().get(j).getName());
+  private void updateChampionChoice(ActionEvent e) {
+    for (int i = 0; i < 15; i++) {
+      Champion c = Game.getAvailableChampions().get(i);
+      if (((JButton) (e.getSource())) == (view.cb.get(i))) {
+        if (e.getActionCommand().equals(view.cb.get(i).getActionCommand())) {
+          clickCount++;
+          if (clickCount == 1) {
+            p1.getTeam().add(c);
+            p1.setLeader(c);
+            // view.champ1 = new JLabel(c.getName());
+            view.cb.get(i).setEnabled(false);
+          }
+          if (clickCount == 2) {
+            p1.getTeam().add(c);
+            // view.champ2 = new JLabel(c.getName());
+            view.cb.get(i).setEnabled(false);
+          }
+          if (clickCount == 3) {
+            p1.getTeam().add(c);
+            // view.champ3 = new JLabel(c.getName());
+            view.cb.get(i).setEnabled(false);
+          }
+          if (clickCount == 4) {
+            p2.getTeam().add(c);
+            p2.setLeader(c);
+            view.cb.get(i).setEnabled(false);
+          }
+          if (clickCount == 5) {
+            p2.getTeam().add(c);
+            view.cb.get(i).setEnabled(false);
+          }
+          if (clickCount == 6) {
+            p2.getTeam().add(c);
+            for (int j = 0; j < 15; j++) {
+              view.cb.get(j).setEnabled(false);
+            }
           }
         }
-
-
-
       }
     }
 
+    if (e.getSource() == view.saveButton) {
+      view.championChoice.dispose();
+    }
   }
 
-
- }
-
+  
   @Override
   public void actionPerformed(ActionEvent e) {
-    int clickCount = 0;
     if (e.getSource() == view.p1NameButton) {
       view.firstnameInput.dispose();
       view.popUpP2entry();
     }
     if (e.getSource() == view.p2NameButton) {
       view.secondnameInput.dispose();
-      view.popUpChampChoice(); 
+      view.popUpChampChoice();
     }
-
     updateChampionChoice(e);
 
+    if(e.getSource() == view.saveLeaderButton){
+      view.leaderChoice.dispose();
+      try {
+        model = new Game(p1, p2);
+      } catch (IOException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }
+    
 
 
+  
 
+    if (e.getSource() == view.saveButton) {
+      view.championChoice.dispose();
+      view.createBoard(board);
+    }
   }
+
   public View getView() {
     return view;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     new Controller();
-    
   }
 }
