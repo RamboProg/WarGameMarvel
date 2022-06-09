@@ -36,6 +36,11 @@ public class View extends JFrame {
   protected JFrame firstnameInput;
   protected JFrame secondnameInput;
 
+  protected JButton b;
+  protected ChampionButton cbClass;
+  protected ArrayList<ChampionButton> cb = new ArrayList<ChampionButton>();
+  protected JButton saveButton;
+
   //for choosing champions
   private JFrame championChoice;
   private JPanel champChoice;
@@ -51,16 +56,31 @@ public class View extends JFrame {
   protected JFrame startScreen;
   protected JButton start;
 
-  
-
   protected String p1Name;
   protected String p2Name;
 
+  protected ChampionButton cb_0;
+  protected ChampionButton cb_1;
+  protected ChampionButton cb_2;
+  protected ChampionButton cb_3;
+  protected ChampionButton cb_4;
+  protected ChampionButton cb_5;
+  protected ChampionButton cb_6;
+  protected ChampionButton cb_7;
+  protected ChampionButton cb_8;
+  protected ChampionButton cb_9;
+  protected ChampionButton cb_10;
+  protected ChampionButton cb_11;
+  protected ChampionButton cb_12;
+  protected ChampionButton cb_13;
+  protected ChampionButton cb_14;
+
+  protected JLabel champ1;
+  protected JLabel champ2;
+  protected JLabel champ3;
+
   public View(ActionListener l) {
     this.listener = l;
-    // popUpP1entry();
-    // popUpP2entry();
-    // popUpChampChoice();
 
     gameBoard = new JPanel(new GridLayout(5, 5));
   }
@@ -71,93 +91,261 @@ public class View extends JFrame {
     this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximises screen
     this.setBounds(0, 50, 1280, 720); //when i de-maximise
     this.setVisible(true);
-    this.gameBoard.removeAll();
+    Icon iconCover = new ImageIcon("Marvel Ultimate War\\src\\Cover.png");
     gameBoard.setBounds(80, 40, 200, 200);
 
     for (int i = 0; i < Game.getBoardwidth(); i++) {
       for (int j = 0; j < Game.getBoardheight(); j++) {
         if (board[i][j] instanceof Cover) {
-          JButton b = new JButton("Cover");
-            gameBoard.add(b);
+          b = new JButton("Cover", iconCover);
+          gameBoard.add(b);
         } else if (board[i][j] instanceof Champion) {
-          JButton b = new JButton("Champion");
-            gameBoard.add(b);
+          b = new JButton("Champion");
+          gameBoard.add(b);
         } else {
-          JButton b = new JButton();
-            gameBoard.add(b);
+          b = new JButton();
+          gameBoard.add(b);
         }
       }
     }
+    this.add(this.gameBoard);
+    this.revalidate();
+    this.repaint();
+  }
+
+  private void initializeButton(ChampionButton cb, Champion c) {
+    cb.addActionListener(this.listener);
+    cb.setToolTipText(
+      "Name: " +
+      c.getName() +
+      '\n' +
+      ", Max HP: " +
+      c.getMaxHP() +
+      '\n' +
+      ", Attack Damage: " +
+      c.getAttackDamage() +
+      '\n' +
+      ", Attack Range: " +
+      c.getAttackRange() +
+      '\n' +
+      ", Action Points Per Turn: " +
+      c.getMaxActionPointsPerTurn() +
+      '\n' +
+      ", Mana: " +
+      c.getMana() +
+      '\n' +
+      ", Speeeeed" +
+      c.getSpeed() +
+      '\n' +
+      ",  Abilities: " +
+      c.getAbilities().toString()
+    );
+  }
+
+  private void champChoiceGrid(int index) {
+    cb_0 = new ChampionButton("Captain America");
+    cb_0.setChampButton(Game.getAvailableChampions().get(0));
+    cb_0.setText("Captain America");
+    cb_0.setActionCommand("Captain America");
+    initializeButton(cb_0, Game.getAvailableChampions().get(0));
+    cb.add(cb_0);
+    cb_1 = new ChampionButton("Deadpool");
+    cb_1.setChampButton(Game.getAvailableChampions().get(1));
+    cb_1.setText("Deadpool");
+    cb_1.setActionCommand("Deadpool");
+    initializeButton(cb_1, Game.getAvailableChampions().get(1));
+    cb.add(cb_1);
+    cb_2 = new ChampionButton("Dr. Strange");
+    cb_2.setChampButton(Game.getAvailableChampions().get(2));
+    cb_2.setText("Dr. Strange");
+    cb_2.setActionCommand("Dr. Strange");
+    initializeButton(cb_2, Game.getAvailableChampions().get(2));
+    cb.add(cb_2);
+    cb_3 = new ChampionButton("Electro");
+    cb_3.setChampButton(Game.getAvailableChampions().get(3));
+    cb_3.setText("Electro");
+    cb_3.setActionCommand("Electro");
+    initializeButton(cb_3, Game.getAvailableChampions().get(3));
+    cb.add(cb_3);
+    cb_4 = new ChampionButton("Ghost Rider");
+    cb_4.setChampButton(Game.getAvailableChampions().get(4));
+    cb_4.setText("Ghost Rider");
+    cb_4.setActionCommand("Ghost Rider");
+    initializeButton(cb_4, Game.getAvailableChampions().get(4));
+    cb.add(cb_4);
+    cb_5 = new ChampionButton("Hela");
+    cb_5.setChampButton(Game.getAvailableChampions().get(5));
+    cb_5.setText("Hela");
+    cb_5.setActionCommand("Hela");
+    initializeButton(cb_5, Game.getAvailableChampions().get(5));
+    cb.add(cb_5);
+    cb_6 = new ChampionButton("Hulk");
+    cb_6.setChampButton(Game.getAvailableChampions().get(6));
+    cb_6.setText("Hulk");
+    cb_6.setActionCommand("Hulk");
+    initializeButton(cb_6, Game.getAvailableChampions().get(6));
+    cb.add(cb_6);
+    cb_7 = new ChampionButton("Iceman");
+    cb_7.setChampButton(Game.getAvailableChampions().get(7));
+    cb_7.setText("Iceman");
+    cb_7.setActionCommand("Iceman");
+    initializeButton(cb_7, Game.getAvailableChampions().get(7));
+    cb.add(cb_7);
+    cb_8 = new ChampionButton("Iron Man");
+    cb_8.setChampButton(Game.getAvailableChampions().get(8));
+    cb_8.setText("Iron Man");
+    cb_8.setActionCommand("Iron Man");
+    initializeButton(cb_8, Game.getAvailableChampions().get(8));
+    cb.add(cb_8);
+    cb_9 = new ChampionButton("Loki");
+    cb_9.setChampButton(Game.getAvailableChampions().get(9));
+    cb_9.setText("Loki");
+    cb_9.setActionCommand("Loki");
+    initializeButton(cb_9, Game.getAvailableChampions().get(9));
+    cb.add(cb_9);
+    cb_10 = new ChampionButton("Quicksilver");
+    cb_10.setChampButton(Game.getAvailableChampions().get(10));
+    cb_10.setText("Quicksilver");
+    cb_10.setActionCommand("Quicksilver");
+    initializeButton(cb_10, Game.getAvailableChampions().get(10));
+    cb.add(cb_10);
+    cb_11 = new ChampionButton("Spider-Man");
+    cb_11.setChampButton(Game.getAvailableChampions().get(11));
+    cb_11.setText("Spider-Man");
+    cb_11.setActionCommand("Spider-Man");
+    initializeButton(cb_11, Game.getAvailableChampions().get(11));
+    cb.add(cb_11);
+    cb_12 = new ChampionButton("Thor");
+    cb_12.setChampButton(Game.getAvailableChampions().get(12));
+    cb_12.setText("Thor");
+    cb_12.setActionCommand("Thor");
+    initializeButton(cb_12, Game.getAvailableChampions().get(12));
+    cb.add(cb_12);
+    cb_13 = new ChampionButton("Venom");
+    cb_13.setChampButton(Game.getAvailableChampions().get(13));
+    cb_13.setText("Venom");
+    cb_13.setActionCommand("Venom");
+    initializeButton(cb_13, Game.getAvailableChampions().get(13));
+    cb.add(cb_13);
+    cb_14 = new ChampionButton("Yellow Jacket");
+    cb_14.setChampButton(Game.getAvailableChampions().get(14));
+    cb_14.setText("Yellow Jacket");
+    cb_14.setActionCommand("Yellow Jacket");
+    initializeButton(cb_14, Game.getAvailableChampions().get(14));
+    cb.add(cb_14);
   }
 
   //Creates a button with the corresponding Champion icon
-  private JButton champName(int index) {
-    JButton b = new JButton();
-    Icon icon;
-    for (int i = 0; i < Game.getAvailableChampions().size(); i++) {
-      switch (index) {
-        case 0:
-          b = new JButton("Captain America");
-          break;
-        case 1:
-          b = new JButton("Deadpool");
-          break;
-        case 2:
-          b = new JButton("Dr. Strange");
-          break;
-        case 3:
-          b = new JButton("Electro");
-          break;
-        case 4:
-          b = new JButton("Ghost Rider");
-          break;
-        case 5:
-          b = new JButton("Hela");
-          break;
-        case 6:
-          b = new JButton("Hulk");
-          break;
-        case 7:
-          b = new JButton("Iceman");
-          break;
-        case 8:
-          b = new JButton("Iron Man");
-          break;
-        case 9:
-          b = new JButton("Loki");
-          break;
-        case 10:
-          b = new JButton("Quicksilver");
-          break;
-        case 11:
-          b = new JButton("Spider-Man");
-          break;
-        case 12:
-          b = new JButton("Thor");
-          break;
-        case 13:
-          b = new JButton("Venom");
-          break;
-        case 14:
-          b = new JButton("Yellow Jacket");
-          break;
-      }
-    }
-    return b;
-  }
+  // private JButton champName(int index) {
+  //   cbClass = new ChampionButton();
+  //   cbClass.addActionListener(this.listener);
+  //   cb = new ArrayList<ChampionButton>();
+  //   Champion c;
+  //   Icon icon;
+  //   for (int i = 0; i < Game.getAvailableChampions().size(); i++) {
+  //     c = Game.getAvailableChampions().get(index);
+  //     cbClass.setChampButton(c);
+  //     cbClass.setToolTipText(
+  //       "Name: " +
+  //       c.getName() +
+  //       '\n' +
+  //       ", Max HP: " +
+  //       c.getMaxHP() +
+  //       '\n' +
+  //       ", Attack Damage: " +
+  //       c.getAttackDamage() +
+  //       '\n' +
+  //       ", Attack Range: " +
+  //       c.getAttackRange() +
+  //       '\n' +
+  //       ", Action Points Per Turn: " +
+  //       c.getMaxActionPointsPerTurn() +
+  //       '\n' +
+  //       ", Mana: " +
+  //       c.getMana() +
+  //       '\n' +
+  //       ", Speeeeed" +
+  //       c.getSpeed() +
+  //       '\n' +
+  //       ",  Abilities: " +
+  //       c.getAbilities().toString()
+  //     );
+  //     cb.add(cbClass);
+  //     switch (index) {
+  //       case 0:
+  //         cbClass.setText("Captain America");
+  //         cbClass.setActionCommand("Captain America");
+  //         break;
+  //       case 1:
+  //         cbClass.setText("Deadpool");
+  //         cbClass.setActionCommand("Deadpool");
+  //         break;
+  //       case 2:
+  //         cbClass.setText("Dr. Strange");
+  //         cbClass.setActionCommand("Dr. Strange");
+  //         break;
+  //       case 3:
+  //         cbClass.setText("Electro");
+  //         cbClass.setActionCommand("Electro");
+  //         break;
+  //       case 4:
+  //         cbClass.setText("Ghost Rider");
+  //         cbClass.setActionCommand("Ghost Rider");
+  //         break;
+  //       case 5:
+  //         cbClass.setText("Hela");
+  //         cbClass.setActionCommand("Hela");
+  //         break;
+  //       case 6:
+  //         cbClass.setText("Hulk");
+  //         cbClass.setActionCommand("Hulk");
+  //         break;
+  //       case 7:
+  //         cbClass.setText("Iceman");
+  //         cbClass.setActionCommand("Iceman");
+  //         break;
+  //       case 8:
+  //         cbClass.setText("Iron Man");
+  //         cbClass.setActionCommand("Iron Man");
+  //         break;
+  //       case 9:
+  //         cbClass.setText("Loki");
+  //         cbClass.setActionCommand("Loki");
+  //         break;
+  //       case 10:
+  //         cbClass.setText("Quicksilver");
+  //         cbClass.setActionCommand("Quicksilver");
+  //         break;
+  //       case 11:
+  //         cbClass.setText("Spider-Man");
+  //         cbClass.setActionCommand("Spider-Man");
+  //         break;
+  //       case 12:
+  //         cbClass.setText("Thor");
+  //         cbClass.setActionCommand("Thor");
+  //         break;
+  //       case 13:
+  //         cbClass.setText("Venom");
+  //         cbClass.setActionCommand("Venom");
+  //         break;
+  //       case 14:
+  //         cbClass.setText("Yellow Jacket");
+  //         cbClass.setActionCommand("Yellow Jacket");
+  //         break;
+  //     }
+  //   }
+  //   return cb.get(index);
+  // }
 
   public void popUpP1entry() {
     firstnameInput = new JFrame();
     firstnameInput.setLayout(new FlowLayout());
-    Icon p1Image = new ImageIcon("p1.png");
-    p1NameButton = new JButton("Submit");
+    p1NameButton = new JButton("Enter name for Player 2");
     p1NameButton.addActionListener(this.listener);
-    JLabel p1ImageLabel = new JLabel();
-    p1ImageLabel.setIcon(p1Image);
 
-    firstnameInput.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    firstnameInput.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-    p1TextField = new JTextField("Player 1", 15);
+    p1TextField = new JTextField(15);
     p1TextField.setEditable(true);
     p1TextField.setPreferredSize(new Dimension(250, 30));
     p1TextField.setFont(new Font("Times New Roman", Font.ITALIC, 25));
@@ -175,12 +363,12 @@ public class View extends JFrame {
   public void popUpP2entry() {
     secondnameInput = new JFrame();
     secondnameInput.setLayout(new FlowLayout());
-    p2NameButton = new JButton("Submit");
+    p2NameButton = new JButton("Enter name for Player 1");
     p2NameButton.addActionListener(this.listener);
 
-    secondnameInput.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    secondnameInput.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
-    p2TextField = new JTextField("Player 2", 15);
+    p2TextField = new JTextField(15);
     p2TextField.setEditable(true);
     p2TextField.setPreferredSize(new Dimension(250, 30));
     p2TextField.setFont(new Font("Times New Roman", Font.ITALIC, 25));
@@ -193,46 +381,62 @@ public class View extends JFrame {
     secondnameInput.add(p2TextField);
     secondnameInput.pack();
     secondnameInput.setVisible(true);
-    //secondnameInput.dispose();
-
   }
 
-  //The window where both players choose their champions
   public void popUpChampChoice() {
     championChoice = new JFrame();
     championChoice.setLayout(new BorderLayout());
 
     //Shows the available Champions
     champChoice = new JPanel(new GridLayout(3, 5));
+    champ1 = new JLabel();
+    champ2 = new JLabel();
+    champ3 = new JLabel();
     ImageIcon p1Image = new ImageIcon(
       "Marvel Ultimate War\\src\\mario_jump.gif"
     );
     ImageIcon p2Image = new ImageIcon(
       "Marvel Ultimate War\\src\\mario_car.gif"
     );
-    for (int i = 0; i < 16; i++) {
-      champChoice.add(champName(i));
+    for (int i = 0; i < 15; i++) {
+      champChoiceGrid(i);
+      champChoice.add(cb.get(i));
     }
 
     //Shows P1
     p1Panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
     p1Panel.setBackground(new java.awt.Color(22, 90, 247));
-    JLabel p1Pic = new JLabel("Player 1", p1Image, JLabel.CENTER);
+    System.out.println(p1Name);
+    JLabel p1Pic = new JLabel(p1Name, p1Image, JLabel.CENTER);
     p1Panel.add(p1Pic);
 
     //Shows P2
     p2Panel = new JPanel(new FlowLayout(FlowLayout.TRAILING));
     p2Panel.setBackground(new java.awt.Color(247, 22, 82));
-    JLabel p2Pic = new JLabel("Player 2", p2Image, JLabel.CENTER);
+    JLabel p2Pic = new JLabel(p2Name, p2Image, JLabel.CENTER);
     p2Panel.add(p2Pic);
 
+    saveButton = new JButton("Save");
+    saveButton.addActionListener(this.listener);
+    saveButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
+    saveButton.setForeground(new Color(38, 214, 26));
+    saveButton.setBackground(new Color(2, 69, 42));
+
     //shows The whole window
-    championChoice.add(p1Panel, BorderLayout.NORTH);
-    championChoice.add(p2Panel, BorderLayout.NORTH);
+    // p1Panel.add(champ1);
+    // p1Panel.add(champ2);
+    // p1Panel.add(champ3);
+    championChoice.add(p1Panel, BorderLayout.PAGE_START);
+    championChoice.add(p2Panel, BorderLayout.PAGE_END);
     championChoice.add(champChoice, BorderLayout.CENTER);
+    championChoice.add(saveButton, BorderLayout.LINE_END);
+    championChoice.setVisible(true);
+    championChoice.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    championChoice.setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 
   public void updateBoard(Object[][] board) {
+    this.gameBoard.removeAll();
     //TO-DO Figure out what to put here
     for (int i = 0; i < Game.getBoardwidth(); i++) {
       for (int j = 0; j < Game.getBoardheight(); j++) {

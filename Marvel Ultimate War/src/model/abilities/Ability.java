@@ -59,6 +59,11 @@ public abstract class Ability {
 	public AreaOfEffect getCastArea() {
 		return castArea;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 
 	
 }

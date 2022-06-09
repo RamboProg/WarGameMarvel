@@ -28,5 +28,9 @@ public class DamagingAbility extends Ability {
 			d.setCurrentHP(d.getCurrentHP() - this.damageAmount);
 		}
 	}
+	@Override
+	public String toString() {
+		return " " + this.getName();
+	}
 
 }

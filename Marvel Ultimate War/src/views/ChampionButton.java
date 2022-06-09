@@ -6,8 +6,11 @@ import model.world.Champion;
 
 public class ChampionButton extends JButton {
     private Champion c;
+    private String name;
 
-    public ChampionButton(){
+    public ChampionButton(String name){
+        this.name = name;
+        setName(name);
 
     }
 

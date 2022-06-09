@@ -29,4 +29,8 @@ public class HealingAbility extends Ability {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "" + this.getName();
+	}
 }
