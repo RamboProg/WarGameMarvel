@@ -1,7 +1,9 @@
 package views;
 
-import engine.Game;
-import engine.Player;
+import engine.*;
+import exceptions.NotEnoughResourcesException;
+import exceptions.UnallowedMovementException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -9,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.world.Champion;
+import model.world.Direction;
+
 
 public class Controller implements ActionListener {
   protected static Game model;
@@ -17,6 +21,7 @@ public class Controller implements ActionListener {
   private Player p1;
   private Player p2;
   private int clickCount = 0;
+
   private boolean flag1 = false;
   private boolean flag2 = false;
 
@@ -28,26 +33,7 @@ public class Controller implements ActionListener {
     model = new Game(p1, p2);
     view.popUpP1entry();
     board = model.getBoard();
-    // view.updateBoard(board);
   }
-
-  // private Champion getChamp(String champName){
-  //   int index = 0;
-  //   for(int i = 0; i > Game.getAvailableChampions().size(); i++){
-  //     Champion c = Game.getAvailableChampions().get(i);
-  //     if(c.getName().equals(champName))
-  //       index = i;
-  //   }
-  //     return Game.getAvailableChampions().get(index);
-
-  // }
-
-  // private void disableAfterUse(ActionEvent e, ChampionButton cbClass){
-  //   if(e.getSource() == cbClass.getActionCommand()){
-
-  //   }
-
-  // }
 
   private void updateChampionChoice(ActionEvent e) {
     for (int i = 0; i < 15; i++) {
@@ -95,6 +81,10 @@ public class Controller implements ActionListener {
     }
   }
 
+  private void attackDir(ActionEvent e){
+
+  }
+
   
   @Override
   public void actionPerformed(ActionEvent e) {
@@ -126,6 +116,49 @@ public class Controller implements ActionListener {
       view.championChoice.dispose();
       view.createBoard(board);
     }
+
+    if(e.getActionCommand().equals(view.up.getActionCommand())){
+      try {
+        model.move(Direction.UP);
+      } catch (UnallowedMovementException | NotEnoughResourcesException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }
+
+    if(e.getActionCommand().equals(view.left.getActionCommand())){
+      try {
+        model.move(Direction.LEFT);
+      } catch (UnallowedMovementException | NotEnoughResourcesException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }
+
+    if(e.getActionCommand().equals(view.down.getActionCommand())){
+      try {
+        model.move(Direction.DOWN);
+      } catch (UnallowedMovementException | NotEnoughResourcesException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }
+
+    if(e.getActionCommand().equals(view.right.getActionCommand())){
+      try {
+        model.move(Direction.RIGHT);
+      } catch (UnallowedMovementException | NotEnoughResourcesException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    }
+
+    if(e.getActionCommand().equals(view.attack.getActionCommand())){
+      
+
+    }
+    
+
   }
 
   public View getView() {

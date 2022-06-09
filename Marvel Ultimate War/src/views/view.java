@@ -92,7 +92,24 @@ public class View extends JFrame {
   protected ArrayList<ChampionButton> cbLeaders;
   protected JButton saveLeaderButton;
 
-
+  protected JButton attack;
+  protected JButton up;
+  protected JButton down;
+  protected JButton left;
+  protected JButton right;
+  protected JButton castAb1;
+  protected JButton castAb2;
+  protected JButton castAb3;
+  protected JPanel north;
+  protected JPanel west;
+  protected JPanel east;
+  protected JPanel south;
+  protected ChampionButton p1Champ1;
+  protected ChampionButton p1Champ2;
+  protected ChampionButton p1Champ3;
+  protected ChampionButton p2Champ1;
+  protected ChampionButton p2Champ2;
+  protected ChampionButton p2Champ3;
 
   public View(ActionListener l) {
     this.listener = l;
@@ -101,28 +118,111 @@ public class View extends JFrame {
   }
 
   public void createBoard(Object[][] board) {
+    this.setLayout(new BorderLayout());
     this.setTitle("Marvel War Game");
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximises screen
     this.setBounds(0, 50, 1280, 720); //when i de-maximise
     this.setVisible(true);
-    Icon iconCover = new ImageIcon("Marvel Ultimate War\\src\\Cover.png");
-    gameBoard.setBounds(80, 40, 200, 200);
+    up = new JButton("Up");
+    down = new JButton("Down");
+    left = new JButton("left");
+    right =  new JButton("right");
+    up.addActionListener(listener);
+    down.addActionListener(listener);
+    left.addActionListener(listener);
+    right.addActionListener(listener);
 
+    attack = new JButton("Attack");
+    attack.setActionCommand("Attack");
+    attack.addActionListener(listener);
+
+    castAb1 = new JButton("Ability 1");
+    castAb1.setActionCommand("Ability 1");
+    castAb1.addActionListener(listener);
+    castAb2 = new JButton("Ability 2");
+    castAb2.setActionCommand("Ability 2");
+    castAb2.addActionListener(listener);
+    castAb3 = new JButton("Ability 3");
+    castAb3.setActionCommand("Ability 3");
+    castAb3.addActionListener(listener);
+
+    north = new JPanel(new GridLayout());
+    north.add(up);
+    north.add(down);
+    north.add(left);
+    north.add(right);
+    north.add(attack);
+
+    west = new JPanel(new FlowLayout());
+    east = new JPanel(new FlowLayout());
+
+    south = new JPanel(new GridLayout(1,3));
+    south.add(castAb1);
+    south.add(castAb2);
+    south.add(castAb3);
+
+
+
+
+
+
+    
+    
+    
+    Icon iconCover = new ImageIcon("Marvel Ultimate War\\src\\Cover.png");
+    
     for (int i = 0; i < Game.getBoardwidth(); i++) {
       for (int j = 0; j < Game.getBoardheight(); j++) {
         if (board[i][j] instanceof Cover) {
           b = new JButton("Cover", iconCover);
           gameBoard.add(b);
-        } else if (board[i][j] instanceof Champion) {
-          gameBoard.add(b);
-        } else {
+        } if(board[i][j] == null){
           b = new JButton();
+          gameBoard.add(b);
+        } if(board[i][j] instanceof Champion){
+          b = new JButton(((Champion)board[i][j]).getName());
           gameBoard.add(b);
         }
       }
     }
-    this.add(this.gameBoard);
+    // p1Champ1 = new ChampionButton(((Champion)board[1][0]).getName());
+    // p1Champ1.setChampButton(Controller.model.getFirstPlayer().getTeam().get(0));
+    // p1Champ2 = new ChampionButton(((Champion)board[2][0]).getName());
+    // p1Champ1.setChampButton(Controller.model.getFirstPlayer().getTeam().get(1));
+    // p1Champ3 = new ChampionButton(((Champion)board[3][0]).getName());
+    // p1Champ1.setChampButton(Controller.model.getFirstPlayer().getTeam().get(2));
+    // p2Champ1 = new ChampionButton(((Champion)board[1][4]).getName());
+    // p1Champ1.setChampButton(Controller.model.getSecondPlayer().getTeam().get(0));
+    // p2Champ2 = new ChampionButton(((Champion)board[2][4]).getName());
+    // p1Champ1.setChampButton(Controller.model.getSecondPlayer().getTeam().get(1));
+    // p2Champ3 = new ChampionButton(((Champion)board[3][4]).getName());
+    // p1Champ1.setChampButton(Controller.model.getSecondPlayer().getTeam().get(2));
+    // gameBoard.add(p1Champ1);
+    // gameBoard.add(p1Champ2);
+    // gameBoard.add(p1Champ3);
+    // gameBoard.add(p2Champ1);
+    // gameBoard.add(p2Champ2);
+    // gameBoard.add(p2Champ3);
+    east.add(p2Panel);
+    west.add(p1Panel);
+    for(int i = 0; i< Controller.model.getFirstPlayer().getTeam().size();i++){
+      JLabel l = new JLabel(Controller.model.getFirstPlayer().getTeam().get(i).getName()); 
+      west.add(l);
+    }
+    for(int i = 0; i< Controller.model.getSecondPlayer().getTeam().size();i++){
+      JLabel l = new JLabel(Controller.model.getSecondPlayer().getTeam().get(i).getName());
+      east.add(l);
+    }
+    
+
+
+
+    this.add(north, BorderLayout.NORTH);
+    this.add(south, BorderLayout.SOUTH);
+    this.add(east, BorderLayout.EAST);
+    this.add(west, BorderLayout.WEST);
+    this.add(this.gameBoard, BorderLayout.CENTER);
     this.revalidate();
     this.repaint();
   }

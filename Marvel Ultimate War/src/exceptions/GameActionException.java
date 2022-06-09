@@ -1,6 +1,6 @@
 package exceptions;
 
-abstract class GameActionException extends Exception {
+public abstract class GameActionException extends Exception {
 	String message = "";
 	public GameActionException(){
 		super();
