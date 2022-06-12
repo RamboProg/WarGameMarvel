@@ -206,12 +206,12 @@ public class View extends JFrame {
     // gameBoard.add(p2Champ3);
     east.add(p2Panel);
     west.add(p1Panel);
-    for(int i = 0; i< Controller.model.getFirstPlayer().getTeam().size();i++){
-      JLabel l = new JLabel(Controller.model.getFirstPlayer().getTeam().get(i).getName()); 
+    for(int i = 0; i< controller.model.getFirstPlayer().getTeam().size();i++){
+      JLabel l = new JLabel(controller.model.getFirstPlayer().getTeam().get(i).getName()); 
       west.add(l);
     }
-    for(int i = 0; i< Controller.model.getSecondPlayer().getTeam().size();i++){
-      JLabel l = new JLabel(Controller.model.getSecondPlayer().getTeam().get(i).getName());
+    for(int i = 0; i< controller.model.getSecondPlayer().getTeam().size();i++){
+      JLabel l = new JLabel(controller.model.getSecondPlayer().getTeam().get(i).getName());
       east.add(l);
     }
     

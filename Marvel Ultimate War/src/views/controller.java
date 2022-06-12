@@ -14,7 +14,7 @@ import model.world.Champion;
 import model.world.Direction;
 
 
-public class Controller implements ActionListener {
+public class controller implements ActionListener {
   protected static Game model;
   private View view;
   private Object[][] board;
@@ -25,7 +25,7 @@ public class Controller implements ActionListener {
   private boolean flag1 = false;
   private boolean flag2 = false;
 
-  public Controller() throws IOException {
+  public controller() throws IOException {
     view = new View(this);
     p1 = new Player(view.p1Name);
     p2 = new Player(view.p2Name);
@@ -166,6 +166,6 @@ public class Controller implements ActionListener {
   }
 
   public static void main(String[] args) throws IOException {
-    new Controller();
+    new controller();
   }
 }
